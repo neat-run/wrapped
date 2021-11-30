@@ -4,6 +4,7 @@ import supabase from "../utils/supabase";
 import Constants from "../utils/constants";
 import UserHighlights from "../components/userHighlights";
 import TopRepos from "../components/topRepos";
+import TopLanguages from "../components/topLanguages";
 import Toolbar from "../components/toolbar";
 
 export default function Home() {
@@ -42,6 +43,10 @@ export default function Home() {
       <Head>
         <title>GitHub Wrapped</title>
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"
+        />
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
@@ -67,6 +72,7 @@ export default function Home() {
               <div className="flex space-x-5 rounded bg-purple-300 mt-5">
                 <UserHighlights />
                 <TopRepos />
+                <TopLanguages />
               </div>
               <Toolbar />
             </div>
