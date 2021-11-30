@@ -13,6 +13,7 @@ const TOP_REPOS = gql`
         totalCount
         nodes {
           nameWithOwner
+          url
           commitComments {
             totalCount
           }
@@ -32,7 +33,6 @@ function TopRepos() {
   const { data } = useQuery(TOP_REPOS);
 
   if (!data || !data.viewer) return <></>;
-  console.log(data.viewer);
 
   return (
     <div className="p-5 m-5 text-left space-y-5 text-white">
@@ -45,11 +45,13 @@ function TopRepos() {
             alt={repo.nameWithOwner + " logo"}
           />
           <div className="flex items-end space-x-2">
-            <p>
-              {repo.nameWithOwner}
+            <div>
+              <a href={repo.url} rel="noopener noreferrer">
+                {repo.nameWithOwner}
+              </a>
               <p className="text-3xl font-bold">{repo.stargazers.totalCount}</p>
               stars
-            </p>
+            </div>
           </div>
         </div>
       ))}
