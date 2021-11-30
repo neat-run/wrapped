@@ -4,6 +4,7 @@ import supabase from "../utils/supabase";
 import Constants from "../utils/constants";
 import UserHighlights from "../components/userHighlights";
 import TopRepos from "../components/topRepos";
+import Toolbar from "../components/toolbar";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -67,6 +68,7 @@ export default function Home() {
                 <UserHighlights />
                 <TopRepos />
               </div>
+              <Toolbar />
             </div>
           ) : (
             <div>
