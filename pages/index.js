@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import supabase from "../utils/supabase";
 import Constants from "../utils/constants";
-import TopRepos from "../components/topRepos";
+import UserHighlights from "../components/userHighlights";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -62,7 +62,7 @@ export default function Home() {
               >
                 Sign out
               </button>
-              <TopRepos />
+              <UserHighlights />
             </div>
           ) : (
             <div>
