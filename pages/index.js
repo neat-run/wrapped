@@ -37,20 +37,20 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-purple-200">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-black">
       <Head>
         <title>GitHub Wrapped</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="flex text-6xl font-bold">
+        <h1 className="flex text-6xl font-bold text-white">
           GitHub <p className="pl-2 text-purple-700">Wrapped</p>
         </h1>
         <div className="pt-5">
           {user ? (
             <div>
-              <p className="text-black pb-5">
+              <p className="text-white pb-5">
                 Hey,{" "}
                 {user.user_metadata.full_name
                   ? user.user_metadata.full_name
@@ -63,7 +63,7 @@ export default function Home() {
               >
                 Sign out
               </button>
-              <div className="flex space-x-5">
+              <div className="flex space-x-5 rounded bg-purple-300 mt-5">
                 <UserHighlights />
                 <TopRepos />
               </div>
@@ -80,8 +80,16 @@ export default function Home() {
           )}
         </div>
       </main>
-      <footer className="text-gray-500 hover:text-gray-700">
-        <a href={Constants.NEAT.URL}> Made by Neat</a>
+      <footer className=" ">
+        <p className="text-gray-300">
+          Made by{" "}
+          <a
+            className="font-bold text-purple-400 hover:text-purple-600"
+            href={Constants.NEAT.URL}
+          >
+            Neat
+          </a>
+        </p>
       </footer>
     </div>
   );

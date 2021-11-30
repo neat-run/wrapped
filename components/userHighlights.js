@@ -36,7 +36,7 @@ function UserHighlights() {
   const contributions = data.viewer.contributionsCollection;
 
   return (
-    <div className="p-5 m-5 text-left space-y-5">
+    <div className="p-5 m-5 text-left space-y-5 text-white">
       <div>
         You don't have commitment issues
         <p className="text-5xl font-bold">
