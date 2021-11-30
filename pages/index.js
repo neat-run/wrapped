@@ -1,6 +1,9 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import supabase from "../utils/supabase";
+import { apollo } from "../utils/apollo";
+import { gql } from "@apollo/client";
+import Constants from "../utils/constants";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -15,13 +18,39 @@ export default function Home() {
   // Check if user exists
   async function checkUser() {
     const user = supabase.auth.user();
+    if (!user) return;
+
+    const session = supabase.auth.session();
     setUser(user);
-    console.log(user);
+
+    // To access GitHub API
+    const token = session.provider_token;
+
+    // Test Query
+    apollo(token)
+      .query({
+        query: gql`
+          query {
+            viewer {
+              organizations(first: 100) {
+                totalCount
+                nodes {
+                  name
+                }
+              }
+            }
+          }
+        `,
+      })
+      .then((result) => console.log(result));
   }
 
   // Sign in with GitHub
   async function signIn() {
-    await supabase.auth.signIn({ provider: "github" });
+    await supabase.auth.signIn(
+      { provider: "github" },
+      { scopes: "repo:read user read:org" }
+    );
   }
 
   // Sign out
@@ -70,6 +99,9 @@ export default function Home() {
           )}
         </div>
       </main>
+      <footer className="text-gray-500 hover:text-gray-700">
+        <a href={Constants.NEAT.URL}> Made by Neat</a>
+      </footer>
     </div>
   );
 }
