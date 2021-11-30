@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import supabase from "../utils/supabase";
 import Constants from "../utils/constants";
 import UserHighlights from "../components/userHighlights";
+import TopRepos from "../components/topRepos";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -62,7 +63,10 @@ export default function Home() {
               >
                 Sign out
               </button>
-              <UserHighlights />
+              <div className="flex space-x-5">
+                <UserHighlights />
+                <TopRepos />
+              </div>
             </div>
           ) : (
             <div>

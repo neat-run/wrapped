@@ -5,7 +5,7 @@ const jan2021 = "2021-01-01T00:00:00.000+00:00";
 const dec2021 = "2021-12-29T00:00:00.000+00:00";
 
 // GraphQL query to get an overview of a user's contributions
-const TOP_REPOS = gql`
+const USER_HIGHLIGHTS = gql`
   query MyQuery($start: DateTime, $end: DateTime) {
     viewer {
       contributionsCollection(from: $start, to: $end) {
@@ -27,12 +27,11 @@ const TOP_REPOS = gql`
  * @returns {element} div with text
  */
 function UserHighlights() {
-  const { data } = useQuery(TOP_REPOS, {
+  const { data } = useQuery(USER_HIGHLIGHTS, {
     variables: { start: jan2021, end: dec2021 },
   });
 
   if (!data || !data.viewer) return <></>;
-  console.log(data.viewer);
 
   const contributions = data.viewer.contributionsCollection;
 
