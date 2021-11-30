@@ -59,7 +59,7 @@ export default function Home() {
               </p>
               <button
                 onClick={signOut}
-                className="bg-purple-600 text-gray-100 py-2 px-6 rounded"
+                className="bg-purple-600 hover:bg-purple-700 text-gray-100 py-2 px-6 rounded"
               >
                 Sign out
               </button>
@@ -72,7 +72,7 @@ export default function Home() {
             <div>
               <button
                 onClick={signIn}
-                className="bg-purple-600 text-gray-100 py-2 px-6 rounded"
+                className="bg-purple-600 hover:bg-purple-700 text-gray-100 py-2 px-6 rounded"
               >
                 Sign in
               </button>
@@ -84,7 +84,7 @@ export default function Home() {
         <p className="text-gray-300">
           Made by{" "}
           <a
-            className="font-bold text-purple-400 hover:text-purple-600"
+            className="font-bold text-purple-500 hover:text-purple-400"
             href={Constants.NEAT.URL}
           >
             Neat
