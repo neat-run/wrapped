@@ -1,9 +1,8 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import supabase from "../utils/supabase";
-import { apollo } from "../utils/apollo";
-import { gql } from "@apollo/client";
 import Constants from "../utils/constants";
+import TopRepos from "../components/topRepos";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -19,30 +18,7 @@ export default function Home() {
   async function checkUser() {
     const user = supabase.auth.user();
     if (!user) return;
-
-    const session = supabase.auth.session();
     setUser(user);
-
-    // To access GitHub API
-    const token = session.provider_token;
-
-    // Test Query
-    apollo(token)
-      .query({
-        query: gql`
-          query {
-            viewer {
-              organizations(first: 100) {
-                totalCount
-                nodes {
-                  name
-                }
-              }
-            }
-          }
-        `,
-      })
-      .then((result) => console.log(result));
   }
 
   // Sign in with GitHub
@@ -86,6 +62,7 @@ export default function Home() {
               >
                 Sign out
               </button>
+              <TopRepos />
             </div>
           ) : (
             <div>
