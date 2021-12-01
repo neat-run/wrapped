@@ -14,11 +14,11 @@ const COMMON_SYMBOLS = new Map<string, string>([
  * @returns inline span with styled keys
  */
 function KeyboardShortcut({ shortcut }) {
-  if (!shortcut.length) return <></>;
+  if (!shortcut) return <></>;
 
   return (
     <span className="ml-2 space-x-1">
-      {shortcut.map((key) => (
+      {shortcut.split("+").map((key) => (
         <span key={key} className="bg-gray-600 rounded p-1">
           {/* Turn dev-friendly strings like "cmd" to user-friendly symbols like "⌘" */}
           {COMMON_SYMBOLS.get(key) || key.toUpperCase()}

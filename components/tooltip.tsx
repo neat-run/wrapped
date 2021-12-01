@@ -1,7 +1,7 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import KeyboardShortcut from "./shortcut";
 
-function Tooltip({ children, content, shortcut = [] }) {
+function Tooltip({ children, content, shortcut = "" }) {
   return (
     <RadixTooltip.Root delayDuration={0}>
       <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
