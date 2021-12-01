@@ -34,6 +34,8 @@ const COMMON_LANGUAGES = new Map<string, string>([
   ["shell", "bash"],
   ["c++", "cplusplus"],
   ["vue", "vuejs"],
+  ["html", "html5"],
+  ["css", "css3"],
 ]);
 
 function TopLanguages() {
@@ -43,7 +45,6 @@ function TopLanguages() {
       start: Constants.DATES.JAN2021,
     },
   });
-  console.log(data);
 
   const topThree = useMemo<Array<Language>>(() => {
     if (!data || !data.viewer || !data.viewer.topRepositories) return [];
@@ -66,7 +67,7 @@ function TopLanguages() {
         if (repos && repos.some((r) => r.name == name)) return [...repos];
         return [...repos, { name, commonName, color }];
       }, [])
-      .slice(0, 3);
+      .slice(0, 5);
 
     return languages;
   }, [data]);

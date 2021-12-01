@@ -13,8 +13,12 @@ export const supabase = createClient(
 export async function signIn() {
   await supabase.auth.signIn(
     { provider: "github" },
-    { scopes: "repo:read user read:org" }
+    { scopes: "public_repo repo repo_deployment repo:status read:org" }
   );
+  supabase.auth.onAuthStateChange((event, session) => {
+    // TODO: use this event to refresh the provider_token
+    console.log(event, session);
+  });
 }
 
 // Sign out
