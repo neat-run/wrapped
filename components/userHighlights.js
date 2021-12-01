@@ -1,8 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-
-const jan2021 = "2021-01-01T00:00:00.000+00:00";
-const dec2021 = "2021-12-29T00:00:00.000+00:00";
+import Constants from "../utils/constants";
 
 // GraphQL query to get an overview of a user's contributions
 const USER_HIGHLIGHTS = gql`
@@ -28,7 +26,7 @@ const USER_HIGHLIGHTS = gql`
  */
 function UserHighlights() {
   const { data } = useQuery(USER_HIGHLIGHTS, {
-    variables: { start: jan2021, end: dec2021 },
+    variables: { start: Constants.DATES.JAN2021, end: Constants.DATES.DEC2021 },
   });
 
   if (!data || !data.viewer) return <></>;
@@ -36,7 +34,7 @@ function UserHighlights() {
   const contributions = data.viewer.contributionsCollection;
 
   return (
-    <div className="p-5 m-5 text-left space-y-5 text-white">
+    <div className="p-5 text-left space-y-5 text-white">
       <div>
         You don't have commitment issues
         <p className="text-5xl font-bold">

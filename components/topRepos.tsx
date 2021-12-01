@@ -35,7 +35,7 @@ function TopRepos() {
   if (!data || !data.viewer) return <></>;
 
   return (
-    <div className="p-5 m-5 text-left space-y-5 text-white">
+    <div className="p-5 text-left space-y-5 text-white">
       <p>You're an absolute beast</p>
       {data.viewer.repositoriesContributedTo.nodes.map((repo, i) => (
         <div key={i} className="flex items-center space-x-2">
