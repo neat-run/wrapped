@@ -5,7 +5,7 @@ import {
   InMemoryCache,
   concat,
 } from "@apollo/client";
-import supabase from "./supabase";
+import { supabase } from "./supabase";
 
 // Not sure what this does. See https://tinyurl.com/y93u9k5k.
 const httpLink = new HttpLink({ uri: "https://api.github.com/graphql" });
