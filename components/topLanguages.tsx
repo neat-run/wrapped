@@ -1,15 +1,15 @@
 import React, { useMemo } from "react";
 import { gql, useQuery } from "@apollo/client";
+import Constants from "../utils/constants";
 
 // GraphQL query to get an overview of a user's contributions
 const TOP_LANGUAGES = gql`
-  query {
+  query TopLangs($start: DateTime) {
     viewer {
-      repositoriesContributedTo(
+      topRepositories(
+        since: $start
         first: 20
-        includeUserRepositories: true
-        orderBy: { field: NAME, direction: DESC }
-        contributionTypes: [COMMIT, PULL_REQUEST, REPOSITORY]
+        orderBy: { field: UPDATED_AT, direction: DESC }
       ) {
         totalCount
         nodes {
@@ -30,19 +30,28 @@ interface Language {
   color: string;
 }
 
-const COMMON_LANGUAGES = new Map<string, string>([["shell", "bash"]]);
+const COMMON_LANGUAGES = new Map<string, string>([
+  ["shell", "bash"],
+  ["c++", "cplusplus"],
+  ["vue", "vuejs"],
+]);
 
 function TopLanguages() {
   // Fetch languages of most-contributed-to repos
-  const { data } = useQuery(TOP_LANGUAGES);
+  const { data } = useQuery(TOP_LANGUAGES, {
+    variables: {
+      start: Constants.DATES.JAN2021,
+    },
+  });
+  console.log(data);
 
   const topThree = useMemo<Array<Language>>(() => {
-    // Fetch top languages
-    if (!data || !data.viewer || !data.viewer.repositoriesContributedTo)
-      return [];
+    if (!data || !data.viewer || !data.viewer.topRepositories) return [];
 
-    let languages = data.viewer.repositoriesContributedTo.nodes
+    let languages = data.viewer.topRepositories.nodes
       .reduce((repos, repo) => {
+        if (!repo || !repo.primaryLanguage) return [...repos];
+
         // Get language logo colour
         let color = repo.primaryLanguage.color;
 
@@ -62,10 +71,8 @@ function TopLanguages() {
     return languages;
   }, [data]);
 
-  if (!data || !data.viewer) return <></>;
-
   return (
-    <div className="p-5 m-5 text-left space-y-5 text-white">
+    <div className="p-5 text-left space-y-5 text-white">
       <p>You type many tongues</p>
       {topThree.map((language, i) => (
         <div key={i} className="flex items-center space-x-2">
