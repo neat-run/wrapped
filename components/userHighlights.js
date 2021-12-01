@@ -36,7 +36,7 @@ function UserHighlights() {
   return (
     <div className="p-5 text-left space-y-5 text-white">
       <div>
-        You don't have commitment issues
+        You have no commitment issues
         <p className="text-5xl font-bold">
           {contributions.totalCommitContributions}
         </p>
@@ -50,7 +50,7 @@ function UserHighlights() {
         contributions
       </div>
       <div>
-        You get around
+        You code far and wide
         <p className="text-5xl font-bold">
           {contributions.totalRepositoriesWithContributedCommits}
         </p>

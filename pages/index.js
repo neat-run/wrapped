@@ -60,12 +60,14 @@ export default function Home() {
                 Sign out
               </button>
               <div
-                className="flex space-x-5 rounded bg-gradient-to-r from-indigo-500 to-purple-500 mt-5"
+                className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"
                 id="wrap"
               >
-                <UserHighlights />
-                <TopRepos />
-                <TopLanguages />
+                <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
+                  <UserHighlights />
+                  <TopRepos />
+                  <TopLanguages />
+                </div>
               </div>
               <Toolbar />
             </div>
