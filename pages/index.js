@@ -69,7 +69,10 @@ export default function Home() {
               >
                 Sign out
               </button>
-              <div className="flex space-x-5 rounded bg-gradient-to-r from-indigo-400 to-purple-400 mt-5">
+              <div
+                className="flex space-x-5 rounded bg-gradient-to-r from-indigo-400 to-purple-400 mt-5"
+                id="wrap"
+              >
                 <UserHighlights />
                 <TopRepos />
                 <TopLanguages />
