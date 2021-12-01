@@ -39,7 +39,16 @@ function Toolbar() {
       </Tooltip>
 
       <Tooltip content="Share to Twitter">
-        <button className={buttonClass}>
+        <button
+          className={buttonClass}
+          onClick={() => {
+            // TODO: encode the Wrapped banner in a shareable URL
+            window.open(
+              "https://twitter.com/intent/tweet?text=Check%20out%20my%20GitHub%20Wrapped!&url=https://wrapped-neat.vercel.app/",
+              "_blank"
+            );
+          }}
+        >
           <TwitterLogoIcon />
         </button>
       </Tooltip>
