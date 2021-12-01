@@ -26,5 +26,5 @@ export async function signOut() {
  * Get the signed-in user
  */
 export async function getUser() {
-  await supabase.auth.user();
+  return await supabase.auth.user();
 }

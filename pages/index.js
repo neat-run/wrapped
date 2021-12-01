@@ -21,7 +21,7 @@ export default function Home() {
 
   // Check if user exists
   async function checkUser() {
-    const user = getUser();
+    const user = await getUser();
     if (user) setUser(user);
   }
 
