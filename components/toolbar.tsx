@@ -8,6 +8,7 @@ import {
 import Tooltip from "../components/tooltip";
 import domtoimage from "dom-to-image";
 import saveAs from "file-saver";
+import { download } from "../utils/exports";
 
 function Toolbar() {
   const [downloaded, setDownloaded] = useState(false);
@@ -19,12 +20,6 @@ function Toolbar() {
   const buttonClass =
     "p-2 hover:bg-gray-500 hover:bg-opacity-20 rounded scale-[1.5] hover:scale-[1.8]";
 
-  function download() {
-    let canvas = document.getElementById("wrap");
-    domtoimage.toBlob(canvas).then(function (blob) {
-      saveAs(blob, "wrapped.png");
-    });
-  }
   return (
     <div className="p-7 text-white space-x-7">
       <Tooltip content="Copy image">
