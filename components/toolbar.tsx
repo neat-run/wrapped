@@ -6,8 +6,6 @@ import {
   CheckIcon,
 } from "@modulz/radix-icons";
 import Tooltip from "../components/tooltip";
-import domtoimage from "dom-to-image";
-import saveAs from "file-saver";
 import { download } from "../utils/exports";
 
 function Toolbar() {
@@ -34,7 +32,7 @@ function Toolbar() {
         </button>
       </Tooltip>
 
-      <Tooltip content="Download">
+      <Tooltip content="Download" shortcut={["cmd", "s"]}>
         <button
           className={buttonClass}
           onClick={() => {
