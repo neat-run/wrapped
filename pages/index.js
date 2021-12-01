@@ -1,16 +1,18 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import supabase from "../utils/supabase";
+import { signIn, signOut, getUser } from "../utils/supabase";
 import Constants from "../utils/constants";
 import UserHighlights from "../components/userHighlights";
 import TopRepos from "../components/topRepos";
 import TopLanguages from "../components/topLanguages";
 import Toolbar from "../components/toolbar";
+import { initShortcuts } from "../utils/shortcuts";
 
 export default function Home() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    initShortcuts();
     checkUser();
     window.addEventListener("hashchange", function () {
       checkUser();
@@ -19,23 +21,8 @@ export default function Home() {
 
   // Check if user exists
   async function checkUser() {
-    const user = supabase.auth.user();
-    if (!user) return;
-    setUser(user);
-  }
-
-  // Sign in with GitHub
-  async function signIn() {
-    await supabase.auth.signIn(
-      { provider: "github" },
-      { scopes: "repo:read user read:org" }
-    );
-  }
-
-  // Sign out
-  async function signOut() {
-    await supabase.auth.signOut();
-    setUser(null);
+    const user = getUser();
+    if (user) setUser(user);
   }
 
   return (
@@ -64,7 +51,10 @@ export default function Home() {
                 , you're logged in!
               </p>
               <button
-                onClick={signOut}
+                onClick={() => {
+                  signOut();
+                  setUser(null);
+                }}
                 className="bg-purple-600 hover:bg-purple-700 text-gray-100 py-2 px-6 rounded"
               >
                 Sign out
