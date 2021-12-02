@@ -6,6 +6,7 @@ import UserHighlights from "../components/userHighlights";
 import TopRepos from "../components/topRepos";
 import TopLanguages from "../components/topLanguages";
 import Contributions from "../components/contributions";
+import Follows from "../components/follows";
 import Toolbar from "../components/toolbar";
 import SignInOut from "../components/signInOut";
 import { initShortcuts } from "../utils/shortcuts";
@@ -111,8 +112,10 @@ export default function Home({ socialPreview, username }) {
                 <UserHighlights />
                 <TopRepos />
                 <TopLanguages />
-                <Contributions />
+
+                <Follows />
               </div>
+              <Contributions />
             </div>
             <Toolbar />
           </div>

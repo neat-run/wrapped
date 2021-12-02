@@ -33,8 +33,6 @@ function UserHighlights() {
 
   const contributions = data.viewer.contributionsCollection;
 
-  console.log(contributions);
-
   return (
     <div className="p-5 text-left space-y-5 text-white">
       <div>

@@ -60,9 +60,9 @@ function Contributions() {
     // Assign color for each case
     if (rounded === 0) colors[value] = "bg-gray-200 bg-opacity-20";
     if (rounded === 0.25) colors[value] = "bg-green-200 bg-opacity-80";
-    if (rounded === 0.5) colors[value] = "bg-green-300 bg-opacity-80";
-    if (rounded === 0.75) colors[value] = "bg-green-400 bg-opacity-80";
-    if (rounded === 1) colors[value] = "bg-green-500 bg-opacity-80";
+    if (rounded === 0.5) colors[value] = "bg-green-400 bg-opacity-80";
+    if (rounded === 0.75) colors[value] = "bg-green-600 bg-opacity-80";
+    if (rounded === 1) colors[value] = "bg-green-800 bg-opacity-80";
   });
 
   return (
