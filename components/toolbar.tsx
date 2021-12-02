@@ -1,24 +1,24 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   TwitterLogoIcon,
   DownloadIcon,
   CopyIcon,
+  Link2Icon,
   CheckIcon,
 } from "@modulz/radix-icons";
 import Tooltip from "../components/tooltip";
-import { copy, download } from "../utils/exports";
+import { copyImage, download, publishUser } from "../utils/exports";
 import { SHORTCUTS } from "../utils/shortcuts";
 
 function Toolbar() {
   const [downloaded, setDownloaded] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copiedImage, setCopiedImage] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
 
   setTimeout(() => {
     setDownloaded(false);
-  }, 3 * 1000);
-
-  setTimeout(() => {
-    setCopied(false);
+    setCopiedImage(false);
+    setCopiedLink(false);
   }, 3 * 1000);
 
   const buttonClass =
@@ -26,15 +26,30 @@ function Toolbar() {
 
   return (
     <div className="p-7 text-white space-x-7">
-      <Tooltip content="Copy image" shortcut={SHORTCUTS.copy.sequence}>
+      <Tooltip content="Copy image" shortcut={SHORTCUTS.copyImage.sequence}>
         <button
           className={buttonClass}
           onClick={() => {
-            copy();
-            setCopied(true);
+            copyImage();
+            setCopiedImage(true);
           }}
         >
-          {copied ? <CheckIcon /> : <CopyIcon />}
+          {copiedImage ? <CheckIcon /> : <CopyIcon />}
+        </button>
+      </Tooltip>
+
+      <Tooltip
+        content="Publish and copy link"
+        shortcut={SHORTCUTS.copyURL.sequence}
+      >
+        <button
+          className={buttonClass}
+          onClick={() => {
+            publishUser({ username: "testuser", commits: 5, pulls: 50 });
+            setCopiedLink(true);
+          }}
+        >
+          {copiedLink ? <CheckIcon /> : <Link2Icon />}
         </button>
       </Tooltip>
 
