@@ -7,7 +7,7 @@ import {
   CheckIcon,
 } from "@modulz/radix-icons";
 import Tooltip from "../components/tooltip";
-import { copyImage, download, publishUser } from "../utils/exports";
+import { copyImage, download, getPublicLink } from "../utils/exports";
 import { SHORTCUTS } from "../utils/shortcuts";
 
 function Toolbar() {
@@ -45,7 +45,7 @@ function Toolbar() {
         <button
           className={buttonClass}
           onClick={() => {
-            publishUser({ username: "testuser", commits: 5, pulls: 50 });
+            getPublicLink();
             setCopiedLink(true);
           }}
         >
