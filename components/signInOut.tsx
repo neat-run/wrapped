@@ -4,24 +4,24 @@ import KeyboardShortcut from "./shortcut";
 
 /**
  * Sign out or into the app
- * @param user user object from GitHub
- * @param setUser user object setter from parent
+ * @param auth user object from GitHub
+ * @param setAuth user object setter from parent
  * @returns button with one of two actions
  */
-function SignInOut({ user, setUser }) {
+function SignInOut({ auth, setAuth }) {
   return (
     <button
       onClick={() => {
-        if (!user) signIn();
+        if (!auth) signIn();
         else {
           signOut();
-          setUser(null);
+          setAuth(null);
         }
       }}
       className="bg-purple-600 hover:bg-purple-700 text-gray-100 py-2 px-6 rounded"
     >
-      <span>{user ? "Sign out" : "Sign in"}</span>
-      {!user && <KeyboardShortcut shortcut={"S"} />}
+      <span>{auth ? "Sign out" : "Sign in"}</span>
+      {!auth && <KeyboardShortcut shortcut={"S"} />}
     </button>
   );
 }
