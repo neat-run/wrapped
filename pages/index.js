@@ -44,19 +44,14 @@ export default function Home({ socialPreview, hostUser }) {
         {auth ? (
           <div>
             <div className="text-white p-5 flex justify-center items-center space-x-5">
-              {/* {user.user_metadata.avatar_url && (
+              {user.avatarUrl && (
                 <img
-                  className="w-10 h-10 rounded-full"
-                  src={user.user_metadata.avatar_url}
-                  alt={`${user.user_metadata.full_name}'s avatar'`}
+                  className="w-12 h-12 rounded-full"
+                  src={user.avatarUrl}
+                  alt={`${user.username}'s avatar'`}
                 />
-              )} */}
-              {/* <p>
-                Hey,{" "}
-                {user.user_metadata.full_name
-                  ? user.user_metadata.full_name
-                  : user.email}
-              </p> */}
+              )}
+              <p className="text-2xl font-medium">Welcome, {user.username}.</p>
             </div>
             <div
               className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"

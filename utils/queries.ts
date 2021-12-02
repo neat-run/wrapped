@@ -5,6 +5,7 @@ export const USER_HIGHLIGHTS = gql`
   query MyQuery($start: DateTime, $end: DateTime) {
     viewer {
       login
+      avatarUrl
       contributionsCollection(from: $start, to: $end) {
         totalCommitContributions
         totalPullRequestContributions
