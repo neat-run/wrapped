@@ -17,3 +17,25 @@ export const USER_HIGHLIGHTS = gql`
     }
   }
 `;
+
+// GraphQL query to get a user's top languages
+export const TOP_LANGUAGES = gql`
+  query TopLangs($start: DateTime) {
+    viewer {
+      topRepositories(
+        since: $start
+        first: 20
+        orderBy: { field: UPDATED_AT, direction: DESC }
+      ) {
+        totalCount
+        nodes {
+          nameWithOwner
+          primaryLanguage {
+            name
+            color
+          }
+        }
+      }
+    }
+  }
+`;
