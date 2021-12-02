@@ -16,6 +16,7 @@ const httpLink = new HttpLink({ uri: "https://api.github.com/graphql" });
 const authMiddleware = new ApolloLink((operation, forward) => {
   // Get the API token from the Supabase session
   const session = supabase.auth.session();
+  if (!session) return;
   const token = session.provider_token;
 
   // Add the token to the request context

@@ -38,12 +38,7 @@ export default function Home({ socialPreview, hostUser }) {
           GitHub <p className="pl-2 text-purple-700">Wrapped</p>
         </h1>
         <SignInOut user={user} setUser={setUser} />
-        {hostUser && (
-          <div className="text-white pt-5">
-            Welcome to {hostUser.username}'s year in review.
-          </div>
-        )}
-        {user && (
+        {user ? (
           <div>
             <div className="text-white p-5 flex justify-center items-center space-x-5">
               {user.user_metadata.avatar_url && (
@@ -66,7 +61,7 @@ export default function Home({ socialPreview, hostUser }) {
               id="wrap"
             >
               <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
-                <UserHighlights />
+                <UserHighlights props={hostUser} />
                 <TopRepos />
                 <TopLanguages />
                 <Follows />
@@ -76,6 +71,25 @@ export default function Home({ socialPreview, hostUser }) {
             </div>
             <Toolbar />
           </div>
+        ) : hostUser ? (
+          <div>
+            <div className="text-white pt-5">
+              Welcome to {hostUser.username}'s year in review.
+            </div>
+            <div
+              className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"
+              id="wrap"
+            >
+              <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
+                <UserHighlights hostUser={hostUser} />
+                {/* <TopRepos /> */}
+                {/* <TopLanguages /> */}
+                {/* <Contributions /> */}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <></>
         )}
       </main>
       <footer className=" ">
@@ -93,7 +107,7 @@ export default function Home({ socialPreview, hostUser }) {
   );
 }
 
-// For generating a social preview image
+// Server-side rendering for viewing others' Wrapped pages
 export const getServerSideProps = async (context) => {
   let socialPreview = await fetch(
     "https://jsonplaceholder.typicode.com/photos/1"
@@ -101,12 +115,10 @@ export const getServerSideProps = async (context) => {
   socialPreview = await socialPreview.json();
 
   // Get user from subdomain eg. https://nat.wrapped.run
-  let username = "";
   let hostUser = {};
   let domainParts = context.req.headers.host.split(".");
   if (domainParts.length > (isDev() ? 1 : 2)) {
-    username = domainParts[0];
-    hostUser = await getByUsername(username);
+    hostUser = await getByUsername(domainParts[0]);
   }
 
   return {
