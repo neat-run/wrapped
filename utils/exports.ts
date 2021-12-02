@@ -59,7 +59,7 @@ export async function copyPublicLink() {
  * @param {string} username GitHub username to search
  * @returns {User} user details
  */
-export async function getByUsername(username: string) {
+export async function getByUsername(username: string): Promise<User> {
   let user = await getRow("users", "username", username);
   if (!user) return null;
   return user[0];
