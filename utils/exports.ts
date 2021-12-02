@@ -61,11 +61,6 @@ export async function getByUsername(username: string): Promise<User> {
   let user = await getRow("users", "username", username);
 
   if (!user) return null;
-  if (user.topLanguages) {
-    user.topLanguages = user.topLanguages.map((language) =>
-      JSON.parse(language)
-    );
-  }
 
   return user;
 }
