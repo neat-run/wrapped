@@ -6,6 +6,7 @@ import TopRepos from "../components/topRepos";
 import TopLanguages from "../components/topLanguages";
 import Contributions from "../components/contributions";
 import Follows from "../components/follows";
+import Stars from "../components/stars";
 import HeadTags from "../components/headTags";
 import Toolbar from "../components/toolbar";
 import SignInOut from "../components/signInOut";
@@ -69,6 +70,7 @@ export default function Home({ socialPreview, hostUser }) {
                 <TopRepos />
                 <TopLanguages />
                 <Follows />
+                <Stars />
               </div>
               <Contributions />
             </div>
