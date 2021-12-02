@@ -44,3 +44,16 @@ export async function addRow(table: string, payload: object) {
   if (error) throw error;
   else return data;
 }
+
+/**
+ * Get details of a database row by a search query
+ * @param table name of the database table eg. "users"
+ * @param column name of the column to search eg. "username"
+ * @param value value to search by eg. "natfriedman"
+ * @returns object with columns as fields eg. `data.commits`
+ */
+export async function getRow(table: string, column: string, value: string) {
+  let { data, error } = await supabase.from(table).select().eq(column, value);
+  if (error) throw error;
+  else return data;
+}
