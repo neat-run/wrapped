@@ -4,6 +4,7 @@ import { gql } from "@apollo/client";
 export const USER_HIGHLIGHTS = gql`
   query MyQuery($start: DateTime, $end: DateTime) {
     viewer {
+      login
       contributionsCollection(from: $start, to: $end) {
         totalCommitContributions
         totalPullRequestContributions

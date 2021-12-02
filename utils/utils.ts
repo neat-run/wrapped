@@ -21,7 +21,6 @@ export async function getUserStats(): Promise<User | null> {
 
   // Combine objects
   const userStats = {
-    username: "testuser",
     ...highlights,
     topLanguages: languages,
   };
@@ -45,6 +44,7 @@ export async function getUserHighlights() {
 
   const collection = payload.data.viewer.contributionsCollection;
   const highlights = {
+    username: payload.data.viewer.login,
     commits: collection.totalCommitContributions,
     contributions: collection.contributionCalendar.totalContributions,
     pulls: collection.totalPullRequestContributions,
