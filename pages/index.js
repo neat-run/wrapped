@@ -9,7 +9,7 @@ import Toolbar from "../components/toolbar";
 import KeyboardShortcut from "../components/shortcut";
 import { initShortcuts } from "../utils/shortcuts";
 
-export default function Home() {
+export default function Home({ socialPreview }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -30,6 +30,29 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-black">
       <Head>
         <title>GitHub Wrapped</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="theme-color" content="#000" />
+        <meta
+          name="description"
+          content="Dive into analytics of your year as a developer. Total commits, top repositories, and favourite languages."
+        />
+        <meta property="og:title" content="GitHub Wrapped" />
+        <meta property="og:url" content="https://wrapped.run" />
+        <meta property="og:type" content="website" />
+        {/* Dynamically generated social link preview */}
+        <meta
+          property="og:image"
+          content={
+            socialPreview
+              ? socialPreview.url
+              : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
+          }
+        />
+        <meta
+          name="og:description"
+          content="Dive into analytics of your year as a developer. Total commits, top repositories, and favourite languages."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
@@ -100,3 +123,16 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  let socialPreview = await fetch(
+    "https://jsonplaceholder.typicode.com/photos/1"
+  );
+  socialPreview = socialPreview.json();
+
+  return {
+    props: {
+      socialPreview,
+    },
+  };
+};
