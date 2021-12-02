@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import { signIn, signOut, getUser } from "../utils/supabase";
+import { getUser } from "../utils/supabase";
 import Constants from "../utils/constants";
 import UserHighlights from "../components/userHighlights";
 import TopRepos from "../components/topRepos";
@@ -9,7 +9,7 @@ import Toolbar from "../components/toolbar";
 import SignInOut from "../components/signInOut";
 import { initShortcuts } from "../utils/shortcuts";
 
-export default function Home({ socialPreview }) {
+export default function Home({ socialPreview, username }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -127,7 +127,7 @@ export default function Home({ socialPreview }) {
 }
 
 // For generating a social preview image
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
   let socialPreview = await fetch(
     "https://jsonplaceholder.typicode.com/photos/1"
   );
@@ -136,6 +136,7 @@ export const getServerSideProps = async () => {
   return {
     props: {
       socialPreview,
+      username: context.params.username ?? null,
     },
   };
 };
