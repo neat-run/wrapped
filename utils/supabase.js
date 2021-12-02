@@ -11,7 +11,10 @@ export const supabase = createClient(
 
 // Sign in with GitHub
 export async function signIn() {
-  await supabase.auth.signIn({ provider: "github" }, { scopes: "repo:status" });
+  await supabase.auth.signIn(
+    { provider: "github" },
+    { scopes: "repo:status user" }
+  );
   supabase.auth.onAuthStateChange((event, session) => {
     // TODO: use this event to refresh the provider_token
     console.log(event, session);

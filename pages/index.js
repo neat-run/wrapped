@@ -70,7 +70,7 @@ export default function Home({ socialPreview, username }) {
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
       </Head>
 
@@ -138,10 +138,15 @@ export const getServerSideProps = async (context) => {
   );
   socialPreview = await socialPreview.json();
 
+  // Get username from subdomain
+  let username = "";
+  let domainParts = context.req.headers.host.split(".");
+  if (domainParts.length > 1) username = domainParts[0];
+
   return {
     props: {
       socialPreview,
-      username: context.params.user ?? null,
+      username,
     },
   };
 };
