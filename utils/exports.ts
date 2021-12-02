@@ -1,7 +1,7 @@
 import domtoimage from "dom-to-image";
 import saveAs from "file-saver";
 import { User } from "../types/common";
-import { addRow, getRow, getUser } from "./supabase";
+import { addRow, getRow } from "./supabase";
 
 /**
  * Grab the banner element and download it as a PNG

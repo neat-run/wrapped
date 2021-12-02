@@ -21,7 +21,7 @@ export default function Home({ socialPreview, hostUser }) {
   useEffect(async () => {
     let userStats = await getUserStats();
     setUser(userStats);
-    initShortcuts();
+    initShortcuts(userStats);
     checkUser();
     window.addEventListener("hashchange", () => checkUser());
   }, [auth]);

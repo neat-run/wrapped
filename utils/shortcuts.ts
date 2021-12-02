@@ -1,3 +1,4 @@
+import { User } from "@supabase/gotrue-js";
 import Mousetrap from "mousetrap";
 import { copyImage, copyPublicLink, download } from "./exports";
 import { getUser, signIn } from "./supabase";
@@ -9,28 +10,28 @@ import { getUser, signIn } from "./supabase";
 export const SHORTCUTS = {
   save: {
     sequence: "command+s",
-    method: (e) => {
+    method: (e, user) => {
       e.preventDefault();
       download();
     },
   },
   copyImage: {
     sequence: "command+c",
-    method: (e) => {
+    method: (e, user) => {
       e.preventDefault();
       copyImage();
     },
   },
   copyURL: {
     sequence: "command+shift+c",
-    method: async (e) => {
+    method: async (e, user) => {
       e.preventDefault();
-      copyPublicLink();
+      copyPublicLink(user);
     },
   },
   signIn: {
     sequence: "s",
-    method: async (e) => {
+    method: async (e, user) => {
       e.preventDefault();
       // Ignore if already signed in
       let signedIn = await getUser();
@@ -44,8 +45,8 @@ export const SHORTCUTS = {
 /**
  * Initializes keyboard shortcuts
  */
-export function initShortcuts() {
+export function initShortcuts(user: User) {
   Object.values(SHORTCUTS).map((shortcut) =>
-    Mousetrap.bind(shortcut.sequence, shortcut.method)
+    Mousetrap.bind(shortcut.sequence, (e) => shortcut.method(e, user))
   );
 }
