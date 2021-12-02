@@ -32,3 +32,15 @@ export async function signOut() {
 export async function getUser() {
   return await supabase.auth.user();
 }
+
+/**
+ * Add a row to a Supabase table
+ * @param table name of the database table in which to insert a row
+ * @param payload data to be inserted into the table, matching its columns
+ * @returns error or inserted data
+ */
+export async function addRow(table: string, payload: object) {
+  let { error, data } = await supabase.from(table).insert(payload).single();
+  if (error) throw error;
+  else return data;
+}
