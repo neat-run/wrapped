@@ -79,6 +79,11 @@ export default function Home({ socialPreview, username }) {
           GitHub <p className="pl-2 text-purple-700">Wrapped</p>
         </h1>
         <SignInOut user={user} setUser={setUser} />
+        {username && (
+          <div className="text-white pt-5">
+            Welcome to {username}'s year in review.
+          </div>
+        )}
         {user && (
           <div>
             <div className="text-white p-5 flex justify-center items-center space-x-5">
@@ -136,7 +141,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       socialPreview,
-      username: context.params.username ?? null,
+      username: context.params.user ?? null,
     },
   };
 };
