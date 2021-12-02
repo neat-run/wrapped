@@ -61,7 +61,7 @@ export default function Home({ socialPreview, hostUser }) {
               id="wrap"
             >
               <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
-                <UserHighlights props={hostUser} />
+                <UserHighlights />
                 <TopRepos />
                 <TopLanguages />
                 <Follows />
@@ -82,10 +82,11 @@ export default function Home({ socialPreview, hostUser }) {
             >
               <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
                 <UserHighlights hostUser={hostUser} />
-                {/* <TopRepos /> */}
-                {/* <TopLanguages /> */}
-                {/* <Contributions /> */}
+                <TopRepos />
+                <TopLanguages />
+                <Follows />
               </div>
+              <Contributions />
             </div>
           </div>
         ) : (

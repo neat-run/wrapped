@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { gql, useQuery } from "@apollo/client";
 import Constants from "../utils/constants";
 import { User } from "../types/common";
@@ -51,33 +51,33 @@ function UserHighlights({ hostUser }: Props) {
         reviews: collection.totalPullRequestReviewContributions,
       };
     }
-  }, []);
+  }, [data]);
 
   return (
     <div className="p-5 text-left space-y-5 text-white">
       <div>
         You have no commitment issues
-        <p className="text-5xl font-bold">{stats.commits}</p>
+        <p className="text-5xl font-bold">{stats?.commits}</p>
         commits
       </div>
       <div>
         You carry your weight
-        <p className="text-5xl font-bold">{stats.contributions}</p>
+        <p className="text-5xl font-bold">{stats?.contributions}</p>
         total contributions
       </div>
       <div>
         You code far and wide
-        <p className="text-5xl font-bold">{stats.repos}</p>
+        <p className="text-5xl font-bold">{stats?.repos}</p>
         repos
       </div>
       <div>
         PRs are your forte
-        <p className="text-5xl font-bold">{stats.pulls}</p>
+        <p className="text-5xl font-bold">{stats?.pulls}</p>
         contributions
       </div>
       <div>
         Your team loves you for your
-        <p className="text-5xl font-bold">{stats.reviews}</p>
+        <p className="text-5xl font-bold">{stats?.reviews}</p>
         PR reviews
       </div>
     </div>
