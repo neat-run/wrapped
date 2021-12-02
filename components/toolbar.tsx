@@ -7,7 +7,12 @@ import {
   CheckIcon,
 } from "@modulz/radix-icons";
 import Tooltip from "../components/tooltip";
-import { copyImage, download, getPublicLink } from "../utils/exports";
+import {
+  copyImage,
+  copyPublicLink,
+  download,
+  getPublicLink,
+} from "../utils/exports";
 import { SHORTCUTS } from "../utils/shortcuts";
 
 function Toolbar() {
@@ -45,7 +50,7 @@ function Toolbar() {
         <button
           className={buttonClass}
           onClick={() => {
-            getPublicLink();
+            copyPublicLink();
             setCopiedLink(true);
           }}
         >
@@ -56,10 +61,11 @@ function Toolbar() {
       <Tooltip content="Share to Twitter">
         <button
           className={buttonClass}
-          onClick={() => {
+          onClick={async () => {
             // TODO: encode the Wrapped banner in a shareable URL
+            let publicLink = await getPublicLink();
             window.open(
-              "https://twitter.com/intent/tweet?text=Check%20out%20my%20GitHub%20Wrapped!&url=https://wrapped-neat.vercel.app/",
+              `https://twitter.com/intent/tweet?text=Check%20out%20my%20GitHub%20Wrapped!&url=${publicLink}`,
               "_blank"
             );
           }}

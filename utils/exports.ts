@@ -39,6 +39,13 @@ export async function getPublicLink() {
   // Add user to Supabase
   await publishUser({ username, commits: 5, pulls: 50 });
 
-  // Copy URL to clipboard
-  navigator.clipboard.writeText(`https://${username}.wrapped.run`);
+  return username ? `https://${username}.wrapped.run` : "https://wrapped.run";
+}
+
+/**
+ * Generate public link and copy to clipboard
+ */
+export async function copyPublicLink() {
+  let publicLink = await getPublicLink();
+  navigator.clipboard.writeText(publicLink);
 }
