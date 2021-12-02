@@ -1,5 +1,5 @@
 import Mousetrap from "mousetrap";
-import { copy, download } from "./exports";
+import { copyImage, download, getPublicLink } from "./exports";
 import { getUser, signIn } from "./supabase";
 
 /**
@@ -14,11 +14,18 @@ export const SHORTCUTS = {
       download();
     },
   },
-  copy: {
+  copyImage: {
     sequence: "command+c",
     method: (e) => {
       e.preventDefault();
-      copy();
+      copyImage();
+    },
+  },
+  copyURL: {
+    sequence: "command+shift+c",
+    method: async (e) => {
+      e.preventDefault();
+      getPublicLink();
     },
   },
   signIn: {
