@@ -3,6 +3,8 @@ export interface User {
   commits?: number;
   pulls?: number;
   contributions?: number;
+  repos?: number;
+  reviews?: number;
   topRepos?: Repo[];
   topLanguages?: Language[];
 }
