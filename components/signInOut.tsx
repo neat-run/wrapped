@@ -12,12 +12,11 @@ function SignInOut({ user, setUser }) {
   return (
     <button
       onClick={() => {
-        !user
-          ? signIn()
-          : () => {
-              signOut();
-              setUser(null);
-            };
+        if (!user) signIn();
+        else {
+          signOut();
+          setUser(null);
+        }
       }}
       className="bg-purple-600 hover:bg-purple-700 text-gray-100 py-2 px-6 rounded"
     >
