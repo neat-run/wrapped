@@ -39,20 +39,33 @@ export default function Home({ socialPreview }) {
         <meta property="og:title" content="GitHub Wrapped" />
         <meta property="og:url" content="https://wrapped.run" />
         <meta property="og:type" content="website" />
+
         {/* Dynamically generated social link preview */}
         <meta
           property="og:image"
           content={
-            socialPreview
-              ? socialPreview.url
-              : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
+            socialPreview.url ??
+            "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
           }
         />
         <meta
           name="og:description"
           content="Dive into analytics of your year as a developer. Total commits, top repositories, and favourite languages."
         />
+
+        {/* Twitter-specific meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@neat_run" />
+        <meta property="twitter:title" content="GitHub Wrapped 2021" />
+        <meta
+          property="twitter:image"
+          content={
+            socialPreview
+              ? socialPreview.url
+              : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
+          }
+        />
+
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
@@ -124,11 +137,12 @@ export default function Home({ socialPreview }) {
   );
 }
 
+// For generating a social preview image
 export const getServerSideProps = async () => {
   let socialPreview = await fetch(
     "https://jsonplaceholder.typicode.com/photos/1"
   );
-  socialPreview = socialPreview.json();
+  socialPreview = await socialPreview.json();
 
   return {
     props: {
