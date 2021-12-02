@@ -6,7 +6,7 @@ import UserHighlights from "../components/userHighlights";
 import TopRepos from "../components/topRepos";
 import TopLanguages from "../components/topLanguages";
 import Toolbar from "../components/toolbar";
-import KeyboardShortcut from "../components/shortcut";
+import SignInOut from "../components/signInOut";
 import { initShortcuts } from "../utils/shortcuts";
 
 export default function Home({ socialPreview }) {
@@ -75,52 +75,41 @@ export default function Home({ socialPreview }) {
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="flex text-6xl font-bold text-white">
+        <h1 className="flex text-6xl font-bold text-white mb-5">
           GitHub <p className="pl-2 text-purple-700">Wrapped</p>
         </h1>
-        <div className="pt-5">
-          {user ? (
-            <div>
-              <p className="text-white pb-5">
+        <SignInOut user={user} setUser={setUser} />
+        {user && (
+          <div>
+            <div className="text-white p-5 flex justify-center items-center space-x-5">
+              {user.user_metadata.avatar_url && (
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={user.user_metadata.avatar_url}
+                  alt={`${user.user_metadata.full_name}'s avatar'`}
+                />
+              )}
+              <p>
                 Hey,{" "}
                 {user.user_metadata.full_name
                   ? user.user_metadata.full_name
                   : user.email}
                 , you're logged in!
               </p>
-              <button
-                onClick={() => {
-                  signOut();
-                  setUser(null);
-                }}
-                className="bg-purple-600 hover:bg-purple-700 text-gray-100 py-2 px-6 rounded"
-              >
-                Sign out
-              </button>
-              <div
-                className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"
-                id="wrap"
-              >
-                <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
-                  <UserHighlights />
-                  <TopRepos />
-                  <TopLanguages />
-                </div>
+            </div>
+            <div
+              className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"
+              id="wrap"
+            >
+              <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
+                <UserHighlights />
+                <TopRepos />
+                <TopLanguages />
               </div>
-              <Toolbar />
             </div>
-          ) : (
-            <div>
-              <button
-                onClick={signIn}
-                className="bg-purple-600 hover:bg-purple-700 text-gray-100 py-2 px-6 rounded"
-              >
-                Sign in
-                <KeyboardShortcut shortcut={"S"} />
-              </button>
-            </div>
-          )}
-        </div>
+            <Toolbar />
+          </div>
+        )}
       </main>
       <footer className=" ">
         <p className="text-gray-300">
