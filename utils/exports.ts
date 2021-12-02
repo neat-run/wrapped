@@ -34,23 +34,21 @@ export async function publishUser(user: User) {
  * Adds user to Supabase and returns a link to their link
  * @returns {string} https://[subdomain].wrapped.run
  */
-export async function getPublicLink() {
-  // Get username
-  let username = "";
-  let user = await getUser();
-  if (user && user.user_metadata) username = user.user_metadata.user_name;
-
+export async function getPublicLink(user: User) {
   // Add user to Supabase
-  await publishUser({ username, commits: 5, pulls: 50 });
+  await publishUser(user);
 
-  return username ? `https://${username}.wrapped.run` : "https://wrapped.run";
+  // Return
+  return user.username
+    ? `https://${user.username}.wrapped.run`
+    : "https://wrapped.run";
 }
 
 /**
  * Generate public link and copy to clipboard
  */
-export async function copyPublicLink() {
-  let publicLink = await getPublicLink();
+export async function copyPublicLink(user: User) {
+  let publicLink = await getPublicLink(user);
   navigator.clipboard.writeText(publicLink);
 }
 

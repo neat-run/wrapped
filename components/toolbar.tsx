@@ -14,8 +14,13 @@ import {
   getPublicLink,
 } from "../utils/exports";
 import { SHORTCUTS } from "../utils/shortcuts";
+import { User } from "../types/common";
 
-function Toolbar() {
+interface Props {
+  user: User;
+}
+
+function Toolbar({ user }: Props) {
   const [downloaded, setDownloaded] = useState(false);
   const [copiedImage, setCopiedImage] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -50,7 +55,7 @@ function Toolbar() {
         <button
           className={buttonClass}
           onClick={() => {
-            copyPublicLink();
+            copyPublicLink(user);
             setCopiedLink(true);
           }}
         >
@@ -63,7 +68,7 @@ function Toolbar() {
           className={buttonClass}
           onClick={async () => {
             // TODO: encode the Wrapped banner in a shareable URL
-            let publicLink = await getPublicLink();
+            let publicLink = await getPublicLink(user);
             window.open(
               `https://twitter.com/intent/tweet?text=Check%20out%20my%20GitHub%20Wrapped!&url=${publicLink}`,
               "_blank"
