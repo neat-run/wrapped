@@ -40,7 +40,9 @@ export async function getUser() {
  * @returns error or inserted data
  */
 export async function addRow(table: string, payload: object) {
-  let { error, data } = await supabase.from(table).insert(payload).single();
+  let { error, data } = await supabase
+    .from(table)
+    .upsert(payload, { onConflict: "username" });
   if (error) throw error;
   else return data;
 }
