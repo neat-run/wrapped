@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getUser } from "../utils/supabase";
 import Constants from "../utils/constants";
 import UserHighlights from "../components/userHighlights";
@@ -12,21 +12,24 @@ import Toolbar from "../components/toolbar";
 import SignInOut from "../components/signInOut";
 import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
-import { isDev } from "../utils/utils";
+import { isDev, getUserStats } from "../utils/utils";
 
 export default function Home({ socialPreview, hostUser }) {
   const [user, setUser] = useState(null);
+  const [auth, setAuth] = useState(null);
 
-  useEffect(() => {
+  useEffect(async () => {
+    let userStats = await getUserStats();
+    setUser(userStats);
     initShortcuts();
     checkUser();
     window.addEventListener("hashchange", () => checkUser());
-  }, []);
+  }, [auth]);
 
-  // Check if user exists
+  // Check if user is signed in
   async function checkUser() {
-    const user = await getUser();
-    if (user) setUser(user);
+    const auth = await getUser();
+    if (auth) setAuth(auth);
   }
 
   return (
@@ -37,31 +40,30 @@ export default function Home({ socialPreview, hostUser }) {
         <h1 className="flex text-6xl font-bold text-white mb-5">
           GitHub <p className="pl-2 text-purple-700">Wrapped</p>
         </h1>
-        <SignInOut user={user} setUser={setUser} />
-        {user ? (
+        <SignInOut auth={auth} setAuth={setAuth} />
+        {auth ? (
           <div>
             <div className="text-white p-5 flex justify-center items-center space-x-5">
-              {user.user_metadata.avatar_url && (
+              {/* {user.user_metadata.avatar_url && (
                 <img
                   className="w-10 h-10 rounded-full"
                   src={user.user_metadata.avatar_url}
                   alt={`${user.user_metadata.full_name}'s avatar'`}
                 />
-              )}
-              <p>
+              )} */}
+              {/* <p>
                 Hey,{" "}
                 {user.user_metadata.full_name
                   ? user.user_metadata.full_name
                   : user.email}
-                , you're logged in!
-              </p>
+              </p> */}
             </div>
             <div
               className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"
               id="wrap"
             >
               <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
-                <UserHighlights />
+                <UserHighlights user={user} />
                 <TopRepos />
                 <TopLanguages />
                 <Follows />
@@ -69,7 +71,7 @@ export default function Home({ socialPreview, hostUser }) {
               </div>
               <Contributions />
             </div>
-            <Toolbar />
+            <Toolbar user={user} />
           </div>
         ) : hostUser ? (
           <div>
@@ -81,7 +83,7 @@ export default function Home({ socialPreview, hostUser }) {
               id="wrap"
             >
               <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
-                <UserHighlights hostUser={hostUser} />
+                <UserHighlights user={hostUser} />
                 <TopRepos />
                 <TopLanguages />
                 <Follows />
@@ -116,7 +118,7 @@ export const getServerSideProps = async (context) => {
   socialPreview = await socialPreview.json();
 
   // Get user from subdomain eg. https://nat.wrapped.run
-  let hostUser = {};
+  let hostUser = null;
   let domainParts = context.req.headers.host.split(".");
   if (domainParts.length > (isDev() ? 1 : 2)) {
     hostUser = await getByUsername(domainParts[0]);
@@ -125,7 +127,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       socialPreview,
-      hostUser: hostUser ?? null,
+      hostUser,
     },
   };
 };
