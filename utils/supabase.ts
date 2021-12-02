@@ -55,7 +55,12 @@ export async function addRow(table: string, payload: object) {
  * @returns object with columns as fields eg. `data.commits`
  */
 export async function getRow(table: string, column: string, value: string) {
-  let { data, error } = await supabase.from(table).select().eq(column, value);
+  let { data, error } = await supabase
+    .from(table)
+    .select()
+    .eq(column, value)
+    .limit(1)
+    .single();
   if (error) throw error;
   else return data;
 }

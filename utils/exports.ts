@@ -59,6 +59,13 @@ export async function copyPublicLink(user: User) {
  */
 export async function getByUsername(username: string): Promise<User> {
   let user = await getRow("users", "username", username);
+
   if (!user) return null;
-  return user[0];
+  if (user.topLanguages) {
+    user.topLanguages = user.topLanguages.map((language) =>
+      JSON.parse(language)
+    );
+  }
+
+  return user;
 }
