@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { gql, useQuery } from "@apollo/client";
 import Constants from "../utils/constants";
+import { Language } from "../types/common";
 
 // GraphQL query to get an overview of a user's contributions
 const TOP_LANGUAGES = gql`
@@ -23,12 +24,6 @@ const TOP_LANGUAGES = gql`
     }
   }
 `;
-
-interface Language {
-  name: string;
-  commonName: string;
-  color: string;
-}
 
 const COMMON_LANGUAGES = new Map<string, string>([
   ["shell", "bash"],
