@@ -1,7 +1,7 @@
 import { User } from "@supabase/gotrue-js";
 import Mousetrap from "mousetrap";
 import { copyImage, copyPublicLink, download } from "./exports";
-import { getUser, signIn } from "./supabase";
+import { isSignedIn, signIn } from "./supabase";
 
 /**
  * Add keyboard shortcuts here! They'll be bound in
@@ -34,7 +34,7 @@ export const SHORTCUTS = {
     method: async (e, user) => {
       e.preventDefault();
       // Ignore if already signed in
-      let signedIn = await getUser();
+      let signedIn = await isSignedIn();
       if (signedIn) return;
 
       signIn();

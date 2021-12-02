@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUser } from "../utils/supabase";
+import { isSignedIn } from "../utils/supabase";
 import Constants from "../utils/constants";
 import UserHighlights from "../components/userHighlights";
 import TopRepos from "../components/topRepos";
@@ -28,7 +28,7 @@ export default function Home({ socialPreview, hostUser }) {
 
   // Check if user is signed in
   async function checkUser() {
-    const auth = await getUser();
+    const auth = await isSignedIn();
     if (auth) setAuth(auth);
   }
 

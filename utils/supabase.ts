@@ -29,7 +29,7 @@ export async function signOut() {
 /**
  * Get the signed-in user
  */
-export async function getUser() {
+export async function isSignedIn() {
   return await supabase.auth.user();
 }
 
