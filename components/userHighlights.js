@@ -33,6 +33,8 @@ function UserHighlights() {
 
   const contributions = data.viewer.contributionsCollection;
 
+  console.log(contributions);
+
   return (
     <div className="p-5 text-left space-y-5 text-white">
       <div>
@@ -47,7 +49,7 @@ function UserHighlights() {
         <p className="text-5xl font-bold">
           {contributions.contributionCalendar.totalContributions}
         </p>
-        contributions
+        total contributions
       </div>
       <div>
         You code far and wide
@@ -55,6 +57,21 @@ function UserHighlights() {
           {contributions.totalRepositoriesWithContributedCommits}
         </p>
         repos
+      </div>
+      <div>
+        PRs are your forte
+        <p className="text-5xl font-bold">
+          {contributions.totalPullRequestContributions +
+            contributions.totalPullRequestReviewContributions}
+        </p>
+        contributions
+      </div>
+      <div>
+        Your team loves you for your
+        <p className="text-5xl font-bold">
+          {contributions.totalPullRequestReviewContributions}
+        </p>
+        PR reviews
       </div>
     </div>
   );
