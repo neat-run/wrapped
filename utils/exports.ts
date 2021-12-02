@@ -1,5 +1,7 @@
 import domtoimage from "dom-to-image";
 import saveAs from "file-saver";
+import { User } from "../types/common";
+import { addRow, getUser } from "./supabase";
 
 /**
  * Grab the banner element and download it as a PNG
@@ -14,9 +16,29 @@ export function download() {
 /**
  * Copies a PNG of the banner to clipboard
  */
-export function copy() {
+export function copyImage() {
   let canvas = document.getElementById("wrap");
   domtoimage.toBlob(canvas).then(function (blob) {
     navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
   });
+}
+
+/**
+ * Serializes user data and publishes it to a Supabase database
+ */
+export async function publishUser(user: User) {
+  return await addRow("users", user);
+}
+
+export async function getPublicLink() {
+  // Get username
+  let username = "";
+  let user = await getUser();
+  if (user && user.user_metadata) username = user.user_metadata.user_name;
+
+  // Add user to Supabase
+  await publishUser({ username, commits: 5, pulls: 50 });
+
+  // Copy URL to clipboard
+  navigator.clipboard.writeText(`https://${username}.wrapped.run`);
 }
