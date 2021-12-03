@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import { BarChart } from "./barChart";
+import { StarIcon } from "@modulz/radix-icons";
 
 // GraphQL query to get an overview of a user's contributions
 const TOP_REPOS = gql`
@@ -111,9 +112,23 @@ function TopRepos() {
     ],
   };
 
+  // Repo name with dimmed owner name
+  const StyledRepoName = (nameWithOwner: string) => {
+    return (
+      <p>
+        <span className="text-gray-400">{nameWithOwner.split("/")[0]}/</span>
+        <span className="text-white font-medium">
+          {nameWithOwner.split("/")[1]}
+        </span>
+      </p>
+    );
+  };
+
   return (
-    <div className="p-5 text-left space-y-5 text-white">
-      <p>You're an absolute beast</p>
+    <div className="text-left space-y-5 text-white">
+      <h1 className="text-gray-400 text-xl font-medium">
+        You're an absolute beast
+      </h1>
       <BarChart chartData={chartData} title="Top Repositories" />
       {repos.map((repo, i) => (
         <div key={i} className="flex items-center space-x-2">
@@ -122,21 +137,30 @@ function TopRepos() {
             src={repo.repository.owner.avatarUrl}
             alt={repo.repository.name + " logo"}
           />
-          <div className="flex items-end space-x-2">
-            <div>
+          <div className="flex flex-col">
+            <div className="flex items-center space-x-2">
               {repo.repository.isPrivate ? (
-                <p>{repo.repository.nameWithOwner}</p>
+                StyledRepoName(repo.repository.nameWithOwner)
               ) : (
                 <a href={repo.repository.url} rel="noopener noreferrer">
-                  {repo.repository.nameWithOwner}
+                  {StyledRepoName(repo.repository.nameWithOwner)}
                 </a>
               )}
-              <p className="text-xs">⭐ {repo.repository.stargazerCount}</p>
-              <p className="text-3xl font-bold">
-                {repo.contributions.totalCount}
-              </p>{" "}
-              commits
+              {repo.repository.stargazerCount > 0 && (
+                <span className="text-yellow-400 font-medium flex items-center space-x-0.5">
+                  <StarIcon className="mt-0.5" />
+                  <span>{repo.repository.stargazerCount}</span>
+                </span>
+              )}
             </div>
+            {repo.contributions.totalCount > 10 && (
+              <div className="flex items-end space-x-2">
+                <p className="text-3xl font-bold font-mono">
+                  {repo.contributions.totalCount}
+                </p>
+                <p className="text-gray-600 text-3xl">commits</p>
+              </div>
+            )}
           </div>
         </div>
       ))}
