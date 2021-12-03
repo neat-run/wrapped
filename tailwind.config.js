@@ -6,6 +6,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
+      transparent: "transparent",
       gray: colors.gray,
       white: colors.white,
       black: colors.black,
@@ -15,6 +16,10 @@ module.exports = {
       indigo: colors.indigo,
       blue: colors.blue,
       red: colors.red,
+      orange: colors.orange,
+    },
+    fontFamily: {
+      mono: ["Space\\ Mono"],
     },
     extend: {
       gridTemplateRows: {

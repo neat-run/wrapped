@@ -64,6 +64,16 @@ function HeadTags({ user }) {
         href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"
         crossOrigin="anonymous"
       />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+        rel="stylesheet"
+      ></link>
     </Head>
   );
 }

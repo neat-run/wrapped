@@ -37,9 +37,18 @@ export default function Home({ hostUser }) {
       <HeadTags user={hostUser} />
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="flex text-6xl font-bold text-white mb-5">
-          GitHub <p className="pl-2 text-purple-700">Wrapped</p>
-        </h1>
+        {auth ? (
+          <h1 className="flex text-4xl font-bold text-white mb-5">
+            GitHub <p className="pl-2 text-purple-600">Wrapped</p>
+          </h1>
+        ) : (
+          <h1 className="flex text-8xl font-bold tracking-tighter text-white mb-5 space-x-4">
+            <span className="leading-tight">GitHub</span>
+            <span className="leading-tight font-mono transition-all ease-in-out duration-700 text-purple-600 hover:text-transparent bg-clip-text bg-gradient-to-l from-[#85259D] via-purple-600 to-[#6B3EEC]">
+              Wrapped
+            </span>
+          </h1>
+        )}
         <SignInOut auth={auth} setAuth={setAuth} />
         {auth ? (
           <div>
