@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@modulz/radix-icons": "^4.0.0",
+    "@radix-ui/react-alert-dialog": "^0.1.1",
     "@radix-ui/react-tooltip": "^0.1.1",
     "@types/react": "^17.0.37",
     "autoprefixer": "^10.2.6",
