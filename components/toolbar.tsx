@@ -15,6 +15,7 @@ import {
 } from "../utils/exports";
 import { SHORTCUTS } from "../utils/shortcuts";
 import { User } from "../types/common";
+import Modal from "./modal";
 
 interface Props {
   user: User;
@@ -24,6 +25,7 @@ function Toolbar({ user }: Props) {
   const [downloaded, setDownloaded] = useState(false);
   const [copiedImage, setCopiedImage] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   setTimeout(() => {
     setDownloaded(false);
@@ -35,7 +37,7 @@ function Toolbar({ user }: Props) {
     "p-2 hover:bg-gray-500 hover:bg-opacity-20 rounded scale-[1.5] hover:scale-[1.8] focus:outline-none";
 
   return (
-    <div className="p-7 text-white space-x-7">
+    <div className="p-7 text-white space-x-7 flex items-center justify-center">
       <Tooltip content="Copy image" shortcut={SHORTCUTS.copyImage.sequence}>
         <button
           className={buttonClass}
@@ -48,20 +50,23 @@ function Toolbar({ user }: Props) {
         </button>
       </Tooltip>
 
-      <Tooltip
-        content="Publish and copy link"
-        shortcut={SHORTCUTS.copyURL.sequence}
+      <Modal
+        onSubmit={() => {
+          copyPublicLink(user);
+          setCopiedLink(true);
+        }}
+        defaultOpen={modalOpen}
+        title={"Heads up"}
+        description={
+          "Any info you see, including private repositories, will be publicly accessible via your username."
+        }
       >
-        <button
-          className={buttonClass}
-          onClick={() => {
-            copyPublicLink(user);
-            setCopiedLink(true);
-          }}
-        >
-          {copiedLink ? <CheckIcon /> : <Link2Icon />}
-        </button>
-      </Tooltip>
+        <Tooltip content="Copy link" shortcut={SHORTCUTS.copyURL.sequence}>
+          <div className={buttonClass} onClick={() => setModalOpen(true)}>
+            {copiedLink ? <CheckIcon /> : <Link2Icon />}
+          </div>
+        </Tooltip>
+      </Modal>
 
       <Tooltip content="Share to Twitter">
         <button
