@@ -22,7 +22,7 @@ function SignIn({ auth, setAuth }) {
         auth ? "" : "backdrop-glow"
       } transition-colors bg-indigo-700/90 border border-gray-600/80 hover:bg-indigo-600 text-gray-100 p-4 rounded-md`}
     >
-      <span className="px-5 font-medium">
+      <span className="px-5 font-medium text-lg">
         {auth ? "Sign out" : "See your developer stats"}
       </span>
       {!auth && <KeyboardShortcut shortcut={"S"} />}
