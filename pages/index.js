@@ -90,7 +90,7 @@ export default function Home({ hostUser }) {
           <div>
             <span className="tracking-wide text-gray-400">Made by </span>
             <a
-              className="font-bold text-indigo-500 hover:text-indigo-400 transition-transform hover:-translate-y-1 duration-500"
+              className="font-bold text-purple-500 hover:text-purple-400 transition-transform hover:-translate-y-1 duration-500"
               href={Constants.NEAT.URL}
             >
               Neat

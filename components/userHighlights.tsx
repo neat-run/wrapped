@@ -10,33 +10,74 @@ interface Props {
  * @returns {element} div with text
  */
 function UserHighlights({ user }: Props) {
+  // Size the text according to the number
+  const numberToFontSize = (count: number): string => {
+    let order = Math.floor(Math.log(count));
+
+    // Medium to 7xl (maximum in Tailwind)
+    if (!order || order === 0) return "text-md";
+    else if (order <= 7) return `text-${order}xl`;
+    else return "text-7xl";
+  };
+
+  // Stats to render
+  let stats = [
+    {
+      count: user.commits,
+      fontSize: "text-lg",
+      tagline: "You have no commitment issues",
+      title: "Total commits",
+    },
+    {
+      count: user.contributions,
+      fontSize: "text-lg",
+      tagline: "You put in the work",
+      title: "Total contributions",
+    },
+    {
+      count: user.repos,
+      fontSize: "text-lg",
+      tagline: "You code far and wide",
+      title: "Repositories",
+    },
+    {
+      count: user.pulls,
+      fontSize: "text-lg",
+      tagline: "You pull your own weight",
+      title: "Pull requests",
+    },
+    {
+      count: user.reviews,
+      fontSize: "text-lg",
+      tagline: "You're a good friend",
+      title: "PR reviews",
+    },
+  ];
+
+  // Get font size for each stat
+  stats.map((stat) => (stat.fontSize = numberToFontSize(stat.count)));
+
   return (
     <div className="p-5 text-left space-y-5 text-white">
-      <div>
-        You have no commitment issues
-        <p className="text-5xl font-bold">{user?.commits}</p>
-        commits
-      </div>
-      <div>
-        You carry your weight
-        <p className="text-5xl font-bold">{user?.contributions}</p>
-        total contributions
-      </div>
-      <div>
-        You code far and wide
-        <p className="text-5xl font-bold">{user?.repos}</p>
-        repos
-      </div>
-      <div>
-        PRs are your forte
-        <p className="text-5xl font-bold">{user?.pulls}</p>
-        contributions
-      </div>
-      <div>
-        Your team loves you for your
-        <p className="text-5xl font-bold">{user?.reviews}</p>
-        PR reviews
-      </div>
+      {stats.map(
+        (stat) =>
+          stat &&
+          stat.count && (
+            <div>
+              <p className="text-gray-400">{stat.tagline}</p>
+              <p
+                className={`${numberToFontSize(
+                  stat.count
+                )} font-extrabold tracking-wide`}
+              >
+                {stat.count}
+              </p>
+              <p className="font-medium font-mono text-lg leading-none">
+                {stat.title}
+              </p>
+            </div>
+          )
+      )}
     </div>
   );
 }
