@@ -3,10 +3,10 @@ import React from "react";
 
 /**
  * Homepage head tags
- * @param socialPreview URL for social link preview image
+ * @param linkPreviewURL URL for social link preview image
  * @returns title, meta tags, styles, favicon, etc
  */
-function HeadTags({ socialPreview }) {
+function HeadTags({ linkPreviewURL }) {
   return (
     <Head>
       <title>GitHub Wrapped</title>
@@ -24,8 +24,8 @@ function HeadTags({ socialPreview }) {
       <meta
         property="og:image"
         content={
-          socialPreview
-            ? socialPreview.url
+          linkPreviewURL
+            ? linkPreviewURL
             : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
         }
       />
@@ -41,8 +41,8 @@ function HeadTags({ socialPreview }) {
       <meta
         property="twitter:image"
         content={
-          socialPreview
-            ? socialPreview.url
+          linkPreviewURL
+            ? linkPreviewURL
             : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
         }
       />

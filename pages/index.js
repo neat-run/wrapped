@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { isSignedIn } from "../utils/supabase";
+import { isSignedIn, getImageURL } from "../utils/supabase";
 import Constants from "../utils/constants";
 import UserHighlights from "../components/userHighlights";
 import TopRepos from "../components/topRepos";
@@ -14,7 +14,7 @@ import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
 import { isDev, getUserStats } from "../utils/utils";
 
-export default function Home({ socialPreview, hostUser }) {
+export default function Home({ linkPreviewURL, hostUser }) {
   const [user, setUser] = useState(null);
   const [auth, setAuth] = useState(null);
 
@@ -34,7 +34,7 @@ export default function Home({ socialPreview, hostUser }) {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-black">
-      <HeadTags socialPreview={socialPreview} />
+      <HeadTags linkPreviewURL={linkPreviewURL} />
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="flex text-6xl font-bold text-white mb-5">
@@ -105,21 +105,18 @@ export default function Home({ socialPreview, hostUser }) {
 
 // Server-side rendering for viewing others' Wrapped pages
 export const getServerSideProps = async (context) => {
-  let socialPreview = await fetch(
-    "https://jsonplaceholder.typicode.com/photos/1"
-  );
-  socialPreview = await socialPreview.json();
-
   // Get user from subdomain eg. https://nat.wrapped.run
   let hostUser = null;
+  let linkPreviewURL = null;
   let domainParts = context.req.headers.host.split(".");
   if (domainParts.length > (isDev() ? 1 : 2)) {
     hostUser = await getByUsername(domainParts[0]);
+    linkPreviewURL = await getImageURL(hostUser.username);
   }
 
   return {
     props: {
-      socialPreview,
+      linkPreviewURL,
       hostUser,
     },
   };

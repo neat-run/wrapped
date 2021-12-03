@@ -81,3 +81,17 @@ export async function uploadImage(blob: Blob, username: string) {
   if (error) console.error(error);
   return data;
 }
+
+/**
+ * Uploads an image to Supabase storage and returns its URL
+ * @param blob PNG blob to upload
+ * @param username user's username as filename
+ * @returns uploaded file URL
+ */
+export async function getImageURL(username: string): Promise<string> {
+  const { publicURL, error } = await supabase.storage
+    .from("link-previews")
+    .getPublicUrl(`public/${username}.png`);
+  if (error) console.error(error);
+  return publicURL;
+}
