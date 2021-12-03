@@ -63,7 +63,7 @@ function UserHighlights({ user }: Props) {
         (stat) =>
           stat &&
           stat.count && (
-            <div>
+            <div key={stat.title}>
               <p className="text-gray-400">{stat.tagline}</p>
               <p
                 className={`${numberToFontSize(
