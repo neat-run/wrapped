@@ -15,10 +15,6 @@ export async function signIn() {
     { provider: "github" },
     { scopes: "repo:status user" }
   );
-  supabase.auth.onAuthStateChange((event, session) => {
-    // TODO: use this event to refresh the provider_token
-    console.log(event, session);
-  });
 }
 
 // Sign out

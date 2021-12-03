@@ -3,6 +3,8 @@ import React from "react";
 const COMMON_SYMBOLS = new Map<string, string>([
   ["cmd", "⌘"],
   ["command", "⌘"],
+  ["shift", "⇧"],
+  ["esc", "esc"],
   ["alt", "⌥"],
   ["enter", "↩"],
   ["return", "↩"],
@@ -17,7 +19,7 @@ function KeyboardShortcut({ shortcut }) {
   if (!shortcut) return <></>;
 
   return (
-    <span className="ml-2 space-x-1">
+    <span className="ml-2 space-x-1 text-gray-300">
       {shortcut.split("+").map((key) => (
         <span key={key} className="bg-gray-700/90 rounded p-1 px-2">
           {/* Turn dev-friendly strings like "cmd" to user-friendly symbols like "⌘" */}

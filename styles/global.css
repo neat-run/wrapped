@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: #000;
+}
+
+@layer base {
+  a {
+    @apply no-underline text-purple-400 hover:text-purple-200;
+  }
+  .backdrop-glow {
+    box-shadow: -30px 20px 80px 5px #860c9f20, 20px -20px 80px 15px #321cd640;
+  }
+  .backdrop-glow-reactive:hover {
+    @apply transition duration-500 ease-out backdrop-glow;
+  }
+}
