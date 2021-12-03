@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { isSignedIn, getImageURL } from "../utils/supabase";
+import { isSignedIn } from "../utils/supabase";
 import Constants from "../utils/constants";
 import Slideshow from "../components/slideshow";
 import HeadTags from "../components/headTags";
-
-import SignInOut from "../components/signInOut";
+import SignIn from "../components/signIn";
 import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
 import { isDev, getUserStats } from "../utils/utils";
@@ -33,18 +32,18 @@ export default function Home({ hostUser }) {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         {auth ? (
-          <h1 className="flex text-4xl font-bold text-white mb-5">
-            GitHub <p className="pl-2 text-purple-600">Wrapped</p>
+          <h1 className="flex text-4xl font-bold tracking-tight text-white mb-5">
+            GitHub <p className="pl-2 text-purple-600 font-mono">Wrapped</p>
           </h1>
         ) : (
           <h1 className="flex text-8xl font-bold tracking-tighter text-white mb-5 space-x-4">
             <span className="leading-tight">GitHub</span>
-            <span className="leading-tight font-mono transition-all ease-in-out duration-700 text-purple-600 hover:text-transparent bg-clip-text bg-gradient-to-l from-[#85259D] via-purple-600 to-[#6B3EEC]">
+            <span className="z-10 leading-tight font-mono text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]">
               Wrapped
             </span>
           </h1>
         )}
-        <SignInOut auth={auth} setAuth={setAuth} />
+        {!auth && <SignIn auth={auth} setAuth={setAuth} />}
         {auth ? (
           <div>
             <div className="text-white p-5 flex justify-center items-center space-x-5">
@@ -79,11 +78,11 @@ export default function Home({ hostUser }) {
           <></>
         )}
       </main>
-      <footer className=" ">
-        <p className="text-gray-300">
-          Made by{" "}
+      <footer>
+        <p className="pb-1">
+          <span className="tracking-wide text-gray-400">Made by </span>
           <a
-            className="font-bold text-purple-500 hover:text-purple-400"
+            className="font-bold text-indigo-500 hover:text-indigo-400"
             href={Constants.NEAT.URL}
           >
             Neat
