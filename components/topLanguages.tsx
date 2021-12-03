@@ -13,15 +13,18 @@ function TopLanguages({ user }: Props) {
 
   if (!languages) return <></>;
   return (
-    <div className="p-5 text-left space-y-5 text-white">
-      <p>You type many tongues</p>
+    <div className="p-5 text-left space-y-6 text-white">
+      <h1 className="text-gray-400 text-xl font-medium">
+        You type many tongues
+      </h1>
       {languages.map((language, i) => (
-        <div key={i} className="flex items-center space-x-2">
-          <p
-            className={`devicon-${language.name}-plain text-4xl`}
-            style={{ color: language.color }}
-          />
-          <p>{language.commonName}</p>
+        <div
+          key={i}
+          className="flex items-center space-x-4"
+          style={{ color: language.color }}
+        >
+          <p className={`devicon-${language.name}-plain text-4xl`} />
+          <p className="font-mono text-3xl">{language.commonName}</p>
         </div>
       ))}
     </div>
