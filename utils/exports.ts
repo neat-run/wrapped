@@ -17,10 +17,18 @@ export function download() {
  * Copies a PNG of the banner to clipboard
  */
 export function copyImage() {
-  let canvas = document.getElementById("wrap");
-  domtoimage.toBlob(canvas).then(function (blob) {
+  getImage().then((blob) => {
     navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
   });
+}
+
+/**
+ * Generates PNG from the canvas
+ * @returns blob of PNG image
+ */
+export async function getImage() {
+  let canvas = document.getElementById("wrap");
+  return await domtoimage.toBlob(canvas);
 }
 
 /**
