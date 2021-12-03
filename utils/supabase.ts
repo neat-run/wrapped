@@ -64,3 +64,20 @@ export async function getRow(table: string, column: string, value: string) {
   if (error) throw error;
   else return data;
 }
+
+/**
+ * Uploads an image to Supabase storage and returns its URL
+ * @param blob PNG blob to upload
+ * @param username user's username as filename
+ * @returns uploaded file URL
+ */
+export async function uploadImage(blob: Blob, username: string) {
+  const { data, error } = await supabase.storage
+    .from("link-previews")
+    .upload(`public/${username}.png`, blob, {
+      cacheControl: "3600",
+      upsert: true,
+    });
+  if (error) console.error(error);
+  return data;
+}
