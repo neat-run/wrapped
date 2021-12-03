@@ -14,7 +14,7 @@ import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
 import { isDev, getUserStats } from "../utils/utils";
 
-export default function Home({ linkPreviewURL, hostUser }) {
+export default function Home({ hostUser }) {
   const [user, setUser] = useState(null);
   const [auth, setAuth] = useState(null);
 
@@ -34,7 +34,7 @@ export default function Home({ linkPreviewURL, hostUser }) {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-black">
-      <HeadTags linkPreviewURL={linkPreviewURL} />
+      <HeadTags user={hostUser} />
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="flex text-6xl font-bold text-white mb-5">
@@ -107,16 +107,13 @@ export default function Home({ linkPreviewURL, hostUser }) {
 export const getServerSideProps = async (context) => {
   // Get user from subdomain eg. https://nat.wrapped.run
   let hostUser = null;
-  let linkPreviewURL = null;
   let domainParts = context.req.headers.host.split(".");
   if (domainParts.length > (isDev() ? 1 : 2)) {
     hostUser = await getByUsername(domainParts[0]);
-    linkPreviewURL = await getImageURL(hostUser.username);
   }
 
   return {
     props: {
-      linkPreviewURL,
       hostUser,
     },
   };
