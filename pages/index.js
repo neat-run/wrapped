@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { isSignedIn, getImageURL } from "../utils/supabase";
 import Constants from "../utils/constants";
-import UserHighlights from "../components/userHighlights";
-import TopRepos from "../components/topRepos";
-import TopLanguages from "../components/topLanguages";
-import Contributions from "../components/contributions";
-import Follows from "../components/follows";
-import Stars from "../components/stars";
+import Slideshow from "../components/slideshow";
 import HeadTags from "../components/headTags";
-import Toolbar from "../components/toolbar";
+
 import SignInOut from "../components/signInOut";
 import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
@@ -62,20 +57,7 @@ export default function Home({ hostUser }) {
               )}
               <p className="text-2xl font-medium">Welcome, {user.username}.</p>
             </div>
-            <div
-              className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"
-              id="wrap"
-            >
-              <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
-                <UserHighlights user={user} />
-                <TopRepos />
-                <TopLanguages user={user} />
-                <Follows />
-                <Stars />
-              </div>
-              <Contributions />
-            </div>
-            <Toolbar user={user} />
+            <Slideshow user={user} />
           </div>
         ) : hostUser ? (
           <div>
