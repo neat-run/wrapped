@@ -1,7 +1,7 @@
 import domtoimage from "dom-to-image";
 import saveAs from "file-saver";
 import { User } from "../types/common";
-import { addRow, getRow } from "./supabase";
+import { addRow, getImageURL, getRow, uploadImage } from "./supabase";
 
 /**
  * Grab the banner element and download it as a PNG
@@ -35,7 +35,12 @@ export async function getImage() {
  * Serializes user data and publishes it to a Supabase database
  */
 export async function publishUser(user: User) {
-  return await addRow("users", user);
+  // Upload a screenshot of the stats to Supabase storage
+  let screenshot = await getImage();
+  await uploadImage(screenshot, user?.username);
+  let linkPreviewURL = await getImageURL(user?.username);
+
+  return await addRow("users", { ...user, linkPreviewURL });
 }
 
 /**

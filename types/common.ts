@@ -8,6 +8,7 @@ export interface User {
   reviews?: number;
   topRepos?: Repo[];
   topLanguages?: Language[];
+  linkPreviewURL?: string;
 }
 
 export interface Repo {
