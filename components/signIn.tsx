@@ -8,7 +8,7 @@ import KeyboardShortcut from "./shortcut";
  * @param setAuth user object setter from parent
  * @returns button with one of two actions
  */
-function SignInOut({ auth, setAuth }) {
+function SignIn({ auth, setAuth }) {
   return (
     <button
       onClick={() => {
@@ -20,12 +20,14 @@ function SignInOut({ auth, setAuth }) {
       }}
       className={`${
         auth ? "" : "backdrop-glow"
-      } transition-colors bg-purple-600 hover:bg-purple-700 text-gray-100 py-2 px-6 rounded`}
+      } transition-colors bg-indigo-700/90 border border-gray-600/80 hover:bg-indigo-600 text-gray-100 p-4 rounded-md`}
     >
-      <span>{auth ? "Sign out" : "Sign in"}</span>
+      <span className="px-5 font-medium">
+        {auth ? "Sign out" : "See your developer stats"}
+      </span>
       {!auth && <KeyboardShortcut shortcut={"S"} />}
     </button>
   );
 }
 
-export default SignInOut;
+export default SignIn;
