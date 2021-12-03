@@ -79,15 +79,30 @@ export default function Home({ hostUser }) {
         )}
       </main>
       <footer>
-        <p className="pb-1">
-          <span className="tracking-wide text-gray-400">Made by </span>
+        <div className="pb-1 px-8 w-screen flex justify-between">
           <a
-            className="font-bold text-indigo-500 hover:text-indigo-400"
-            href={Constants.NEAT.URL}
+            href="https://github.com/neat-run/wrapped"
+            className="text-gray-400 hover:text-gray-200 p-1 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
+            rel="noopener noreferrer"
           >
-            Neat
+            Code
           </a>
-        </p>
+          <div>
+            <span className="tracking-wide text-gray-400">Made by </span>
+            <a
+              className="font-bold text-indigo-500 hover:text-indigo-400 transition-transform hover:-translate-y-1 duration-500"
+              href={Constants.NEAT.URL}
+            >
+              Neat
+            </a>
+          </div>
+          <a
+            href="/privacy"
+            className="text-gray-400 hover:text-gray-200 p-1 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500"
+          >
+            Privacy
+          </a>
+        </div>
       </footer>
     </div>
   );
