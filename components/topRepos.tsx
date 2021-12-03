@@ -87,15 +87,26 @@ function TopRepos() {
     labels: repos.map((repo) => repo.repository.name),
     datasets: [
       {
+        barThickness: 15,
+        maxBarThickness: 20,
+        minBarLength: 5,
+        indexAxis: "y",
         data: repos.map((repo) => repo.contributions.totalCount),
         backgroundColor: [
-          "#ffbb11",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
+          "rgba(255, 99, 132, 0.8)",
+          "rgba(255, 159, 64, 0.8)",
+          "rgba(255, 205, 86, 0.8)",
+          "rgba(75, 192, 192, 0.8)",
+          "rgba(54, 162, 235, 0.8)",
         ],
-        borderWidth: 0,
+        borderColor: [
+          "rgb(255, 99, 132)",
+          "rgb(255, 159, 64)",
+          "rgb(255, 205, 86)",
+          "rgb(75, 192, 192)",
+          "rgb(54, 162, 235)",
+        ],
+        borderWidth: 1,
       },
     ],
   };
