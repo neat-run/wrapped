@@ -45,10 +45,10 @@ function HeadTags({ user }) {
         }
       />
 
-      {/* Twitter-specific meta tags */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:site" content="@neat_run" />
-      <meta property="twitter:title" content="GitHub Wrapped 2021" />
+      {/* Twitter-specific meta tags use name instead of property */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@neat_run" />
+      <meta name="twitter:title" content="GitHub Wrapped 2021" />
       <meta
         property="twitter:image"
         content={
