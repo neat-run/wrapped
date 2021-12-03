@@ -12,6 +12,7 @@ import {
   copyPublicLink,
   download,
   getPublicLink,
+  publishUser,
 } from "../utils/exports";
 import { SHORTCUTS } from "../utils/shortcuts";
 import { User } from "../types/common";
@@ -25,7 +26,8 @@ function Toolbar({ user }: Props) {
   const [downloaded, setDownloaded] = useState(false);
   const [copiedImage, setCopiedImage] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [linkModalOpen, setLinkModalOpen] = useState(false);
+  const [twitterModalOpen, setTwitterModalOpen] = useState(false);
 
   setTimeout(() => {
     setDownloaded(false);
@@ -55,34 +57,44 @@ function Toolbar({ user }: Props) {
           copyPublicLink(user);
           setCopiedLink(true);
         }}
-        defaultOpen={modalOpen}
+        defaultOpen={linkModalOpen}
         title={"Heads up"}
         description={
           "Any info you see, including private repositories, will be publicly accessible via your username."
         }
       >
         <Tooltip content="Copy link" shortcut={SHORTCUTS.copyURL.sequence}>
-          <div className={buttonClass} onClick={() => setModalOpen(true)}>
+          <div className={buttonClass} onClick={() => setLinkModalOpen(true)}>
             {copiedLink ? <CheckIcon /> : <Link2Icon />}
           </div>
         </Tooltip>
       </Modal>
 
-      <Tooltip content="Share to Twitter">
-        <button
-          className={buttonClass}
-          onClick={async () => {
-            // TODO: encode the Wrapped banner in a shareable URL
-            let publicLink = await getPublicLink(user);
-            window.open(
-              `https://twitter.com/intent/tweet?text=Check%20out%20my%20GitHub%20Wrapped!&url=${publicLink}`,
-              "_blank"
-            );
-          }}
-        >
-          <TwitterLogoIcon />
-        </button>
-      </Tooltip>
+      <Modal
+        onSubmit={async () => {
+          // TODO: encode the Wrapped banner in a shareable URL
+          publishUser(user);
+          let publicLink = getPublicLink(user);
+          window.open(
+            `https://twitter.com/intent/tweet?text=Check%20out%20my%20GitHub%20Wrapped!&url=${publicLink}`,
+            "_blank"
+          );
+        }}
+        defaultOpen={twitterModalOpen}
+        title={"Heads up"}
+        description={
+          "Any info you see, including private repositories, will be publicly accessible via your username."
+        }
+      >
+        <Tooltip content="Share to Twitter">
+          <div
+            className={buttonClass}
+            onClick={() => setTwitterModalOpen(true)}
+          >
+            <TwitterLogoIcon />
+          </div>
+        </Tooltip>
+      </Modal>
 
       <Tooltip content="Download" shortcut={SHORTCUTS.save.sequence}>
         <button

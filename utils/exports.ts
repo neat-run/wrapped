@@ -47,27 +47,20 @@ export async function publishUser(user: User) {
  * Adds user to Supabase and returns a link to their link
  * @returns {string} https://[subdomain].wrapped.run
  */
-export async function getPublicLink(user: User) {
-  // Add user to Supabase
-  await publishUser(user);
-
-  // Return
+export function getPublicLink(user: User) {
   return user.username
     ? `https://${user.username}.wrapped.run`
     : "https://wrapped.run";
 }
 
 /**
- * Generate public link and copy to clipboard
+ * Generate user's public link and copy to clipboard
  */
 export async function copyPublicLink(user: User) {
   // Copy to clipboard
   if ("navigator" in window) {
-    navigator.clipboard.writeText(
-      user.username
-        ? `https://${user.username}.wrapped.run`
-        : "https://wrapped.run"
-    );
+    let publicLink = getPublicLink(user);
+    navigator.clipboard.writeText(publicLink);
   }
 
   // Add user to Supabase. This takes 1-2s - we assume the user won't share the link within that time.
