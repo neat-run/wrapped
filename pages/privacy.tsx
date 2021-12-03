@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { ArrowLeftIcon } from "@modulz/radix-icons";
 
 /**
@@ -20,13 +21,12 @@ function PrivacyPolicy() {
         <h1 className="text-5xl font-bold pt-5 pb-2">Privacy Policy</h1>
         <span className="text-gray-400">Last updated </span>
         <span className="font-medium">3 Dec 2021</span>
-        <a
-          href="/"
-          className="absolute group top-8 left-10 p-4 flex items-center text-gray-400 hover:text-gray-200 space-x-2 cursor-pointer"
-        >
-          <ArrowLeftIcon className="group-hover:-translate-x-2 transition-transform" />
-          <span>Go back</span>
-        </a>
+        <Link href="/">
+          <a className="absolute group top-8 left-10 p-4 flex items-center text-gray-400 hover:text-gray-200 space-x-3 cursor-pointer">
+            <ArrowLeftIcon className="scale-150 group-hover:-translate-x-2 transition-transform" />
+            <span>Go back</span>
+          </a>
+        </Link>
         <p>
           This is written by a developer, not a lawyer. Please don't sue us.
         </p>
