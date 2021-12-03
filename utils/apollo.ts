@@ -17,13 +17,19 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   // Get the API token from the Supabase session
   const session = supabase.auth.session();
   if (!session) return;
-  const token = session.provider_token;
+
+  // Sign out if token has expired. TODO: stay signed in with refresh token.
+  if (!session.provider_token) {
+    supabase.auth.signOut().then(() => {
+      return;
+    });
+  }
 
   // Add the token to the request context
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${session.provider_token}`,
     },
   }));
 
