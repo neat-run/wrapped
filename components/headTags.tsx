@@ -3,13 +3,16 @@ import React from "react";
 
 /**
  * Homepage head tags
- * @param linkPreviewURL URL for social link preview image
+ * @param user the current user
  * @returns title, meta tags, styles, favicon, etc
  */
-function HeadTags({ linkPreviewURL }) {
+function HeadTags({ user }) {
   return (
     <Head>
-      <title>GitHub Wrapped</title>
+      {/* Eg. natfriedman's GitHub Wrapped */}
+      <title>{`${
+        user && user.username ? `${user.username}'s ` : ""
+      }GitHub Wrapped`}</title>
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta name="theme-color" content="#000" />
       <meta
@@ -18,20 +21,25 @@ function HeadTags({ linkPreviewURL }) {
       />
       <meta property="og:title" content="GitHub Wrapped" />
       <meta property="og:url" content="https://wrapped.run" />
+      <meta property="og:site_name" content="Wrapped.run" />
       <meta property="og:type" content="website" />
 
       {/* Dynamically generated social link preview */}
       <meta
         property="og:image"
         content={
-          linkPreviewURL
-            ? linkPreviewURL
+          user && user.linkPreviewURL
+            ? user.linkPreviewURL
             : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
         }
       />
       <meta
         name="og:description"
-        content="Dive into analytics of your year as a developer. Total commits, top repositories, and favourite languages."
+        content={
+          user && user.username
+            ? `${user.username} coded a lot in 2021. See your own stats: total pull requests, top repos, and favourite languages.`
+            : "Dive into analytics of your year as a developer. Total commits, top repositories, and favourite languages."
+        }
       />
 
       {/* Twitter-specific meta tags */}
@@ -41,8 +49,8 @@ function HeadTags({ linkPreviewURL }) {
       <meta
         property="twitter:image"
         content={
-          linkPreviewURL
-            ? linkPreviewURL
+          user && user.linkPreviewURL
+            ? user.linkPreviewURL
             : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
         }
       />
