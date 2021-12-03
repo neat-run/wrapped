@@ -7,6 +7,7 @@ import SignIn from "../components/signIn";
 import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
 import { isDev, getUserStats } from "../utils/utils";
+import Link from "next/link";
 
 export default function Home({ hostUser }) {
   const [user, setUser] = useState(null);
@@ -96,12 +97,11 @@ export default function Home({ hostUser }) {
               Neat
             </a>
           </div>
-          <a
-            href="/privacy"
-            className="text-gray-400 hover:text-gray-200 p-1 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500"
-          >
-            Privacy
-          </a>
+          <Link href="/privacy">
+            <a className="text-gray-400 hover:text-gray-200 p-1 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
+              Privacy
+            </a>
+          </Link>
         </div>
       </footer>
     </div>
