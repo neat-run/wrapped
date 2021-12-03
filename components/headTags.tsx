@@ -24,8 +24,9 @@ function HeadTags({ socialPreview }) {
       <meta
         property="og:image"
         content={
-          socialPreview.url ??
-          "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
+          socialPreview
+            ? socialPreview.url
+            : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
         }
       />
       <meta
