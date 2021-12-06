@@ -33,7 +33,7 @@ function HeadTags({ user }) {
         content={
           user && user.linkPreviewURL
             ? user.linkPreviewURL
-            : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
+            : "https://user-images.githubusercontent.com/36117635/144935780-a19c37f4-2b2b-4352-8936-8f5ab215d328.png"
         }
       />
       <meta
@@ -54,7 +54,7 @@ function HeadTags({ user }) {
         content={
           user && user.linkPreviewURL
             ? user.linkPreviewURL
-            : "https://user-images.githubusercontent.com/36117635/144351202-c8c64e44-5be8-43c3-8cec-b86ada4dd423.png"
+            : "https://user-images.githubusercontent.com/36117635/144935780-a19c37f4-2b2b-4352-8936-8f5ab215d328.png"
         }
       />
 
