@@ -1,20 +1,19 @@
-import { gql, useQuery } from "@apollo/client";
 import React from "react";
-import Constants from "../utils/constants";
+import { User } from "../types/common";
 import Tooltip from "../components/tooltip";
-import { CONTRIBUTIONS } from "../utils/queries";
 
-function Contributions() {
-  const { data } = useQuery(CONTRIBUTIONS, {
-    variables: { start: Constants.DATES.JAN2021, end: Constants.DATES.DEC2021 },
-  });
+interface IProps {
+  user: User;
+}
 
-  if (!data || !data.viewer) return <></>;
+function Contributions({ user }: IProps) {
+  if (!user || !user.contributionsHistory) return <></>;
+
   let contributions = [];
   let colors = {};
 
   // Creating local variable to simplify calling in .map()
-  const weeks = data.viewer.contributionsCollection.contributionCalendar.weeks;
+  const weeks = user.contributionsHistory;
 
   // Get array of contribution counts
   weeks.map((week) => {

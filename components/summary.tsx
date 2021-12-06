@@ -25,7 +25,7 @@ function Summary({ user }: IProps) {
           <Follows user={user} />
           <Stars user={user} />
         </div>
-        <Contributions />
+        <Contributions user={user} />
       </div>
     </div>
   );

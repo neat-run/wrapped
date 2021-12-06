@@ -4,6 +4,7 @@ export interface User {
   commits?: number;
   pulls?: number;
   contributions?: number;
+  contributionsHistory?: Week[];
   linkPreviewURL?: string;
   repos?: number;
   reviews?: number;
@@ -41,4 +42,16 @@ export interface Actor {
 export interface Star {
   given: Number;
   received: Number;
+}
+
+export interface contributionDays {
+  color: string;
+  contributionCount: any;
+  date: string;
+  weekday: Number;
+}
+
+export interface Week {
+  contributionDays: contributionDays[];
+  firstDay: string;
 }

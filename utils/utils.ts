@@ -7,6 +7,7 @@ import {
   TOP_REPOS,
   FOLLOWS,
   STARS,
+  CONTRIBUTIONS,
 } from "./queries";
 
 /**
@@ -27,6 +28,7 @@ export async function getUserStats(): Promise<User | null> {
   const repositories = await getTopRepsitories();
   const follows = await getTopFollows();
   const stars = await getStars();
+  const contributions = await getContributionHistory();
 
   // Combine objects
   const userStats = {
@@ -35,7 +37,9 @@ export async function getUserStats(): Promise<User | null> {
     topRepos: repositories,
     topFollows: follows,
     stars: stars,
+    contributionsHistory: contributions,
   };
+
   return userStats;
 }
 
@@ -182,4 +186,25 @@ export async function getStars() {
   };
 
   return stars;
+}
+
+/**
+ * Get contribution history
+ * @returns contribution count for each day of the year
+ */
+export async function getContributionHistory() {
+  const payload = await apollo.query({
+    query: CONTRIBUTIONS,
+    variables: {
+      start: Constants.DATES.JAN2021,
+      end: Constants.DATES.DEC2021,
+    },
+  });
+
+  if (!payload || !payload.data || !payload.data.viewer) return null;
+
+  const weeks =
+    payload.data.viewer.contributionsCollection.contributionCalendar.weeks;
+
+  return weeks;
 }
