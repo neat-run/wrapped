@@ -19,7 +19,7 @@ export async function getUserStats(): Promise<User | null> {
   const highlights = await getUserHighlights();
   const languages = await getTopLanguages();
   const repositories = await getTopRepsitories();
-  const follows = await getUserFollows();
+  const follows = await getTopFollows();
 
   // Combine objects
   const userStats = {
@@ -134,7 +134,7 @@ export async function getTopRepsitories(): Promise<Repo[]> {
  * Get user's latest followers/following
  * @returns total followers and following, latest 3 followers and following
  */
-export async function getUserFollows() {
+export async function getTopFollows() {
   const payload = await apollo.query({
     query: FOLLOWS,
   });
