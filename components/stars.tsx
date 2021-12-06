@@ -1,25 +1,18 @@
-import { gql, useQuery } from "@apollo/client";
 import React from "react";
-import { STARS } from "../utils/queries";
+import { User } from "../types/common";
 
-function Stars() {
-  const { data } = useQuery(STARS);
+interface IProps {
+  user: User;
+}
 
-  if (!data || !data.viewer) return <></>;
-
-  const totalStarsGiven = data.viewer.starredRepositories.totalCount;
-  const totalStarsReceived = data.viewer.repositories.nodes.reduce(
-    (prev, curr) => {
-      return prev + curr.stargazers.totalCount;
-    },
-    0
-  );
+function Stars({ user }: IProps) {
+  if (!user || !user.stars) return <></>;
 
   return (
     <div className="p-5 text-left space-y-5 text-white">
       <p>You're a star</p>
       <p>
-        {totalStarsGiven} given, {totalStarsReceived} received
+        {user.stars.given} given, {user.stars.received} received
       </p>
     </div>
   );

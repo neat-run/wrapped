@@ -2,8 +2,6 @@ import React from "react";
 import { User } from "../types/common";
 import { BarChart } from "./barChart";
 import { StarIcon } from "@modulz/radix-icons";
-import { TOP_REPOS } from "../utils/queries";
-
 interface IProps {
   user: User;
 }

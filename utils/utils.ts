@@ -1,7 +1,13 @@
 import { Language, User, Repo } from "../types/common";
 import apollo from "./apollo";
 import Constants from "./constants";
-import { TOP_LANGUAGES, USER_HIGHLIGHTS, TOP_REPOS, FOLLOWS } from "./queries";
+import {
+  TOP_LANGUAGES,
+  USER_HIGHLIGHTS,
+  TOP_REPOS,
+  FOLLOWS,
+  STARS,
+} from "./queries";
 
 /**
  * Determines whether the app is being run in development
@@ -20,6 +26,7 @@ export async function getUserStats(): Promise<User | null> {
   const languages = await getTopLanguages();
   const repositories = await getTopRepsitories();
   const follows = await getTopFollows();
+  const stars = await getStars();
 
   // Combine objects
   const userStats = {
@@ -27,6 +34,7 @@ export async function getUserStats(): Promise<User | null> {
     topLanguages: languages,
     topRepos: repositories,
     topFollows: follows,
+    stars: stars,
   };
   return userStats;
 }
@@ -153,4 +161,25 @@ export async function getTopFollows() {
   };
 
   return follows;
+}
+
+/**
+ * Get total stars given and recieved
+ * @returns total stars given and received
+ */
+export async function getStars() {
+  const payload = await apollo.query({
+    query: STARS,
+  });
+
+  if (!payload || !payload.data || !payload.data.viewer) return null;
+
+  const stars = {
+    given: payload.data.viewer.starredRepositories.totalCount,
+    received: payload.data.viewer.repositories.nodes.reduce((prev, curr) => {
+      return prev + curr.stargazers.totalCount;
+    }, 0),
+  };
+
+  return stars;
 }

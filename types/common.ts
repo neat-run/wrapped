@@ -4,14 +4,14 @@ export interface User {
   commits?: number;
   pulls?: number;
   contributions?: number;
+  linkPreviewURL?: string;
   repos?: number;
   reviews?: number;
+  stars?: Star;
   topRepos?: Repo[];
   topLanguages?: Language[];
   topFollows?: Follows;
-  linkPreviewURL?: string;
 }
-
 export interface Repo {
   name: string;
   owner: string;
@@ -23,20 +23,22 @@ export interface Repo {
   topLanguages?: Language[];
   contributions?: Number;
 }
-
 export interface Language {
   name: string;
   commonName: string;
   color?: string;
 }
-
 export interface Follows {
   following: { totalCount: Number; latest: Actor[] };
   followers: { totalCount: Number; latest: Actor[] };
 }
-
 export interface Actor {
   avatarUrl: string;
   name: string;
   url: string;
+}
+
+export interface Star {
+  given: Number;
+  received: Number;
 }

@@ -23,7 +23,7 @@ function Summary({ user }: IProps) {
           <TopRepos user={user} />
           <TopLanguages user={user} />
           <Follows user={user} />
-          <Stars />
+          <Stars user={user} />
         </div>
         <Contributions />
       </div>
