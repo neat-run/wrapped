@@ -1,12 +1,11 @@
 import React from "react";
 import { User } from "../types/common";
-
 interface Props {
   user: User;
 }
 
 /**
- * Fetch and display the user's top
+ * Fetch and display the user's top highlights
  * @returns {element} div with text
  */
 function UserHighlights({ user }: Props) {
