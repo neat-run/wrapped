@@ -1,7 +1,7 @@
 import { Language, User, Repo } from "../types/common";
 import apollo from "./apollo";
 import Constants from "./constants";
-import { TOP_LANGUAGES, USER_HIGHLIGHTS, TOP_REPOS } from "./queries";
+import { TOP_LANGUAGES, USER_HIGHLIGHTS, TOP_REPOS, FOLLOWS } from "./queries";
 
 /**
  * Determines whether the app is being run in development
@@ -19,12 +19,14 @@ export async function getUserStats(): Promise<User | null> {
   const highlights = await getUserHighlights();
   const languages = await getTopLanguages();
   const repositories = await getTopRepsitories();
+  const follows = await getUserFollows();
 
   // Combine objects
   const userStats = {
     ...highlights,
     topLanguages: languages,
     topRepos: repositories,
+    topFollows: follows,
   };
   return userStats;
 }
@@ -42,7 +44,7 @@ export async function getUserHighlights() {
     },
   });
 
-  if (!payload || !payload.data) return null;
+  if (!payload || !payload.data || !payload.data.viewer) return null;
 
   const collection = payload.data.viewer.contributionsCollection;
   const highlights = {
@@ -71,7 +73,7 @@ export async function getTopLanguages(): Promise<Language[]> {
     },
   });
 
-  if (!payload || !payload.data) return null;
+  if (!payload || !payload.data || !payload.data.viewer) return null;
 
   let languages = payload.data.viewer.topRepositories.nodes
     .reduce((repos, repo) => {
@@ -106,7 +108,7 @@ export async function getTopRepsitories(): Promise<Repo[]> {
     query: TOP_REPOS,
   });
 
-  if (!payload || !payload.data) return null;
+  if (!payload || !payload.data || !payload.data.viewer) return null;
 
   const data =
     payload.data.viewer.contributionsCollection.commitContributionsByRepository;
@@ -126,4 +128,29 @@ export async function getTopRepsitories(): Promise<Repo[]> {
   });
 
   return repos;
+}
+
+/**
+ * Get user's latest followers/following
+ * @returns total followers and following, latest 3 followers and following
+ */
+export async function getUserFollows() {
+  const payload = await apollo.query({
+    query: FOLLOWS,
+  });
+
+  if (!payload || !payload.data || !payload.data.viewer) return null;
+
+  const follows = {
+    followers: {
+      totalCount: payload.data.viewer.followers.totalCount,
+      latest: payload.data.viewer.followers.nodes,
+    },
+    following: {
+      totalCount: payload.data.viewer.following.totalCount,
+      latest: payload.data.viewer.following.nodes,
+    },
+  };
+
+  return follows;
 }

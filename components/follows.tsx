@@ -1,16 +1,19 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
+import { User } from "../types/common";
 import { FOLLOWS } from "../utils/queries";
 
 const imageClass = "w-7 h-7 rounded-full hover:scale-[1.5]";
 
-function Follows() {
-  const { data } = useQuery(FOLLOWS);
+interface IProps {
+  user: User;
+}
 
-  if (!data || !data.viewer) return <></>;
+function Follows({ user }: IProps) {
+  if (!user || !user.topFollows) return <></>;
 
-  const followers = data.viewer.followers;
-  const following = data.viewer.following;
+  const followers = user.topFollows.followers;
+  const following = user.topFollows.following;
 
   return (
     <div className="text-white text-left p-5 space-y-5">
@@ -21,7 +24,7 @@ function Follows() {
 
       <p>Your latest follows were</p>
       <div className="space-y-3">
-        {following.nodes.map((person, i) => (
+        {following.latest.map((person, i) => (
           <div key={i} className="flex items-center space-x-2">
             <img
               className={imageClass}
@@ -41,7 +44,7 @@ function Follows() {
 
       <p>Folks who showed you love</p>
       <div className="space-y-3">
-        {followers.nodes.map((person, i) => (
+        {followers.latest.map((person, i) => (
           <div key={i} className="flex items-center space-x-2">
             <img
               className={imageClass}

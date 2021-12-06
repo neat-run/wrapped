@@ -118,7 +118,7 @@ function Slideshow({ user }: Props) {
           >
             <ArrowLeftIcon />
           </button>
-          <Follows />
+          <Follows user={user} />
           <button
             className={buttonClass}
             onClick={() => {
