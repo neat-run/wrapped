@@ -14,9 +14,13 @@ export interface User {
 export interface Repo {
   name: string;
   owner: string;
-  stars?: number;
   avatarUrl?: string;
+  isPrivate?: boolean;
+  nameWithOwner?: string;
+  url?: string;
+  stars?: number;
   topLanguages?: Language[];
+  contributions?: Number;
 }
 
 export interface Language {

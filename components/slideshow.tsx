@@ -70,7 +70,7 @@ function Slideshow({ user }: Props) {
           >
             <ArrowLeftIcon />
           </button>
-          <TopRepos />
+          <TopRepos user={user} />
           <button
             className={buttonClass}
             onClick={() => {

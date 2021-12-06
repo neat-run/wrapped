@@ -1,27 +1,30 @@
-import { gql, useQuery } from "@apollo/client";
 import React from "react";
+import { User } from "../types/common";
 import { BarChart } from "./barChart";
 import { StarIcon } from "@modulz/radix-icons";
 import { TOP_REPOS } from "../utils/queries";
 
-function TopRepos() {
-  const { data } = useQuery(TOP_REPOS);
+interface IProps {
+  user: User;
+}
 
-  if (!data || !data.viewer) return <></>;
-
-  const repos =
-    data.viewer.contributionsCollection.commitContributionsByRepository;
+/**
+ * Display the user's top repositories
+ * @returns {element} div with text
+ */
+function TopRepos({ user }: IProps) {
+  if (!user || !user.topRepos) return <></>;
 
   // Formatting data in chart-friendly format
   const chartData = {
-    labels: repos.map((repo) => repo.repository.name),
+    labels: user.topRepos.map((repo) => repo.name),
     datasets: [
       {
         barThickness: 15,
         maxBarThickness: 20,
         minBarLength: 5,
         indexAxis: "y",
-        data: repos.map((repo) => repo.contributions.totalCount),
+        data: user.topRepos.map((repo) => repo.contributions),
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
           "rgba(255, 159, 64, 0.8)",
@@ -59,33 +62,33 @@ function TopRepos() {
         You're an absolute beast
       </h1>
       <BarChart chartData={chartData} title="Top Repositories" />
-      {repos.map((repo, i) => (
+      {user.topRepos.map((repo, i) => (
         <div key={i} className="flex items-center space-x-2">
           <img
             className="w-10 h-10 rounded-full"
-            src={repo.repository.owner.avatarUrl}
-            alt={repo.repository.name + " logo"}
+            src={repo.avatarUrl}
+            alt={repo.name + " logo"}
           />
           <div className="flex flex-col">
             <div className="flex items-center space-x-2">
-              {repo.repository.isPrivate ? (
-                StyledRepoName(repo.repository.nameWithOwner)
+              {repo.isPrivate ? (
+                StyledRepoName(repo.nameWithOwner)
               ) : (
-                <a href={repo.repository.url} rel="noopener noreferrer">
-                  {StyledRepoName(repo.repository.nameWithOwner)}
+                <a href={repo.url} rel="noopener noreferrer">
+                  {StyledRepoName(repo.nameWithOwner)}
                 </a>
               )}
-              {repo.repository.stargazerCount > 0 && (
+              {repo.stars > 0 && (
                 <span className="text-yellow-400 font-medium flex items-center space-x-0.5">
                   <StarIcon className="mt-0.5" />
-                  <span>{repo.repository.stargazerCount}</span>
+                  <span>{repo.stars}</span>
                 </span>
               )}
             </div>
-            {repo.contributions.totalCount > 10 && (
+            {repo.contributions > 10 && (
               <div className="flex items-end space-x-2">
                 <p className="text-3xl font-bold font-mono">
-                  {repo.contributions.totalCount}
+                  {repo.contributions}
                 </p>
                 <p className="text-gray-600 text-3xl">commits</p>
               </div>

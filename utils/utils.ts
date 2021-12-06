@@ -1,7 +1,7 @@
-import { Language, User } from "../types/common";
+import { Language, User, Repo } from "../types/common";
 import apollo from "./apollo";
 import Constants from "./constants";
-import { TOP_LANGUAGES, USER_HIGHLIGHTS } from "./queries";
+import { TOP_LANGUAGES, USER_HIGHLIGHTS, TOP_REPOS } from "./queries";
 
 /**
  * Determines whether the app is being run in development
@@ -18,11 +18,13 @@ export function isDev(): boolean {
 export async function getUserStats(): Promise<User | null> {
   const highlights = await getUserHighlights();
   const languages = await getTopLanguages();
+  const repositories = await getTopRepsitories();
 
   // Combine objects
   const userStats = {
     ...highlights,
     topLanguages: languages,
+    topRepos: repositories,
   };
   return userStats;
 }
@@ -93,4 +95,35 @@ export async function getTopLanguages(): Promise<Language[]> {
     .slice(0, 5);
 
   return languages;
+}
+
+/**
+ * Get top repositories
+ * @returns top 5 repositories with their meta data
+ */
+export async function getTopRepsitories(): Promise<Repo[]> {
+  const payload = await apollo.query({
+    query: TOP_REPOS,
+  });
+
+  if (!payload || !payload.data) return null;
+
+  const data =
+    payload.data.viewer.contributionsCollection.commitContributionsByRepository;
+
+  // Filtering data to specific data points
+  let repos = [];
+  data.map((repo, i) => {
+    repos[i] = {
+      name: repo.repository.name,
+      nameWithOwner: repo.repository.nameWithOwner,
+      avatarUrl: repo.repository.owner.avatarUrl,
+      isPrivate: repo.repository.isPrivate,
+      url: repo.repository.url,
+      stars: repo.repository.stargazerCount,
+      contributions: repo.contributions.totalCount,
+    };
+  });
+
+  return repos;
 }

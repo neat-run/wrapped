@@ -20,7 +20,7 @@ function Summary({ user }: IProps) {
       >
         <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
           <UserHighlights user={user} />
-          <TopRepos />
+          <TopRepos user={user} />
           <TopLanguages user={user} />
           <Follows />
           <Stars />
