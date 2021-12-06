@@ -13,10 +13,12 @@ function UserHighlights({ user }: Props) {
   const numberToFontSize = (count: number): string => {
     let order = Math.floor(Math.log(count));
 
-    // Medium to 7xl (maximum in Tailwind)
+    // Medium to 9xl (maximum in Tailwind)
     if (!order || order === 0) return "text-md";
-    else if (order <= 7) return `text-${order}xl`;
-    else return "text-7xl";
+    else if (order <= 2) return `text-xl`;
+    // Even values don't seem to work in text-[N]xl
+    else if (order <= 9) return `text-${order - (order % 2) - 1}xl`;
+    else return "text-9xl";
   };
 
   // Stats to render
@@ -64,14 +66,10 @@ function UserHighlights({ user }: Props) {
           stat.count && (
             <div key={stat.title}>
               <p className="text-gray-400">{stat.tagline}</p>
-              <p
-                className={`${numberToFontSize(
-                  stat.count
-                )} font-extrabold tracking-wide`}
-              >
+              <p className={`${stat.fontSize} font-mono tracking-wide`}>
                 {stat.count}
               </p>
-              <p className="font-medium font-mono text-lg leading-none">
+              <p className="font-medium text-lg leading-none pt-0.5">
                 {stat.title}
               </p>
             </div>
