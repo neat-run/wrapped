@@ -2,78 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import { BarChart } from "./barChart";
 import { StarIcon } from "@modulz/radix-icons";
-
-// GraphQL query to get an overview of a user's contributions
-const TOP_REPOS = gql`
-  query topRepos {
-    viewer {
-      name
-      login
-      contributionsCollection {
-        issueContributionsByRepository(maxRepositories: 5) {
-          contributions {
-            totalCount
-          }
-          repository {
-            name
-            nameWithOwner
-            url
-            isPrivate
-            owner {
-              avatarUrl
-            }
-            stargazerCount
-          }
-        }
-        pullRequestContributionsByRepository(maxRepositories: 5) {
-          contributions {
-            totalCount
-          }
-          repository {
-            name
-            nameWithOwner
-            url
-            isPrivate
-            owner {
-              avatarUrl
-            }
-            stargazerCount
-          }
-        }
-        pullRequestReviewContributionsByRepository(maxRepositories: 5) {
-          contributions {
-            totalCount
-          }
-          repository {
-            name
-            nameWithOwner
-            url
-            isPrivate
-            owner {
-              avatarUrl
-            }
-            stargazerCount
-          }
-        }
-        commitContributionsByRepository(maxRepositories: 5) {
-          contributions {
-            totalCount
-          }
-          repository {
-            name
-            nameWithOwner
-            url
-            isPrivate
-            owner {
-              avatarUrl
-            }
-            stargazerCount
-          }
-        }
-      }
-    }
-  }
-`;
+import { TOP_REPOS } from "../utils/queries";
 
 function TopRepos() {
   const { data } = useQuery(TOP_REPOS);

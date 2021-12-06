@@ -1,31 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
-
-// GraphQL query to get the followers and following
-const FOLLOWS = gql`
-  query follows {
-    viewer {
-      name
-      login
-      followers(first: 3) {
-        totalCount
-        nodes {
-          name
-          url
-          avatarUrl
-        }
-      }
-      following(first: 3) {
-        totalCount
-        nodes {
-          name
-          avatarUrl
-          url
-        }
-      }
-    }
-  }
-`;
+import { FOLLOWS } from "../utils/queries";
 
 const imageClass = "w-7 h-7 rounded-full hover:scale-[1.5]";
 

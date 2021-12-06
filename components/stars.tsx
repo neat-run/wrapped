@@ -1,30 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
-
-// GraphQL query to get stats for Stars
-const STARS = gql`
-  query stars {
-    viewer {
-      name
-      login
-      starredRepositories {
-        totalCount
-      }
-      repositories(
-        first: 100
-        ownerAffiliations: OWNER
-        orderBy: { direction: DESC, field: STARGAZERS }
-      ) {
-        totalCount
-        nodes {
-          stargazers {
-            totalCount
-          }
-        }
-      }
-    }
-  }
-`;
+import { STARS } from "../utils/queries";
 
 function Stars() {
   const { data } = useQuery(STARS);

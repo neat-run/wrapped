@@ -2,30 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import Constants from "../utils/constants";
 import Tooltip from "../components/tooltip";
-
-// GraphQL query to get the contribution history
-const CONTRIBUTIONS = gql`
-  query contributions($start: DateTime, $end: DateTime) {
-    viewer {
-      name
-      contributionsCollection(from: $start, to: $end) {
-        contributionCalendar {
-          colors
-          totalContributions
-          weeks {
-            contributionDays {
-              color
-              contributionCount
-              date
-              weekday
-            }
-            firstDay
-          }
-        }
-      }
-    }
-  }
-`;
+import { CONTRIBUTIONS } from "../utils/queries";
 
 function Contributions() {
   const { data } = useQuery(CONTRIBUTIONS, {
