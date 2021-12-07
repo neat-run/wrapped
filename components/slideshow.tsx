@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Highlights from "./highlights";
 import TopRepos from "./topRepos";
 import TopLanguages from "./topLanguages";
@@ -33,27 +33,33 @@ function Slideshow({ user }: Props) {
   ];
   const lastSlideIndex = cardsToShow.length - 1;
 
-  // Next slide
-  const arrowRight = (
+  // Go to next slide
+  const nextSlide = () => {
+    setCurrentSlide((slide) =>
+      slide < lastSlideIndex ? slide + 1 : lastSlideIndex
+    );
+  };
+
+  // Next slide button
+  const arrowRight = currentSlide < lastSlideIndex && (
     <button
       className={`${buttonClass} right-6 hover:translate-x-2`}
-      onClick={() => {
-        setCurrentSlide((slide) =>
-          slide < lastSlideIndex ? slide + 1 : lastSlideIndex
-        );
-      }}
+      onClick={nextSlide}
     >
       <ArrowRightIcon />
     </button>
   );
 
+  // Go to previous slide
+  const previousSlide = () => {
+    setCurrentSlide((slide) => (slide > 0 ? slide - 1 : 0));
+  };
+
   // Previous slide
-  const arrowLeft = (
+  const arrowLeft = currentSlide > 0 && (
     <button
       className={`${buttonClass} left-6 hover:-translate-x-2`}
-      onClick={() => {
-        setCurrentSlide((slide) => (slide > 0 ? slide - 1 : 0));
-      }}
+      onClick={previousSlide}
     >
       <ArrowLeftIcon />
     </button>
@@ -63,21 +69,34 @@ function Slideshow({ user }: Props) {
     if (loading) setLoading(false);
   }, 5 * 1000);
 
+  // Allow left/right arrow keys to navigate slides
+  useEffect(() => {
+    const handleArrowKeys = (e) => {
+      if (!e || !e.key) return;
+      if (e.key == "ArrowRight") nextSlide();
+      else if (e.key == "ArrowLeft") previousSlide();
+    };
+    window.addEventListener("keydown", handleArrowKeys);
+    return () => {
+      window.removeEventListener("keydown", handleArrowKeys);
+    };
+  }, []);
+
   return (
     <div>
       {loading ? (
         <Loading user={user} />
       ) : (
         <div>
-          {currentSlide > 0 && arrowLeft}
-          <div id="wrap" className="flex justify-center">
+          {arrowLeft}
+          <div id="wrap" className="flex items-center justify-center">
             {cardsToShow[currentSlide]}
           </div>
-          {currentSlide < lastSlideIndex && arrowRight}
+          {arrowRight}
+          <Toolbar user={user} />
         </div>
       )}
       {/* <ProgressBar /> */}
-      {!loading && <Toolbar user={user} />}
     </div>
   );
 }
