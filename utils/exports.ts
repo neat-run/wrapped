@@ -8,8 +8,19 @@ import { addRow, getImageURL, getRow, uploadImage } from "./supabase";
  */
 export function download() {
   let canvas = document.getElementById("wrap");
-  domtoimage.toBlob(canvas).then(function (blob) {
+  domtoimage.toBlob(canvas).then((blob) => {
     saveAs(blob, "wrapped.png");
+  });
+}
+
+/**
+ * Grab the banner element and download it as a SVG
+ * TODO: ensure the image is properly formatted
+ */
+export function downloadSVG() {
+  let canvas = document.getElementById("wrap");
+  domtoimage.toSvg(canvas).then((blob) => {
+    saveAs(blob, "wrapped.svg");
   });
 }
 
