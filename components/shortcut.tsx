@@ -6,8 +6,8 @@ const COMMON_SYMBOLS = new Map<string, string>([
   ["shift", "⇧"],
   ["esc", "esc"],
   ["alt", "⌥"],
-  ["enter", "↩"],
-  ["return", "↩"],
+  ["enter", "enter"],
+  ["return", "enter"],
 ]);
 
 /**
