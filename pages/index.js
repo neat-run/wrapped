@@ -32,20 +32,22 @@ export default function Home({ hostUser }) {
       <HeadTags user={hostUser} />
 
       <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
-        {auth ? (
-          <h1 className="text-4xl font-bold tracking-tight mb-5 fixed top-4">
-            <span className="text-gray-300">GitHub</span>
-            <span className="pl-3 text-indigo-500 font-mono">Wrapped</span>
-          </h1>
-        ) : (
-          <h1 className="flex text-8xl font-bold tracking-tighter text-white mb-5 space-x-4">
-            <span className="leading-tight">GitHub</span>
-            <span className="z-10 leading-tight font-mono text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]">
-              Wrapped
-            </span>
-          </h1>
-        )}
-        {!auth && <SignIn auth={auth} setAuth={setAuth} />}
+        <h1
+          className={`transition-all duration-1000 ease-out fixed mb-5 font-bold tracking-tighter ${
+            auth ? "text-4xl top-4" : "text-8xl top-1/4"
+          }`}
+        >
+          <span className="text-gray-300">GitHub</span>
+          <span
+            className={`font-mono z-10 pl-3 ${
+              auth
+                ? "text-indigo-600"
+                : "text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]"
+            }`}
+          >
+            Wrapped
+          </span>
+        </h1>
         {auth ? (
           <Slideshow user={user} />
         ) : hostUser ? (
@@ -65,7 +67,7 @@ export default function Home({ hostUser }) {
             </div>
           </div>
         ) : (
-          <></>
+          <SignIn auth={auth} setAuth={setAuth} />
         )}
       </main>
       <footer>
