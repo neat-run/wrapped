@@ -7,11 +7,12 @@ import SignIn from "../components/signIn";
 import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
 import { isDev, getUserStats } from "../utils/utils";
+import { defaultUser } from "../utils/default";
 import Link from "next/link";
 import Summary from "../components/summary";
 
 export default function Home({ hostUser }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(defaultUser);
   const [auth, setAuth] = useState(null);
 
   useEffect(() => {
