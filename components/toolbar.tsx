@@ -72,7 +72,6 @@ function Toolbar({ user }: Props) {
 
       <Modal
         onSubmit={async () => {
-          // TODO: encode the Wrapped banner in a shareable URL
           publishUser(user);
           let publicLink = getPublicLink(user);
           window.open(

@@ -15,10 +15,11 @@ export default function Home({ hostUser }) {
   const [auth, setAuth] = useState(null);
 
   useEffect(() => {
-    getUserStats().then((userStats) => {
+    (async () => {
+      let userStats = await getUserStats();
       setUser(userStats);
       initShortcuts(userStats);
-    });
+    })();
     checkUser();
     window.addEventListener("hashchange", () => checkUser());
   }, [auth]);
@@ -63,11 +64,11 @@ export default function Home({ hostUser }) {
             >
               <Summary user={hostUser} />
             </div>
+            <SignIn auth={auth} setAuth={setAuth} />
           </div>
         ) : (
-          <></>
+          <SignIn auth={auth} setAuth={setAuth} />
         )}
-        <SignIn auth={auth} setAuth={setAuth} />
       </main>
       <footer>
         <div className="px-8 w-screen flex justify-between">
@@ -106,6 +107,7 @@ export const getServerSideProps = async (context) => {
   if (domainParts.length > (isDev() ? 1 : 2)) {
     hostUser = await getByUsername(domainParts[0]);
   }
+  console.log(hostUser);
 
   return {
     props: {
