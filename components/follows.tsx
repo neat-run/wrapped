@@ -22,13 +22,13 @@ function Follows({ user }: IProps) {
           <span className="font-mono text-green-600">
             {following.totalCount}
           </span>
-          <span className="font-light">followers</span>
+          <span className="font-light text-gray-600">followers</span>
         </div>
         <div className="space-x-2">
           <span className="font-mono text-orange-600">
             {followers.totalCount}
           </span>
-          <span className="font-light">following</span>
+          <span className="font-light text-gray-600">following</span>
         </div>
       </div>
 
