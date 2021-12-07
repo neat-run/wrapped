@@ -18,7 +18,11 @@ function Modal({ children, onSubmit, defaultOpen, title, description }) {
   useEffect(() => {
     const handleEnterKey = (e) => {
       if (!open) return;
-      if (e.key && e.key == "Enter") onSubmit();
+
+      if (e.key && e.key == "Enter") {
+        onSubmit();
+        setOpen(false);
+      }
     };
     window.addEventListener("keydown", handleEnterKey);
     return () => {
@@ -28,7 +32,9 @@ function Modal({ children, onSubmit, defaultOpen, title, description }) {
 
   return (
     <AlertDialog.Root open={open} onOpenChange={setOpen}>
-      <AlertDialog.Trigger>{children}</AlertDialog.Trigger>
+      <AlertDialog.Trigger className="focus:outline-none">
+        {children}
+      </AlertDialog.Trigger>
       <AlertDialog.Overlay className="bg-black/80 fixed inset-0" />
       <AlertDialog.Content className="bg-gray-900 rounded-lg shadow-lg border border-gray-700 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 p-4 focus:outline-none flex flex-col justify-between">
         <div
