@@ -19,9 +19,9 @@ function KeyboardShortcut({ shortcut }) {
   if (!shortcut) return <></>;
 
   return (
-    <span className="ml-2 space-x-1 text-gray-400">
+    <span className="ml-2 space-x-1 text-gray-300">
       {shortcut.split("+").map((key) => (
-        <span key={key} className="bg-gray-800/80 rounded p-1 px-2">
+        <span key={key} className="bg-gray-700/80 rounded p-1 px-2">
           {/* Turn dev-friendly strings like "cmd" to user-friendly symbols like "⌘" */}
           {COMMON_SYMBOLS.get(key) || key.toUpperCase()}
         </span>

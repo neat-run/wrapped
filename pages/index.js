@@ -31,11 +31,11 @@ export default function Home({ hostUser }) {
     <div className="flex flex-col items-center justify-center min-h-screen bg-black">
       <HeadTags user={hostUser} />
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+      <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
         {auth ? (
-          <h1 className="text-4xl font-bold tracking-tight text-white mb-5 fixed top-10">
-            <span>GitHub</span>
-            <span className="pl-3 text-purple-600 font-mono">Wrapped</span>
+          <h1 className="text-4xl font-bold tracking-tight mb-5 fixed top-4">
+            <span className="text-gray-300">GitHub</span>
+            <span className="pl-3 text-indigo-500 font-mono">Wrapped</span>
           </h1>
         ) : (
           <h1 className="flex text-8xl font-bold tracking-tighter text-white mb-5 space-x-4">
@@ -69,25 +69,25 @@ export default function Home({ hostUser }) {
         )}
       </main>
       <footer>
-        <div className="pb-1 px-8 w-screen flex justify-between">
+        <div className="px-8 w-screen flex justify-between">
           <a
             href="https://github.com/neat-run/wrapped"
-            className="text-gray-400 hover:text-gray-200 p-1 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
+            className="text-gray-500 font-medium hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
             rel="noopener noreferrer"
           >
             Code
           </a>
-          <div>
-            <span className="tracking-wide text-gray-400">Made by </span>
+          <div className="flex items-baseline">
+            <span className="text-gray-500 font-medium">Made by</span>
             <a
-              className="font-bold text-purple-500 hover:text-purple-400 transition-transform hover:-translate-y-1 duration-500"
+              className="font-bold p-3 pl-1 text-indigo-500 hover:text-indigo-400 transition hover:-translate-y-1 duration-500"
               href={Constants.NEAT.URL}
             >
               Neat
             </a>
           </div>
           <Link href="/privacy">
-            <a className="text-gray-400 hover:text-gray-200 p-1 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
+            <a className="text-gray-500 font-medium hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
               Privacy
             </a>
           </Link>

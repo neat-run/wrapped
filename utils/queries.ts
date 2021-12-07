@@ -73,7 +73,7 @@ export const TOP_REPOS = gql`
       name
       login
       contributionsCollection {
-        issueContributionsByRepository(maxRepositories: 5) {
+        issueContributionsByRepository(maxRepositories: 3) {
           contributions {
             totalCount
           }
@@ -88,7 +88,7 @@ export const TOP_REPOS = gql`
             stargazerCount
           }
         }
-        pullRequestContributionsByRepository(maxRepositories: 5) {
+        pullRequestContributionsByRepository(maxRepositories: 3) {
           contributions {
             totalCount
           }
@@ -103,7 +103,7 @@ export const TOP_REPOS = gql`
             stargazerCount
           }
         }
-        pullRequestReviewContributionsByRepository(maxRepositories: 5) {
+        pullRequestReviewContributionsByRepository(maxRepositories: 3) {
           contributions {
             totalCount
           }
@@ -118,7 +118,7 @@ export const TOP_REPOS = gql`
             stargazerCount
           }
         }
-        commitContributionsByRepository(maxRepositories: 5) {
+        commitContributionsByRepository(maxRepositories: 3) {
           contributions {
             totalCount
           }

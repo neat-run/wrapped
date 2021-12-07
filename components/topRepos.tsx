@@ -55,7 +55,7 @@ function TopRepos({ user }: IProps) {
   };
 
   return (
-    <div className="text-left space-y-5 text-white">
+    <div className="text-left p-5 space-y-5 text-white">
       <h1 className="text-gray-400 text-xl font-medium">
         You're an absolute beast
       </h1>

@@ -69,7 +69,7 @@ function Slideshow({ user }: Props) {
         <Loading user={user} />
       ) : (
         <div id="wrap">
-          {currentSlide > 0 && currentSlide < lastSlideIndex && arrowLeft}
+          {currentSlide > 0 && arrowLeft}
           {cardsToShow[currentSlide]}
           {currentSlide < lastSlideIndex && arrowRight}
         </div>
