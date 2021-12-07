@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import UserHighlights from "./userHighlights";
 import TopRepos from "./topRepos";
 import TopLanguages from "./topLanguages";
@@ -9,196 +9,73 @@ import Summary from "./summary";
 import { User } from "../types/common";
 import Loading from "./loading";
 import { ArrowRightIcon, ArrowLeftIcon } from "@modulz/radix-icons";
+import Toolbar from "./toolbar";
 
 interface Props {
   user: User;
 }
 
 const buttonClass =
-  "text-white p-2 rounded scale-[1.5] hover:scale-[1.8] focus:outline-none";
+  "text-white px-6 py-24 rounded scale-[1.5] hover:scale-[1.8] transition-transform absolute top-1/2 -translate-y-1/2 focus:outline-none";
 
 function Slideshow({ user }: Props) {
   const [loading, setLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const cardsToShow = [
-    "userHighlights",
-    "topRepos",
-    "topLanguages",
-    "follows",
-    "stars",
-    "contributions",
+    <UserHighlights user={user} />,
+    <TopRepos user={user} />,
+    <TopLanguages user={user} />,
+    <Follows user={user} />,
+    <Stars user={user} />,
+    <Contributions user={user} />,
+    <Summary user={user} />,
   ];
-  const [slideUserHighlights, setSlideUserHighlights] = useState(false);
-  const [slideTopRepos, setSlideTopRepos] = useState(false);
-  const [slideTopLanguages, setSlideTopLanguages] = useState(false);
-  const [slideFollows, setSlideFollows] = useState(false);
-  const [slideStars, setSlideStars] = useState(false);
-  const [slideContributions, setSlideContributions] = useState(false);
-  const [summary, setSummary] = useState(false);
+  const lastSlideIndex = cardsToShow.length - 1;
+
+  // Next slide
+  const arrowRight = (
+    <button
+      className={`${buttonClass} right-6 hover:translate-x-1`}
+      onClick={() => {
+        setCurrentSlide((slide) =>
+          slide < lastSlideIndex ? slide + 1 : lastSlideIndex
+        );
+      }}
+    >
+      <ArrowRightIcon />
+    </button>
+  );
+
+  // Previous slide
+  const arrowLeft = (
+    <button
+      className={`${buttonClass} left-6 hover:-translate-x-1`}
+      onClick={() => {
+        setCurrentSlide((slide) => (slide > 0 ? slide - 1 : 0));
+      }}
+    >
+      <ArrowLeftIcon />
+    </button>
+  );
 
   setTimeout(() => {
-    if (loading) {
-      setLoading(false);
-      setSlideUserHighlights(true);
-    }
+    if (loading) setLoading(false);
   }, 5 * 1000);
+
   return (
     <div>
-      {loading && <Loading />}
-      {slideUserHighlights && (
-        <div className="flex flex-row">
-          <UserHighlights user={user} />
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideUserHighlights(false);
-              setSlideTopRepos(true);
-            }}
-          >
-            <ArrowRightIcon />
-          </button>
+      {loading ? (
+        <Loading user={user} />
+      ) : (
+        <div id="wrap">
+          {currentSlide > 0 && currentSlide < lastSlideIndex && arrowLeft}
+          {cardsToShow[currentSlide]}
+          {currentSlide < lastSlideIndex && arrowRight}
         </div>
       )}
-
-      {slideTopRepos && (
-        <div className="flex flex-row">
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideTopRepos(false);
-              setSlideUserHighlights(true);
-            }}
-          >
-            <ArrowLeftIcon />
-          </button>
-          <TopRepos user={user} />
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideTopRepos(false);
-              setSlideTopLanguages(true);
-            }}
-          >
-            <ArrowRightIcon />
-          </button>
-        </div>
-      )}
-
-      {slideTopLanguages && (
-        <div className="flex flex-row">
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideTopLanguages(false);
-              setSlideTopRepos(true);
-            }}
-          >
-            <ArrowLeftIcon />
-          </button>
-          <TopLanguages user={user} />
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideTopLanguages(false);
-              setSlideFollows(true);
-            }}
-          >
-            <ArrowRightIcon />
-          </button>
-        </div>
-      )}
-
-      {slideFollows && (
-        <div className="flex flex-row">
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideFollows(false);
-              setSlideTopLanguages(true);
-            }}
-          >
-            <ArrowLeftIcon />
-          </button>
-          <Follows user={user} />
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideFollows(false);
-              setSlideStars(true);
-            }}
-          >
-            <ArrowRightIcon />
-          </button>
-        </div>
-      )}
-
-      {slideStars && (
-        <div className="flex flex-row">
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideStars(false);
-              setSlideFollows(true);
-            }}
-          >
-            <ArrowLeftIcon />
-          </button>
-          <Stars user={user} />
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideStars(false);
-              setSlideContributions(true);
-            }}
-          >
-            <ArrowRightIcon />
-          </button>
-        </div>
-      )}
-
-      {slideContributions && (
-        <div className="flex flex-row">
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideContributions(false);
-              setSlideStars(true);
-            }}
-          >
-            <ArrowLeftIcon />
-          </button>
-          <Contributions />
-          <button
-            className={buttonClass}
-            onClick={() => {
-              setSlideContributions(false);
-              setSummary(true);
-            }}
-          >
-            <ArrowRightIcon />
-          </button>
-        </div>
-      )}
-
-      {summary && <Summary user={user} />}
-      {/* {cardsToShow.map((card) => {
-        switch (card) {
-          case "userHighlights":
-            return <UserHighlights user={user} />;
-          case "topRepos":
-            return <TopRepos />;
-          case "topLanguages":
-            return <TopLanguages user={user} />;
-          case "follows":
-            return <Follows />;
-          case "stars":
-            return <Stars />;
-          case "contributions":
-            return <Contributions />;
-        }
-      })}
-      */}
       {/* <ProgressBar /> */}
-      {/* <Toolbar user={user} /> */}
+      <Toolbar user={user} />
     </div>
   );
 }
