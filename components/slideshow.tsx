@@ -68,9 +68,11 @@ function Slideshow({ user }: Props) {
       {loading ? (
         <Loading user={user} />
       ) : (
-        <div id="wrap">
+        <div>
           {currentSlide > 0 && arrowLeft}
-          {cardsToShow[currentSlide]}
+          <div id="wrap" className="flex justify-center">
+            {cardsToShow[currentSlide]}
+          </div>
           {currentSlide < lastSlideIndex && arrowRight}
         </div>
       )}

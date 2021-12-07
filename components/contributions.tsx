@@ -42,7 +42,7 @@ function Contributions({ user }: IProps) {
   });
 
   return (
-    <div className="space-y-5 p-5 max-w-4xl mx-auto">
+    <div className="space-y-5 p-5 max-w-4xl flex flex-col items-start">
       <div className="text-gray-400 text-xl font-medium text-left px-2">
         You show up daily
       </div>
@@ -64,7 +64,7 @@ function Contributions({ user }: IProps) {
                 className={`h-3 w-3 ${
                   colors[day.contributionCount]
                 } hover:scale-[1.5] text-xs`}
-              ></div>
+              />
             </Tooltip>
           ))
         )}

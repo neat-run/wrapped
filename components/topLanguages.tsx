@@ -20,9 +20,10 @@ function TopLanguages({ user }: Props) {
       {languages.map((language, i) => (
         <div
           key={i}
-          className="flex items-center space-x-4"
+          className="flex items-center space-x-3"
           style={{ color: language.color }}
         >
+          <p className="text-3xl font-medium text-gray-600">#{i + 1}</p>
           <p className={`devicon-${language.name}-plain text-4xl`} />
           <p className="font-mono text-xl">{language.commonName}</p>
         </div>

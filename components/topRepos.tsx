@@ -63,12 +63,12 @@ function TopRepos({ user }: IProps) {
       {user.topRepos.map((repo, i) => (
         <div key={i} className="flex items-center space-x-4">
           <img
-            className="w-14 h-14 rounded-full"
+            className="w-12 h-12 rounded-full"
             src={repo.avatarUrl}
             alt={repo.name + " logo"}
           />
           <div className="flex flex-col">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3 whitespace-nowrap">
               {repo.isPrivate ? (
                 StyledRepoName(repo.nameWithOwner)
               ) : (
