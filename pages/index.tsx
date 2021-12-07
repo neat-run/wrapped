@@ -8,15 +8,17 @@ import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
 import { isDev, getUserStats } from "../utils/utils";
 import Link from "next/link";
+import Summary from "../components/summary";
 
 export default function Home({ hostUser }) {
   const [user, setUser] = useState(null);
   const [auth, setAuth] = useState(null);
 
-  useEffect(async () => {
-    let userStats = await getUserStats();
-    setUser(userStats);
-    initShortcuts(userStats);
+  useEffect(() => {
+    getUserStats().then((userStats) => {
+      setUser(userStats);
+      initShortcuts(userStats);
+    });
     checkUser();
     window.addEventListener("hashchange", () => checkUser());
   }, [auth]);
@@ -59,16 +61,13 @@ export default function Home({ hostUser }) {
               className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"
               id="wrap"
             >
-              <div className="flex space-x-5 rounded-xl bg-gray-900/80 border border-gray-500">
-                <UserHighlights user={hostUser} />
-                <TopLanguages user={hostUser} />
-              </div>
-              <Contributions />
+              <Summary user={hostUser} />
             </div>
           </div>
         ) : (
-          <SignIn auth={auth} setAuth={setAuth} />
+          <></>
         )}
+        <SignIn auth={auth} setAuth={setAuth} />
       </main>
       <footer>
         <div className="px-8 w-screen flex justify-between">
