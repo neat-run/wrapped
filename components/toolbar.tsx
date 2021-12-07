@@ -39,7 +39,7 @@ function Toolbar({ user }: Props) {
     "p-2 hover:bg-gray-500 hover:bg-opacity-20 rounded scale-[1.5] hover:scale-[1.8] focus:outline-none";
 
   return (
-    <div className="p-7 text-white space-x-7 flex items-center justify-center">
+    <div className="p-7 text-white space-x-7 flex items-center justify-center absolute left-1/2 -translate-x-1/2 bottom-8">
       <Tooltip content="Copy image" shortcut={SHORTCUTS.copyImage.sequence}>
         <button
           className={buttonClass}
