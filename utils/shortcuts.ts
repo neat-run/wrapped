@@ -1,4 +1,4 @@
-import { User } from "@supabase/gotrue-js";
+import { User } from "../types/common";
 import Mousetrap from "mousetrap";
 import { copyImage, copyPublicLink, download } from "./exports";
 import { isSignedIn, signIn, signOut } from "./supabase";
