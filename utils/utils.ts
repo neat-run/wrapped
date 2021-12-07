@@ -59,8 +59,9 @@ export async function getUserHighlights() {
   if (!payload || !payload.data || !payload.data.viewer) return null;
 
   const collection = payload.data.viewer.contributionsCollection;
-  const highlights = {
+  const highlights: User = {
     username: payload.data.viewer.login,
+    fullName: payload.data.viewer.name,
     avatarUrl: payload.data.viewer.avatarUrl,
     commits: collection.totalCommitContributions,
     contributions: collection.contributionCalendar.totalContributions,

@@ -1,5 +1,6 @@
 export interface User {
   username: string;
+  fullName?: string;
   avatarUrl?: string;
   commits?: number;
   pulls?: number;
