@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserHighlights from "./userHighlights";
+import Highlights from "./highlights";
 import TopRepos from "./topRepos";
 import TopLanguages from "./topLanguages";
 import Contributions from "./contributions";
@@ -23,7 +23,7 @@ function Slideshow({ user }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const cardsToShow = [
-    <UserHighlights user={user} />,
+    <Highlights user={user} />,
     <TopRepos user={user} />,
     <TopLanguages user={user} />,
     <Follows user={user} />,

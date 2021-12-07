@@ -1,4 +1,4 @@
-import UserHighlights from "./userHighlights";
+import Highlights from "./highlights";
 import TopRepos from "./topRepos";
 import TopLanguages from "./topLanguages";
 import Contributions from "./contributions";
@@ -17,7 +17,7 @@ function Summary({ user }: IProps) {
   return (
     <div className="m-12 mt-16 flex rounded-xl bg-gray-900/80 border border-gray-500">
       <div className="flex w-1/5">
-        <UserHighlights user={user} />
+        <Highlights user={user} />
       </div>
       <div className="flex flex-col w-4/5">
         <div className="flex">

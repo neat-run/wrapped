@@ -107,7 +107,6 @@ export const getServerSideProps = async (context) => {
   if (domainParts.length > (isDev() ? 1 : 2)) {
     hostUser = await getByUsername(domainParts[0]);
   }
-  console.log(hostUser);
 
   return {
     props: {

@@ -8,7 +8,7 @@ interface Props {
  * Fetch and display the user's top highlights
  * @returns {element} div with text
  */
-function UserHighlights({ user }: Props) {
+function Highlights({ user }: Props) {
   // Size the text according to the number
   const numberToFontSize = (count: number): string => {
     let order = Math.floor(Math.log(count));
@@ -79,4 +79,4 @@ function UserHighlights({ user }: Props) {
   );
 }
 
-export default UserHighlights;
+export default Highlights;

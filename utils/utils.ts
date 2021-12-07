@@ -23,7 +23,7 @@ export function isDev(): boolean {
  * @returns username, commits, top repos, etc
  */
 export async function getUserStats(): Promise<User | null> {
-  const highlights = await getUserHighlights();
+  const highlights = await getHighlights();
   const languages = await getTopLanguages();
   const repositories = await getTopRepsitories();
   const follows = await getTopFollows();
@@ -47,7 +47,7 @@ export async function getUserStats(): Promise<User | null> {
  * Get user developer highlights
  * @returns total commits, pulls, reviews, etc
  */
-export async function getUserHighlights() {
+export async function getHighlights() {
   const payload = await apollo.query({
     query: USER_HIGHLIGHTS,
     variables: {
