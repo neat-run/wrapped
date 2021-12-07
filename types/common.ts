@@ -36,6 +36,7 @@ export interface Follows {
 export interface Actor {
   avatarUrl: string;
   name: string;
+  login: string;
   url: string;
 }
 

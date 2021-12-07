@@ -172,6 +172,7 @@ export const FOLLOWS = gql`
         totalCount
         nodes {
           name
+          login
           url
           avatarUrl
         }
@@ -180,6 +181,7 @@ export const FOLLOWS = gql`
         totalCount
         nodes {
           name
+          login
           avatarUrl
           url
         }
