@@ -61,9 +61,9 @@ function TopRepos({ user }: IProps) {
       </h1>
       <BarChart chartData={chartData} title="Top Repositories" />
       {user.topRepos.map((repo, i) => (
-        <div key={i} className="flex items-center space-x-2">
+        <div key={i} className="flex items-center space-x-4">
           <img
-            className="w-10 h-10 rounded-full"
+            className="w-14 h-14 rounded-full"
             src={repo.avatarUrl}
             alt={repo.name + " logo"}
           />
