@@ -33,8 +33,9 @@ export default function Home({ hostUser }) {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         {auth ? (
-          <h1 className="flex text-4xl font-bold tracking-tight text-white mb-5">
-            GitHub <p className="pl-2 text-purple-600 font-mono">Wrapped</p>
+          <h1 className="text-4xl font-bold tracking-tight text-white mb-5 fixed top-10">
+            <span>GitHub</span>
+            <span className="pl-3 text-purple-600 font-mono">Wrapped</span>
           </h1>
         ) : (
           <h1 className="flex text-8xl font-bold tracking-tighter text-white mb-5 space-x-4">

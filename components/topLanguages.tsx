@@ -24,7 +24,7 @@ function TopLanguages({ user }: Props) {
           style={{ color: language.color }}
         >
           <p className={`devicon-${language.name}-plain text-4xl`} />
-          <p className="font-mono text-3xl">{language.commonName}</p>
+          <p className="font-mono text-xl">{language.commonName}</p>
         </div>
       ))}
     </div>
