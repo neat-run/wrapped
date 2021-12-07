@@ -17,7 +17,7 @@ import {
 import { SHORTCUTS } from "../utils/shortcuts";
 import { User } from "../types/common";
 import Modal from "./modal";
-
+import MusicPlayer from "./musicPlayer";
 interface Props {
   user: User;
 }
@@ -106,6 +106,8 @@ function Toolbar({ user }: Props) {
           {downloaded ? <CheckIcon /> : <DownloadIcon />}
         </button>
       </Tooltip>
+
+      <MusicPlayer buttonClass={buttonClass} />
     </div>
   );
 }
