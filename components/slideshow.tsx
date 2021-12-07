@@ -36,7 +36,7 @@ function Slideshow({ user }: Props) {
   // Next slide
   const arrowRight = (
     <button
-      className={`${buttonClass} right-6 hover:translate-x-1`}
+      className={`${buttonClass} right-6 hover:translate-x-2`}
       onClick={() => {
         setCurrentSlide((slide) =>
           slide < lastSlideIndex ? slide + 1 : lastSlideIndex
@@ -50,7 +50,7 @@ function Slideshow({ user }: Props) {
   // Previous slide
   const arrowLeft = (
     <button
-      className={`${buttonClass} left-6 hover:-translate-x-1`}
+      className={`${buttonClass} left-6 hover:-translate-x-2`}
       onClick={() => {
         setCurrentSlide((slide) => (slide > 0 ? slide - 1 : 0));
       }}

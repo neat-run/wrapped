@@ -28,30 +28,35 @@ function Highlights({ user }: Props) {
       fontSize: "text-lg",
       tagline: "You have no commitment issues",
       title: "Total commits",
+      colour: "text-blue-600",
     },
     {
       count: user.contributions,
       fontSize: "text-lg",
       tagline: "You put in the work",
       title: "Total contributions",
+      colour: "text-yellow-600",
     },
     {
       count: user.repos,
       fontSize: "text-lg",
       tagline: "You code far and wide",
       title: "Repositories",
+      colour: "text-orange-600",
     },
     {
       count: user.pulls,
       fontSize: "text-lg",
       tagline: "You pull your own weight",
       title: "Pull requests",
+      colour: "text-indigo-600",
     },
     {
       count: user.reviews,
       fontSize: "text-lg",
       tagline: "You're a good friend",
       title: "PR reviews",
+      colour: "text-green-600",
     },
   ];
 
@@ -66,7 +71,9 @@ function Highlights({ user }: Props) {
           stat.count && (
             <div key={stat.title}>
               <p className="text-gray-400">{stat.tagline}</p>
-              <p className={`${stat.fontSize} font-mono tracking-wide`}>
+              <p
+                className={`${stat.fontSize} ${stat.colour} font-mono tracking-wide`}
+              >
                 {stat.count}
               </p>
               <p className="font-medium text-lg leading-none pt-0.5">

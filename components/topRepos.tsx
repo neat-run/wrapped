@@ -18,24 +18,24 @@ function TopRepos({ user }: IProps) {
     labels: user.topRepos.map((repo) => repo.name),
     datasets: [
       {
-        barThickness: 15,
+        barThickness: 20,
         maxBarThickness: 20,
         minBarLength: 5,
         indexAxis: "y",
         data: user.topRepos.map((repo) => repo.contributions),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.8)",
-          "rgba(255, 159, 64, 0.8)",
-          "rgba(255, 205, 86, 0.8)",
-          "rgba(75, 192, 192, 0.8)",
-          "rgba(54, 162, 235, 0.8)",
+          "#DC2625aa",
+          "#EA580Baa",
+          "#D97707aa",
+          "#16A349aa",
+          "#4F45E4aa",
         ],
         borderColor: [
-          "rgb(255, 99, 132)",
-          "rgb(255, 159, 64)",
-          "rgb(255, 205, 86)",
-          "rgb(75, 192, 192)",
-          "rgb(54, 162, 235)",
+          "#DC262533",
+          "#EA580B33",
+          "#D9770733",
+          "#16A34933",
+          "#4F45E433",
         ],
         borderWidth: 1,
       },
@@ -77,7 +77,7 @@ function TopRepos({ user }: IProps) {
                 </a>
               )}
               {repo.stars > 0 && (
-                <span className="text-yellow-400 font-medium flex items-center space-x-0.5">
+                <span className="text-yellow-600 font-medium flex items-center space-x-0.5">
                   <StarIcon className="mt-0.5" />
                   <span>{repo.stars}</span>
                 </span>
