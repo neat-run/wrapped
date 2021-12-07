@@ -37,13 +37,13 @@ export default function Home({ hostUser }) {
       <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
         <h1
           className={`transition-all duration-1000 ease-out fixed mb-5 font-bold tracking-tighter ${
-            auth ? "text-4xl top-4" : "text-8xl top-1/4"
+            auth || hostUser ? "text-4xl top-4" : "text-8xl top-1/4"
           }`}
         >
           <span className="text-gray-300">GitHub</span>
           <span
             className={`font-mono z-10 pl-3 ${
-              auth
+              auth || hostUser
                 ? "text-indigo-600"
                 : "text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]"
             }`}
@@ -54,8 +54,8 @@ export default function Home({ hostUser }) {
         {auth ? (
           <Slideshow user={user} />
         ) : hostUser ? (
-          <div>
-            <div className="text-white pt-5">
+          <div className="space-y-5">
+            <div className="text-white pt-16">
               Welcome to {hostUser.username}'s year in review.
             </div>
             <div

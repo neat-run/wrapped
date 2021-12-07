@@ -3,6 +3,8 @@ import { Chart, registerables } from "chart.js";
 
 // Bar chart component
 export const BarChart = ({ chartData, title }) => {
+  if (!registerables) return <></>;
+
   Chart.register(...registerables);
   return (
     <div>
