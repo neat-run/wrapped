@@ -46,19 +46,7 @@ export default function Home({ hostUser }) {
         )}
         {!auth && <SignIn auth={auth} setAuth={setAuth} />}
         {auth ? (
-          <div>
-            <div className="text-white p-5 flex justify-center items-center space-x-5">
-              {user.avatarUrl && (
-                <img
-                  className="w-12 h-12 rounded-full"
-                  src={user.avatarUrl}
-                  alt={`${user.username}'s avatar'`}
-                />
-              )}
-              <p className="text-2xl font-medium">Welcome, {user.username}.</p>
-            </div>
-            <Slideshow user={user} />
-          </div>
+          <Slideshow user={user} />
         ) : hostUser ? (
           <div>
             <div className="text-white pt-5">
