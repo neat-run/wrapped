@@ -75,7 +75,7 @@ function Slideshow({ user }: Props) {
         </div>
       )}
       {/* <ProgressBar /> */}
-      <Toolbar user={user} />
+      {!loading && <Toolbar user={user} />}
     </div>
   );
 }
