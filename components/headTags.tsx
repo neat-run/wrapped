@@ -60,11 +60,6 @@ function HeadTags({ user }) {
 
       <link rel="icon" href="/favicon.ico" />
       <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"
-        crossOrigin="anonymous"
-      />
-      <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
         crossOrigin="anonymous"
@@ -75,10 +70,15 @@ function HeadTags({ user }) {
         crossOrigin="anonymous"
       />
       <link
-        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&display=swap"
         rel="stylesheet"
         crossOrigin="anonymous"
-      ></link>
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"
+        crossOrigin="anonymous"
+      />
     </Head>
   );
 }

@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.5",
+    "@radix-ui/react-id": "^0.1.1",
     "@supabase/supabase-js": "^1.28.2",
     "graphql": "^16.0.1",
     "next": "latest",
@@ -15,8 +16,8 @@
   },
   "devDependencies": {
     "@modulz/radix-icons": "^4.0.0",
-    "@radix-ui/react-alert-dialog": "^0.1.1",
     "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-alert-dialog": "^0.1.1",
     "@radix-ui/react-progress": "^0.1.1",
     "@radix-ui/react-tooltip": "^0.1.1",
     "@stitches/react": "^1.2.6",

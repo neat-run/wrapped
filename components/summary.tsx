@@ -15,7 +15,7 @@ interface IProps {
  */
 function Summary({ user }: IProps) {
   return (
-    <div className="m-12 mt-16 flex rounded-xl bg-gray-900/80 border border-gray-500">
+    <div className="m-12 flex rounded-xl bg-gray-900/80 border border-gray-500">
       <div className="flex w-1/5">
         <Highlights user={user} />
       </div>

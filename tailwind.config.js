@@ -19,7 +19,7 @@ module.exports = {
       orange: colors.orange,
     },
     fontFamily: {
-      mono: ["Space\\ Mono"],
+      mono: ["Fira\\ Code"],
     },
     extend: {
       gridTemplateRows: {
