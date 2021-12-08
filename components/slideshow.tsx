@@ -65,7 +65,6 @@ function Slideshow({ user }: Props) {
       <ArrowLeftIcon />
     </button>
   );
-  
 
   // Show welcome message when user props have been populated
   useEffect(() => {
@@ -121,7 +120,7 @@ function Slideshow({ user }: Props) {
       {!loading && !welcome && (
         <div>
           {arrowLeft}
-          <div id="wrap" className="flex items-center justify-center">
+          <div id="wrap" className="flex items-center justify-center bg-black">
             {cardsToShow[currentSlide]}
           </div>
           {arrowRight}

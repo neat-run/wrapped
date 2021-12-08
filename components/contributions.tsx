@@ -42,11 +42,11 @@ function Contributions({ user }: IProps) {
   });
 
   return (
-    <div className="space-y-5 p-5 max-w-4xl flex flex-col items-start">
-      <div className="text-gray-400 text-xl font-medium text-left px-2">
+    <div className="p-5 max-w-4xl flex flex-col items-start">
+      <h1 className="mb-2 text-gray-400 text-xl font-medium text-left whitespace-nowrap">
         You show up daily
-      </div>
-      <div className="p-2 pt-0 grid gap-1 text-white grid-rows-7 grid-flow-col">
+      </h1>
+      <div className="grid gap-1 text-white grid-rows-7 grid-flow-col">
         {weeks.map((week, i) =>
           week.contributionDays.map((day, j) => (
             <Tooltip
