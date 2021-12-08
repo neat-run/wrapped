@@ -1,35 +1,34 @@
+import { useEffect, useState } from "react";
 import { User } from "../types/common";
+import ProgressBar from "./progressBar";
 
 interface IProps {
   user: User;
 }
+
+const messages = [
+  "Loading up your information",
+  "Doing some quick maths",
+  "Making sure everything looks pretty",
+];
 
 /**
  * Loading component
  * @param {User} user for username etc
  */
 function Loading({ user }: IProps) {
+  const [message, setMessage] = useState(0);
+
+  setTimeout(() => {
+    setMessage(message + 1);
+  }, 1.5 * 1000);
+
   return (
-    <div className="text-center text-gray-100 p-5 space-y-10">
-      {user && (
-        <p className="text-3xl text-white space-x-2">
-          {user.avatarUrl && (
-            <img
-              className="w-20 h-20 rounded-full mx-auto mb-4"
-              src={user.avatarUrl}
-              alt={`${user.username}'s avatar'`}
-            />
-          )}
-          <span>Welcome,</span>
-          <span className="font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-indigo-600 from-[#6B3EEC]">
-            {user.fullName ? user.fullName : user.username}
-          </span>
-        </p>
-      )}
+    <div>
       <div className="text-xl font-medium text-gray-400 animate-pulse">
-        Loading...
+        {messages[message]}
       </div>
-      {/* Add progress bar for better UX */}
+      {/* <ProgressBar /> */}
     </div>
   );
 }

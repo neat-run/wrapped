@@ -8,7 +8,7 @@ import Stars from "./stars";
 import Summary from "./summary";
 import { User } from "../types/common";
 import Loading from "./loading";
-import { ArrowRightIcon, ArrowLeftIcon } from "@modulz/radix-icons";
+import { ArrowRightIcon, ArrowLeftIcon, PlayIcon } from "@modulz/radix-icons";
 import Toolbar from "./toolbar";
 
 interface Props {
@@ -20,6 +20,7 @@ const buttonClass =
 
 function Slideshow({ user }: Props) {
   const [loading, setLoading] = useState(true);
+  const [welcome, setWelcome] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const cardsToShow = [
@@ -64,10 +65,15 @@ function Slideshow({ user }: Props) {
       <ArrowLeftIcon />
     </button>
   );
+  
 
-  setTimeout(() => {
-    if (loading) setLoading(false);
-  }, 5 * 1000);
+  // Show welcome message when user props have been populated
+  useEffect(() => {
+    if (user.username && loading) {
+      setLoading(false);
+      setWelcome(true);
+    }
+  }, [user]);
 
   // Allow left/right arrow keys to navigate slides
   useEffect(() => {
@@ -84,9 +90,35 @@ function Slideshow({ user }: Props) {
 
   return (
     <div>
-      {loading ? (
-        <Loading user={user} />
-      ) : (
+      {loading && <Loading user={user} />}
+      {welcome && (
+        <div className="text-center text-gray-100 p-5 space-y-10 ">
+          {user.username && (
+            <div>
+              <p className="text-3xl text-white space-x-2 transition-all duration-1000 ease-in">
+                {user.avatarUrl && (
+                  <img
+                    className="w-20 h-20 rounded-full mx-auto mb-4"
+                    src={user.avatarUrl}
+                    alt={`${user.username}'s avatar'`}
+                  />
+                )}
+                {user.username && <span>Welcome,</span>}
+                <span className="font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-indigo-600 from-[#6B3EEC]">
+                  {user.fullName ? user.fullName : user.username}
+                </span>
+              </p>
+              <button
+                className={`text-white rounded scale-[2] p-1 hover:scale-[2.5] mt-5 focus:outline-none transition-colors hover:bg-indigo-600`}
+                onClick={() => setWelcome(false)}
+              >
+                <PlayIcon />
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+      {!loading && !welcome && (
         <div>
           {arrowLeft}
           <div id="wrap" className="flex items-center justify-center">
