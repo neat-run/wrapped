@@ -42,7 +42,7 @@ export default function Home({ hostUser }) {
         >
           <span className="text-gray-300">GitHub</span>
           <span
-            className={`font-mono z-10 pl-3 ${
+            className={`font-mono pl-3 ${
               auth || hostUser
                 ? "text-indigo-600"
                 : "text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]"

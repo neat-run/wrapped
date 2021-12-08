@@ -75,10 +75,10 @@ function HeadTags({ user }) {
         crossOrigin="anonymous"
       />
       <link
-        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&display=swap"
         rel="stylesheet"
         crossOrigin="anonymous"
-      ></link>
+      />
     </Head>
   );
 }
