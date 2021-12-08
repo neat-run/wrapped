@@ -97,7 +97,7 @@ function Slideshow({ user }: Props) {
               <p className="text-3xl text-white space-x-2 transition-all duration-1000 ease-in">
                 {user.avatarUrl && (
                   <img
-                    className="w-20 h-20 rounded-full mx-auto mb-4"
+                    className="w-20 h-20 rounded-full mx-auto mb-4 hover:scale-[1.5]"
                     src={user.avatarUrl}
                     alt={`${user.username}'s avatar'`}
                   />

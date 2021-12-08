@@ -1,7 +1,6 @@
 import React from "react";
 import { User } from "../types/common";
-import { BarChart } from "./barChart";
-import { StarIcon } from "@modulz/radix-icons";
+import BuildingChart from "./blockChart";
 interface IProps {
   user: User;
 }
@@ -15,43 +14,14 @@ function TopRepos({ user }: IProps) {
 
   // Formatting data in chart-friendly format
   const chartData = {
-    labels: user.topRepos.map((repo) => repo.name),
-    datasets: [
-      {
-        barThickness: 20,
-        maxBarThickness: 20,
-        minBarLength: 5,
-        indexAxis: "y",
-        data: user.topRepos.map((repo) => repo.contributions),
-        backgroundColor: [
-          "#DC2625aa",
-          "#EA580Baa",
-          "#D97707aa",
-          "#16A349aa",
-          "#4F45E4aa",
-        ],
-        borderColor: [
-          "#DC262533",
-          "#EA580B33",
-          "#D9770733",
-          "#16A34933",
-          "#4F45E433",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  // Repo name with dimmed owner name
-  const StyledRepoName = (nameWithOwner: string) => {
-    return (
-      <p>
-        <span className="text-gray-400">{nameWithOwner.split("/")[0]}/</span>
-        <span className="text-white font-medium">
-          {nameWithOwner.split("/")[1]}
-        </span>
-      </p>
-    );
+    names: user.topRepos.map((repo) => repo.name),
+    namesWithOwner: user.topRepos.map((repo) => repo.nameWithOwner),
+    isPrivate: user.topRepos.map((repo) => repo.isPrivate),
+    url: user.topRepos.map((repo) => repo.url),
+    avatarUrl: user.topRepos.map((repo) => repo.avatarUrl),
+    stars: user.topRepos.map((repo) => repo.stars),
+    values: user.topRepos.map((repo) => repo.contributions),
+    colors: ["bg-purple-500/80", "bg-purple-400/80", "bg-purple-300/80"],
   };
 
   return (
@@ -59,41 +29,7 @@ function TopRepos({ user }: IProps) {
       <h1 className="text-gray-400 text-xl font-medium">
         You're an absolute beast
       </h1>
-      <BarChart chartData={chartData} title="Top Repositories" />
-      {user.topRepos.map((repo, i) => (
-        <div key={i} className="flex items-center space-x-4">
-          <img
-            className="w-12 h-12 rounded-full"
-            src={repo.avatarUrl}
-            alt={repo.name + " logo"}
-          />
-          <div className="flex flex-col">
-            <div className="flex items-center space-x-3 whitespace-nowrap">
-              {repo.isPrivate ? (
-                StyledRepoName(repo.nameWithOwner)
-              ) : (
-                <a href={repo.url} rel="noopener noreferrer">
-                  {StyledRepoName(repo.nameWithOwner)}
-                </a>
-              )}
-              {repo.stars > 0 && (
-                <span className="text-yellow-600 font-medium flex items-center space-x-0.5">
-                  <StarIcon className="mt-0.5" />
-                  <span>{repo.stars}</span>
-                </span>
-              )}
-            </div>
-            {repo.contributions > 10 && (
-              <div className="flex items-end space-x-2">
-                <p className="text-3xl font-bold font-mono">
-                  {repo.contributions}
-                </p>
-                <p className="text-gray-600 text-3xl">commits</p>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
+      <BuildingChart chartData={chartData} />
     </div>
   );
 }
