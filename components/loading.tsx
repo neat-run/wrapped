@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { User } from "../types/common";
-import ProgressBar from "./progressBar";
 
 interface IProps {
   user: User;
@@ -10,6 +9,14 @@ const messages = [
   "Loading up your information",
   "Doing some quick maths",
   "Making sure everything looks pretty",
+  "Calculating the πth digit of π",
+  "Cold-starting flux capacitor",
+  "Linearizing distributed synergistic query cohorts",
+  "Rendering Radix UI components",
+  "Fetching code language icons from a CDN",
+  "Slapping the side of a server somewhere",
+  "Optimizing font size",
+  "Finishing up",
 ];
 
 /**
@@ -19,14 +26,15 @@ const messages = [
 function Loading({ user }: IProps) {
   const [message, setMessage] = useState(0);
 
+  // Update the loading message every 0-3 s
   setTimeout(() => {
     setMessage(message + 1);
-  }, 1.5 * 1000);
+  }, 3 * Math.random() * 1000);
 
   return (
     <div>
       <div className="text-xl font-medium text-gray-400 animate-pulse">
-        {messages[message]}
+        {messages[message]}...
       </div>
       {/* <ProgressBar /> */}
     </div>
