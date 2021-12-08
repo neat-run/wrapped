@@ -10,7 +10,7 @@ import KeyboardShortcut from "./shortcut";
  */
 function SignIn({ auth, setAuth }) {
   return (
-    <div>
+    <div className="sticky py-5">
       <button
         onClick={() => {
           if (!auth) signIn();
@@ -28,7 +28,9 @@ function SignIn({ auth, setAuth }) {
         </span>
         {!auth && <KeyboardShortcut shortcut={"S"} />}
       </button>
-      <p className="text-gray-500 text-sm mt-2">Read-only access</p>
+      <p className="text-gray-400 text-sm mt-2">
+        Read-only access to your account
+      </p>
     </div>
   );
 }

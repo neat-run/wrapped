@@ -37,7 +37,7 @@ export default function Home({ hostUser }) {
       <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
         <h1
           className={`transition-all duration-1000 ease-out fixed mb-5 font-bold tracking-tighter ${
-            auth || hostUser ? "text-4xl top-4" : "text-8xl top-1/4"
+            auth || hostUser ? "text-4xl top-4 left-12" : "text-8xl top-1/4"
           }`}
         >
           <span className="text-gray-300">GitHub</span>
@@ -54,16 +54,15 @@ export default function Home({ hostUser }) {
         {auth ? (
           <Slideshow user={user} />
         ) : hostUser ? (
-          <div className="space-y-5">
-            <div className="text-white pt-16">
-              Welcome to {hostUser.username}'s year in review.
+          <div className="flex flex-col">
+            <div className="text-gray-400 text-xl pt-6">
+              Welcome to
+              <span className="text-white ml-1">
+                {hostUser.fullName ?? hostUser.username}
+              </span>
+              's year in review.
             </div>
-            <div
-              className="bg-gradient-to-r from-purple-500 to-indigo-600 mt-5 p-10"
-              id="wrap"
-            >
-              <Summary user={hostUser} />
-            </div>
+            <Summary user={hostUser} />
             <SignIn auth={auth} setAuth={setAuth} />
           </div>
         ) : (
@@ -74,13 +73,13 @@ export default function Home({ hostUser }) {
         <div className="px-8 w-screen flex justify-between">
           <a
             href="https://github.com/neat-run/wrapped"
-            className="text-gray-500 font-medium hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
+            className="text-gray-400 font-medium hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
             rel="noopener noreferrer"
           >
             Code
           </a>
           <div className="flex items-baseline">
-            <span className="text-gray-500 font-medium">Made by</span>
+            <span className="text-gray-400 font-medium">Made by</span>
             <a
               className="font-bold p-3 pl-1 text-indigo-500 hover:text-indigo-400 transition hover:-translate-y-1 duration-500"
               href={Constants.NEAT.URL}
@@ -89,7 +88,7 @@ export default function Home({ hostUser }) {
             </a>
           </div>
           <Link href="/privacy">
-            <a className="text-gray-500 font-medium hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
+            <a className="text-gray-400 font-medium hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
               Privacy
             </a>
           </Link>
