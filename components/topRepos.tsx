@@ -21,7 +21,7 @@ function TopRepos({ user }: IProps) {
     avatarUrl: user.topRepos.map((repo) => repo.avatarUrl),
     stars: user.topRepos.map((repo) => repo.stars),
     values: user.topRepos.map((repo) => repo.contributions),
-    colors: ["bg-purple-500/80", "bg-purple-400/80", "bg-purple-300/80"],
+    colors: ["bg-orange-500/80", "bg-green-500/80", "bg-purple-500/80"],
   };
 
   return (
