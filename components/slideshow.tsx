@@ -78,8 +78,8 @@ function Slideshow({ user }: Props) {
   useEffect(() => {
     const handleArrowKeys = (e) => {
       if (!e || !e.key) return;
-      if (e.key == "ArrowRight") nextSlide();
-      else if (e.key == "ArrowLeft") previousSlide();
+      else if (["ArrowRight", "k"].includes(e.key)) nextSlide();
+      else if (["ArrowLeft", "j"].includes(e.key)) previousSlide();
     };
     window.addEventListener("keydown", handleArrowKeys);
     return () => {
