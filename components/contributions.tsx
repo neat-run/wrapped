@@ -77,7 +77,7 @@ function Contributions({ user }: IProps) {
       </h1>
       <div className="grid gap-0.5 grid-rows-7 grid-flow-col">
         {/* Placeholders to account for the year starting on a Friday */}
-        {[...Array(5)].map((i) => (
+        {[...Array(5)].map((_, i) => (
           <div key={i} className="w-3 h-3" />
         ))}
         {/* Weeks */}
