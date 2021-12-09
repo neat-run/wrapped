@@ -21,7 +21,7 @@ function SignIn({ auth, setAuth }) {
         }}
         className={`z-50 ${
           auth ? "" : "backdrop-glow"
-        } transition-colors bg-indigo-700 border border-gray-600/80 hover:bg-indigo-600 text-white p-4 rounded-md`}
+        } transition bg-indigo-700 border-2 border-gray-600/80 hover:bg-indigo-600 text-white p-4 rounded-md`}
       >
         <span className="px-5 font-medium text-lg">
           {auth ? "Sign out" : "See your developer stats"}
