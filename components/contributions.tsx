@@ -2,10 +2,38 @@ import React from "react";
 import { User } from "../types/common";
 import Tooltip from "../components/tooltip";
 
+// Format a date as Mmm dd, yyyy
+const formatDate = (date: string): string => {
+  let dateString = new Date(date).toDateString();
+  let parts = dateString.split(" ").slice(1, 3);
+
+  // If date starts with 0 drop it eg. Jan 4 -> Jan 4
+  if (parts[1] && parts[1][0] == "0") {
+    parts[1] = parts[1][1];
+  }
+
+  let formattedDate = parts.join(" ");
+  return formattedDate;
+};
+
+// Calculate and format date of most contributions
+const getMaxDate = (contributions: number[]) => {
+  const max = Math.max(...contributions);
+  const maxDayIndex = contributions.findIndex((x) => x == max);
+  const maxDate = formatDate(new Date(2021, 0, maxDayIndex).toDateString());
+  const maxDatePosition =
+    maxDayIndex > 240 ? "left-2/3" : maxDayIndex > 120 ? "left-1/3" : "left-0";
+
+  return { max, maxDate, maxDatePosition };
+};
+
 interface IProps {
   user: User;
 }
 
+/**
+ * Graph of user contributions since Jan 1
+ */
 function Contributions({ user }: IProps) {
   if (!user || !user.contributionsHistory) return <></>;
 
@@ -22,8 +50,8 @@ function Contributions({ user }: IProps) {
     );
   });
 
-  // Get max contribution value
-  const max = Math.max(...contributions);
+  // Get max contribution value and its date
+  const { max, maxDate, maxDatePosition } = getMaxDate(contributions);
 
   // Get array of unique contribution values (ascending)
   const unique = contributions.filter((x, i, a) => a.indexOf(x) === i).sort();
@@ -34,11 +62,12 @@ function Contributions({ user }: IProps) {
     let rounded = Math.ceil(normalized / 0.25) * 0.25;
 
     // Assign color for each case
-    if (rounded === 0) colors[value] = "bg-gray-200/20";
-    if (rounded === 0.25) colors[value] = "bg-green-200/80";
-    if (rounded === 0.5) colors[value] = "bg-green-400/80";
-    if (rounded === 0.75) colors[value] = "bg-green-600/80";
-    if (rounded === 1) colors[value] = "bg-green-800/80";
+    if (value === max) colors[value] = "bg-yellow-400/90";
+    else if (rounded === 0) colors[value] = "bg-gray-200/20";
+    else if (rounded === 0.25) colors[value] = "bg-green-800/90";
+    else if (rounded === 0.5) colors[value] = "bg-green-600/90";
+    else if (rounded === 0.75) colors[value] = "bg-green-400/90";
+    else if (rounded === 1) colors[value] = "bg-green-300/90";
   });
 
   return (
@@ -46,29 +75,41 @@ function Contributions({ user }: IProps) {
       <h1 className="mb-2 text-gray-400 text-xl font-medium text-left whitespace-nowrap">
         You show up daily
       </h1>
-      <div className="grid gap-1 text-white grid-rows-7 grid-flow-col">
-        {weeks.map((week, i) =>
+      <div className="grid gap-0.5 grid-rows-7 grid-flow-col">
+        {/* Placeholders to account for the year starting on a Friday */}
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="w-3 h-3" />
+        ))}
+        {/* Weeks */}
+        {weeks.map((week) =>
           week.contributionDays.map((day, j) => (
             <Tooltip
               key={j}
-              content={`${day.contributionCount} contributions on ${new Date(
+              content={`${day.contributionCount} contributions on ${formatDate(
                 day.date
-              )
-                .toDateString()
-                .split(" ")
-                .slice(1, 4)
-                .join(" ")}`}
+              )}`}
             >
               <div
                 key={j}
                 className={`h-3 w-3 ${
                   colors[day.contributionCount]
-                } hover:scale-[1.5] text-xs`}
+                } hover:scale-[2]`}
               />
             </Tooltip>
           ))
         )}
       </div>
+      {maxDate && (
+        <div
+          className={`mt-2 flex items-center space-x-2 relative ${maxDatePosition}`}
+        >
+          <h2 className="text-gray-400 font-medium">Your top day:</h2>
+          <span className="font-mono text-xl text-yellow-400">{max}</span>
+          <span className="text-gray-400 font-medium">on</span>
+          <span className="font-mono text-xl text-yellow-400">{maxDate}</span>
+          {maxDate}
+        </div>
+      )}
     </div>
   );
 }
