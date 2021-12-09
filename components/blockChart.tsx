@@ -57,7 +57,7 @@ const BlockChart = ({ chartData }) => {
                 {StyledRepoName(chartData.namesWithOwner[i])}
               </a>
             )}
-            {chartData.stars[i] > 0 && (
+            {chartData.stars[i] > 3 && (
               <span className="text-yellow-600 font-medium flex items-center space-x-0.5">
                 <StarIcon className="mt-0.5" />
                 <span>{chartData.stars[i]}</span>
