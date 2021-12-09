@@ -10,6 +10,7 @@ import { isDev, getUserStats } from "../utils/utils";
 import { defaultUser } from "../utils/default";
 import Link from "next/link";
 import Summary from "../components/summary";
+import DownloadButton from "../components/downloadNeat";
 
 export default function Home({ hostUser }) {
   const [user, setUser] = useState(defaultUser);
@@ -65,6 +66,7 @@ export default function Home({ hostUser }) {
             </div>
             <Summary user={hostUser} />
             <SignIn auth={auth} setAuth={setAuth} />
+            <DownloadButton />
           </div>
         ) : (
           <SignIn auth={auth} setAuth={setAuth} />
