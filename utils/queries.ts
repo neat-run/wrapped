@@ -30,7 +30,6 @@ export const TOP_LANGUAGES = gql`
         first: 20
         orderBy: { field: UPDATED_AT, direction: DESC }
       ) {
-        totalCount
         nodes {
           nameWithOwner
           primaryLanguage {
