@@ -51,7 +51,7 @@ function Follows({ user, hidden, setHidden }: IProps) {
               />
               <a
                 href={person.url}
-                className="text-white"
+                className="text-gray-100"
                 rel="noopener noreferrer"
               >
                 {person.name ? person.name : person.login}
@@ -75,7 +75,7 @@ function Follows({ user, hidden, setHidden }: IProps) {
               />
               <a
                 href={person.url}
-                className="text-white"
+                className="text-gray-100"
                 rel="noopener noreferrer"
               >
                 {person.name ? person.name : person.login}
