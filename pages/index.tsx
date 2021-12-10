@@ -35,7 +35,6 @@ export default function Home({ hostUser }) {
   }, [auth]);
 
   useEffect(() => {
-    console.log(hidden);
     localStorage.setItem("hidden", JSON.stringify(hidden));
   }, [hidden]);
 
@@ -51,7 +50,7 @@ export default function Home({ hostUser }) {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
         <h1
-          className={`transition-all duration-1000 ease-out fixed mb-5 font-bold tracking-tighter ${
+          className={`transition-all duration-1000 ease-out mb-5 font-bold tracking-tighter ${
             auth || hostUser ? "text-2xl top-3 left-12" : "text-8xl top-1/4"
           }`}
         >
