@@ -19,44 +19,42 @@ interface IProps {
  */
 function Summary({ user, hidden, setHidden, showHide }: IProps) {
   return (
-    <div className="flex">
-      <div className="flex w-1/5">
+    <div className="flex flex-col justify-center">
+      <div className="flex flex-row">
         <Highlights
           user={user}
           hidden={hidden}
           setHidden={setHidden}
           showHide={showHide}
         />
-      </div>
-      <div className="flex flex-col w-4/5">
-        <div className="flex">
-          <TopRepos
+        <TopRepos
+          user={user}
+          hidden={hidden}
+          setHidden={setHidden}
+          showHide={showHide}
+        />
+        <div className="flex flex-col">
+          <TopLanguages
             user={user}
             hidden={hidden}
             setHidden={setHidden}
             showHide={showHide}
           />
-          <div className="flex flex-col">
-            <TopLanguages
-              user={user}
-              hidden={hidden}
-              setHidden={setHidden}
-              showHide={showHide}
-            />
-            <Stars
-              user={user}
-              hidden={hidden}
-              setHidden={setHidden}
-              showHide={showHide}
-            />
-          </div>
-          <Follows
+          <Stars
             user={user}
             hidden={hidden}
             setHidden={setHidden}
             showHide={showHide}
           />
         </div>
+        <Follows
+          user={user}
+          hidden={hidden}
+          setHidden={setHidden}
+          showHide={showHide}
+        />
+      </div>
+      <div className="flex justify-center">
         <Contributions
           user={user}
           hidden={hidden}
