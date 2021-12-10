@@ -1,14 +1,8 @@
 import React from "react";
-import { User } from "../types/common";
+import { User, Stat } from "../types/common";
 import Hide from "./hide";
 
-interface IProps {
-  user: User;
-  hidden: any[];
-  setHidden: any;
-}
-
-function Stars({ user, hidden, setHidden }: IProps) {
+function Stars({ user, hidden, setHidden, showHide }: Stat) {
   const stat: keyof User = "stars";
   if (!user || !user.stars || hidden.includes(stat)) return <></>;
 
@@ -35,7 +29,9 @@ function Stars({ user, hidden, setHidden }: IProps) {
           <p className="text-gray-600 font-light text-3xl">stars</p>
         </div>
       </div>
-      <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      {showHide && (
+        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      )}
     </div>
   );
 }

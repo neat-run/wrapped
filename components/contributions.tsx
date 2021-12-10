@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "../types/common";
+import { User, Stat } from "../types/common";
 import Tooltip from "../components/tooltip";
 import Hide from "./hide";
 
@@ -28,16 +28,10 @@ const getMaxDate = (contributions: number[]) => {
   return { max, maxDate, maxDatePosition };
 };
 
-interface IProps {
-  user: User;
-  hidden: any[];
-  setHidden: any;
-}
-
 /**
  * Graph of user contributions since Jan 1
  */
-function Contributions({ user, hidden, setHidden }: IProps) {
+function Contributions({ user, hidden, setHidden, showHide }: Stat) {
   const stat: keyof User = "contributionsHistory";
   if (!user || !user.contributionsHistory || hidden.includes(stat))
     return <></>;
@@ -115,7 +109,9 @@ function Contributions({ user, hidden, setHidden }: IProps) {
           <span>Your top day: {maxDate}</span>
         </div>
       )}
-      <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      {showHide && (
+        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      )}
     </div>
   );
 }

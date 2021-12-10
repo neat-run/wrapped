@@ -1,18 +1,13 @@
 import React from "react";
-import { User } from "../types/common";
+import { User, Stat } from "../types/common";
 import BuildingChart from "./blockChart";
 import Hide from "./hide";
-interface IProps {
-  user: User;
-  hidden: any[];
-  setHidden: any;
-}
 
 /**
  * Display the user's top repositories
  * @returns {element} div with text
  */
-function TopRepos({ user, hidden, setHidden }: IProps) {
+function TopRepos({ user, hidden, setHidden, showHide }: Stat) {
   const stat: keyof User = "topRepos";
   if (!user || !user.topRepos || hidden.includes(stat)) return <></>;
 
@@ -40,7 +35,9 @@ function TopRepos({ user, hidden, setHidden }: IProps) {
         }
       </h1>
       <BuildingChart chartData={chartData} />
-      <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      {showHide && (
+        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      )}
     </div>
   );
 }

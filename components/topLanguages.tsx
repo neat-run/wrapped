@@ -1,17 +1,11 @@
 import React from "react";
-import { User } from "../types/common";
+import { User, Stat } from "../types/common";
 import Hide from "./hide";
-
-interface Props {
-  user: User;
-  hidden: any[];
-  setHidden: any;
-}
 
 /**
  * Render the user's top coding languages
  */
-function TopLanguages({ user, hidden, setHidden }: Props) {
+function TopLanguages({ user, hidden, setHidden, showHide }: Stat) {
   const languages = user.topLanguages;
   const stat: keyof User = "topLanguages";
 
@@ -41,7 +35,9 @@ function TopLanguages({ user, hidden, setHidden }: Props) {
           </div>
         ))}
       </div>
-      <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      {showHide && (
+        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      )}
     </div>
   );
 }

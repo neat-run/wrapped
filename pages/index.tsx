@@ -76,7 +76,12 @@ export default function Home({ hostUser }) {
               </span>
               's year in review.
             </div>
-            <Summary user={hostUser} hidden={hidden} setHidden={setHidden} />
+            <Summary
+              user={hostUser}
+              hidden={hidden}
+              setHidden={setHidden}
+              showHide={false}
+            />
             <SignIn auth={auth} setAuth={setAuth} />
             <DownloadButton />
           </div>

@@ -1,17 +1,12 @@
 import React from "react";
-import { User } from "../types/common";
+import { User, Stat } from "../types/common";
 import Hide from "./hide";
-interface Props {
-  user: User;
-  hidden: any[];
-  setHidden: any;
-}
 
 /**
  * Fetch and display the user's top highlights
  * @returns {element} div with text
  */
-function Highlights({ user, hidden, setHidden }: Props) {
+function Highlights({ user, hidden, setHidden, showHide }: Stat) {
   const stat: keyof User = "commits";
 
   if (hidden.includes(stat)) return <></>;
@@ -89,7 +84,9 @@ function Highlights({ user, hidden, setHidden }: Props) {
             </div>
           )
       )}
-      <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      {showHide && (
+        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      )}
     </div>
   );
 }

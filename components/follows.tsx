@@ -1,23 +1,18 @@
 import React from "react";
-import { User } from "../types/common";
+import { User, Stat } from "../types/common";
 import Hide from "./hide";
 
 const imageClass =
   "w-7 h-7 rounded-full hover:scale-[1.5] transition-transform";
 
-interface IProps {
-  user: User;
-  hidden: any[];
-  setHidden: any;
-}
-
-function Follows({ user, hidden, setHidden }: IProps) {
+function Follows({ user, hidden, setHidden, showHide }: Stat) {
+  const stat: keyof User = "topFollows";
   if (!user || !user.topFollows) return <></>;
 
   const followers = user.topFollows.followers;
   const following = user.topFollows.following;
 
-  if (hidden.includes("topFollows")) return <></>;
+  if (hidden.includes(stat)) return <></>;
 
   return (
     <div className="text-white text-left p-5 space-y-7 group">
@@ -84,12 +79,9 @@ function Follows({ user, hidden, setHidden }: IProps) {
           ))}
         </div>
       </div>
-      <Hide
-        stat="topFollows"
-        user={user}
-        hidden={hidden}
-        setHidden={setHidden}
-      />
+      {showHide && (
+        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      )}
     </div>
   );
 }

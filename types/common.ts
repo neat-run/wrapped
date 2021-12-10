@@ -57,3 +57,10 @@ export interface Week {
   contributionDays: contributionDays[];
   firstDay: string;
 }
+
+export interface Stat {
+  user: User;
+  hidden: any[];
+  setHidden: any;
+  showHide?: boolean;
+}
