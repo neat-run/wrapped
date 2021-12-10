@@ -106,13 +106,11 @@ function Contributions({ user, hidden, setHidden }: IProps) {
       </div>
       {maxDate && (
         <div
-          className={`mt-2 flex items-center space-x-2 relative ${maxDatePosition}`}
+          className={`mt-2 flex text-gray-400 items-center space-x-2 relative ${maxDatePosition}`}
         >
-          <h2 className="text-gray-400 font-medium">Your top day:</h2>
-          <span className="font-mono text-xl text-yellow-400">{max}</span>
-          <span className="text-gray-400 font-medium">on</span>
-          <span className="font-mono text-xl text-yellow-400">{maxDate}</span>
-          {maxDate}
+          <span>
+            Your top day: {max} on {maxDate}
+          </span>
         </div>
       )}
       <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
