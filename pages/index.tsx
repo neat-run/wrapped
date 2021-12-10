@@ -89,22 +89,22 @@ export default function Home({ hostUser }) {
         <div className="px-8 w-screen flex justify-between">
           <a
             href="https://github.com/neat-run/wrapped"
-            className="text-gray-400 font-medium hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
+            className="text-gray-500 hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
             rel="noopener noreferrer"
           >
             Code
           </a>
           <div className="flex items-baseline">
-            <span className="text-gray-400 font-medium">Made by</span>
+            <span className="text-gray-500">Made by</span>
             <a
-              className="font-bold p-3 pl-1 text-indigo-500 hover:text-indigo-400 transition hover:-translate-y-1 duration-500"
+              className="font-semibold p-3 pl-1 text-indigo-500 hover:text-indigo-400 transition hover:-translate-y-1 duration-500"
               href={Constants.NEAT.URL}
             >
               Neat
             </a>
           </div>
           <Link href="/privacy">
-            <a className="text-gray-400 font-medium hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
+            <a className="text-gray-500 hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
               Privacy
             </a>
           </Link>
