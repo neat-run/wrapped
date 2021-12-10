@@ -22,21 +22,21 @@ const BlockChart = ({ chartData }) => {
     let normalValue = value / max;
 
     // Rounding to the nearest 0.1
-    let rounded = Math.ceil(normalValue / 0.1) * 0.1;
+    let rounded = Math.round(normalValue * 10) / 10;
 
     // Manually assigning bar heights because Tailwind doesn't allow
     // dynamic classes
-    if (rounded === 0) heights[i] = "h-[50px]";
-    else if (rounded === 0.1) heights[i] = "h-[60px]";
-    else if (rounded === 0.2) heights[i] = "h-[70px]";
-    else if (rounded === 0.3) heights[i] = "h-[80px]";
-    else if (rounded === 0.4) heights[i] = "h-[90px]";
-    else if (rounded === 0.5) heights[i] = "h-[100px]";
-    else if (rounded === 0.6) heights[i] = "h-[110px]";
-    else if (rounded === 0.7) heights[i] = "h-[120px]";
-    else if (rounded === 0.8) heights[i] = "h-[130px]";
-    else if (rounded === 0.9) heights[i] = "h-[140px]";
-    else if (rounded === 1) heights[i] = "h-[150px]";
+    if (rounded == 0) heights[i] = "h-[50px]";
+    else if (rounded == 0.1) heights[i] = "h-[60px]";
+    else if (rounded == 0.2) heights[i] = "h-[70px]";
+    else if (rounded == 0.3) heights[i] = "h-[80px]";
+    else if (rounded == 0.4) heights[i] = "h-[90px]";
+    else if (rounded == 0.5) heights[i] = "h-[100px]";
+    else if (rounded == 0.6) heights[i] = "h-[110px]";
+    else if (rounded == 0.7) heights[i] = "h-[120px]";
+    else if (rounded == 0.8) heights[i] = "h-[130px]";
+    else if (rounded == 0.9) heights[i] = "h-[140px]";
+    else if (rounded == 1) heights[i] = "h-[150px]";
   });
 
   return (
