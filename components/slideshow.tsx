@@ -30,7 +30,7 @@ function Slideshow({ user, hidden, setHidden }: Props) {
     <TopRepos user={user} />,
     <TopLanguages user={user} />,
     <Follows user={user} hidden={hidden} setHidden={setHidden} />,
-    <Stars user={user} />,
+    <Stars user={user} hidden={hidden} setHidden={setHidden} />,
     <Contributions user={user} />,
     <Summary user={user} hidden={hidden} setHidden={setHidden} />,
   ];

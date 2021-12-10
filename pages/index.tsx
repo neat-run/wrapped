@@ -15,7 +15,14 @@ import DownloadButton from "../components/downloadNeat";
 export default function Home({ hostUser }) {
   const [user, setUser] = useState(defaultUser);
   const [auth, setAuth] = useState(null);
-  const [hidden, setHidden] = useState([]);
+  // Local storage is undefined if rendering on the server
+  const [hidden, setHidden] = useState(
+    typeof window !== "undefined"
+      ? localStorage.getItem("hidden") === null
+        ? []
+        : JSON.parse(localStorage.getItem("hidden"))
+      : []
+  );
 
   useEffect(() => {
     (async () => {

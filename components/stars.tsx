@@ -1,15 +1,18 @@
 import React from "react";
 import { User } from "../types/common";
+import Hide from "./hide";
 
 interface IProps {
   user: User;
+  hidden: any[];
+  setHidden: any;
 }
 
-function Stars({ user }: IProps) {
+function Stars({ user, hidden, setHidden }: IProps) {
   if (!user || !user.stars) return <></>;
 
   return (
-    <div className="p-5 text-left text-white">
+    <div className="p-5 text-left text-white group">
       <h1 className="text-gray-400 font-medium text-xl mb-2">You're a star</h1>
       <div>
         <div className="flex space-x-2 items-center">
@@ -25,6 +28,7 @@ function Stars({ user }: IProps) {
           <p className="text-gray-600 font-light text-3xl">received</p>
         </div>
       </div>
+      <Hide stat="stars" user={user} hidden={hidden} setHidden={setHidden} />
     </div>
   );
 }

@@ -29,14 +29,12 @@ function Hide({ stat, user, hidden, setHidden }: IProps) {
 
   return (
     <div>
-      <Tooltip content="Hide">
-        <button
-          className="p-2 hover:bg-gray-800/90 text-gray-100 rounded focus:outline-none"
-          onClick={toggleHide}
-        >
-          <Cross2Icon />
-        </button>
-      </Tooltip>
+      <button
+        className="invisible group-hover:visible absolute p-2 hover:bg-gray-800/90 text-gray-100 rounded focus:outline-none"
+        onClick={toggleHide}
+      >
+        Hide
+      </button>
     </div>
   );
 }
