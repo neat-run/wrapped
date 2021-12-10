@@ -70,7 +70,7 @@ function DownloadButton() {
         <div
           className={`${
             downloaded ? "invisible h-12" : ""
-          } flex items-center space-x-1 text-lg text-white justify-around p-4 px-9  border-2 border-gray-600/80 hover:bg-white hover:text-black rounded-md transition`}
+          } flex items-center space-x-1 text-lg text-white justify-around p-4 px-9  card-border hover:bg-white hover:text-black rounded-md transition`}
         >
           <span>Try </span>
           <span className="font-bold">Neat</span>

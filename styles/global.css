@@ -13,6 +13,9 @@ html {
   button {
     @apply focus:outline-none;
   }
+  .card-border {
+    @apply border-2 border-gray-700/80;
+  }
   .backdrop-glow {
     box-shadow: -50px 30px 120px 65px #860c9f80, 20px -90px 120px 55px #321cd680;
   }
