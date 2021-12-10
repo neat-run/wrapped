@@ -10,6 +10,9 @@ html {
   a {
     @apply no-underline text-purple-400 hover:text-purple-200;
   }
+  button {
+    @apply focus:outline-none;
+  }
   .backdrop-glow {
     box-shadow: -50px 30px 120px 65px #860c9f80, 20px -90px 120px 55px #321cd680;
   }
