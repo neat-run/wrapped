@@ -50,7 +50,7 @@ export default function Home({ hostUser }) {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
         <h1
-          className={`transition-all duration-1000 ease-out mb-5 font-bold tracking-tighter ${
+          className={`transition-all duration-1000 ease-out fixed mb-5 font-bold tracking-tighter ${
             auth || hostUser ? "text-2xl top-3 left-12" : "text-8xl top-1/4"
           }`}
         >
@@ -69,19 +69,25 @@ export default function Home({ hostUser }) {
           <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
         ) : hostUser ? (
           <div className="flex flex-col">
-            <div className="text-gray-400 text-xl pt-6">
+            <div className="text-gray-400 text-xl py-4">
               Welcome to
-              <span className="text-white ml-1">
+              <a
+                href={`https://github.com/${hostUser.username ?? ""}`}
+                rel="noopener noreferrer"
+                className="text-white font-medium ml-1.5"
+              >
                 {hostUser.fullName ?? hostUser.username}
-              </span>
+              </a>
               's year in review.
             </div>
-            <Summary
-              user={hostUser}
-              hidden={hidden}
-              setHidden={setHidden}
-              showHide={false}
-            />
+            <div className="flex items-center justify-center p-5 min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
+              <Summary
+                user={hostUser}
+                hidden={hidden}
+                setHidden={setHidden}
+                showHide={false}
+              />
+            </div>
             <SignIn auth={auth} setAuth={setAuth} />
             <DownloadButton />
           </div>

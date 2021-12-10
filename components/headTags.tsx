@@ -24,7 +24,7 @@ function HeadTags({ user }) {
   return (
     <Head>
       {/* Eg. natfriedman's GitHub Wrapped */}
-      <title>GitHub Wrapped</title>
+      <title>{linkPreviewTitle}</title>
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta name="theme-color" content="#000" />
       <meta
