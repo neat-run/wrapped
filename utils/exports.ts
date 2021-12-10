@@ -1,7 +1,13 @@
 import domtoimage from "dom-to-image";
 import saveAs from "file-saver";
 import { User } from "../types/common";
-import { addRow, getImageURL, getRow, uploadImage } from "./supabase";
+import {
+  addRow,
+  getImageURL,
+  getRow,
+  uploadImage,
+  updateValue,
+} from "./supabase";
 
 /**
  * Grab the banner element and download it as a PNG
@@ -101,4 +107,21 @@ export async function getByUsername(username: string): Promise<User> {
   if (!user) return null;
 
   return user;
+}
+
+/**
+ * Recaptures screenshot and uploads to Supabase
+ */
+export async function retakeScreenshot(user: User) {
+  // Upload a screenshot of the stats to Supabase storage
+  let screenshot = await getImage(2);
+  await uploadImage(screenshot, user?.username);
+  let linkPreviewURL = await getImageURL(user?.username);
+
+  return await updateValue(
+    "users",
+    "linkPreviewURL",
+    linkPreviewURL,
+    user.username
+  );
 }

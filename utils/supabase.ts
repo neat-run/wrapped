@@ -92,20 +92,23 @@ export async function getImageURL(username: string): Promise<string> {
   if (error) console.error(error);
   return publicURL;
 }
+
 /**
- * Sets existing value to null
+ * Updates an existing value
  * @param  {string} table table to be updated
- * @param  {string} column column to be updated
+ * @param  {keyof User} column column to be updated
+ * @param  {any} value the updated value
  * @param  {string} username
  */
-export async function deleteValue(
+export async function updateValue(
   table: string,
   column: keyof User,
+  value: any,
   username: string
 ) {
   let { data, error } = await supabase
     .from(table)
-    .update({ [column]: null })
+    .update({ [column]: value })
     .eq("username", username);
   if (error) throw error;
   else return data;
