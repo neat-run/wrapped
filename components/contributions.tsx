@@ -78,12 +78,16 @@ function Contributions({ user, hidden, setHidden }: IProps) {
   return (
     <div className="p-5 max-w-4xl flex flex-col items-start group">
       <h1 className="mb-2 text-gray-400 text-xl font-medium text-left whitespace-nowrap">
-        You show up daily
+        {
+          ["You show up daily", "You're consistent", "Your grind never stops"][
+            ~~(Math.random() * 3)
+          ]
+        }
       </h1>
       <div className="grid gap-0.5 grid-rows-7 grid-flow-col">
         {/* Placeholders to account for the year starting on a Friday */}
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="w-3 h-3" />
+          <div key={i} className="w-3 h-3 bg-gray-200/20" />
         ))}
         {/* Weeks */}
         {weeks.map((week) =>
@@ -108,9 +112,7 @@ function Contributions({ user, hidden, setHidden }: IProps) {
         <div
           className={`mt-2 flex text-gray-400 items-center space-x-2 relative ${maxDatePosition}`}
         >
-          <span>
-            Your top day: {max} on {maxDate}
-          </span>
+          <span>Your top day: {maxDate}</span>
         </div>
       )}
       <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
