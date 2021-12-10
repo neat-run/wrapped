@@ -18,7 +18,7 @@ function TopLanguages({ user, hidden, setHidden }: Props) {
   if (!languages || hidden.includes(stat)) return <></>;
 
   return (
-    <div className="p-5 text-left group">
+    <div className="m-5 text-left group">
       <h1 className="text-gray-400 text-xl font-medium mb-2">
         You type many tongues
       </h1>

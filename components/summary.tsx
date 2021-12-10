@@ -18,10 +18,7 @@ interface IProps {
  */
 function Summary({ user, hidden, setHidden }: IProps) {
   return (
-    <div
-      id="wrap"
-      className="m-12 flex rounded-xl bg-gray-900/80 border border-gray-500"
-    >
+    <div className="flex">
       <div className="flex w-1/5">
         <Highlights user={user} hidden={hidden} setHidden={setHidden} />
       </div>

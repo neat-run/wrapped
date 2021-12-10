@@ -10,6 +10,7 @@ import { User } from "../types/common";
 import Loading from "./loading";
 import { ArrowRightIcon, ArrowLeftIcon, PlayIcon } from "@modulz/radix-icons";
 import Toolbar from "./toolbar";
+import Background from "./background";
 
 interface Props {
   user: User;
@@ -18,7 +19,7 @@ interface Props {
 }
 
 const buttonClass =
-  "text-white px-6 py-24 rounded scale-[1.5] hover:scale-[1.8] transition-transform absolute top-1/2 -translate-y-1/2 focus:outline-none";
+  "text-white px-6 py-24 rounded scale-[1.5] hover:scale-[1.8] group transition absolute top-1/2 -translate-y-1/2 focus:outline-none";
 
 function Slideshow({ user, hidden, setHidden }: Props) {
   const [loading, setLoading] = useState(true);
@@ -45,11 +46,8 @@ function Slideshow({ user, hidden, setHidden }: Props) {
 
   // Next slide button
   const arrowRight = currentSlide < lastSlideIndex && (
-    <button
-      className={`${buttonClass} right-6 hover:translate-x-2`}
-      onClick={nextSlide}
-    >
-      <ArrowRightIcon />
+    <button className={`${buttonClass} right-8`} onClick={nextSlide}>
+      <ArrowRightIcon className="group-hover:translate-x-1 transition-transform" />
     </button>
   );
 
@@ -60,11 +58,8 @@ function Slideshow({ user, hidden, setHidden }: Props) {
 
   // Previous slide
   const arrowLeft = currentSlide > 0 && (
-    <button
-      className={`${buttonClass} left-6 hover:-translate-x-2`}
-      onClick={previousSlide}
-    >
-      <ArrowLeftIcon />
+    <button className={`${buttonClass} left-8`} onClick={previousSlide}>
+      <ArrowLeftIcon className="group-hover:-translate-x-1 transition-transform" />
     </button>
   );
 
@@ -95,11 +90,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
       {welcome && (
         <div className="text-center text-gray-100 p-5 space-y-10 ">
           {user.username && (
-            <div>
+            <div className="space-y-10">
               <p className="text-3xl text-white space-x-2 transition-all duration-1000 ease-in">
                 {user.avatarUrl && (
                   <img
-                    className="w-20 h-20 rounded-full mx-auto mb-4 hover:scale-[1.5]"
+                    className="w-20 h-20 rounded-full mx-auto mb-5 hover:scale-[1.5] transition"
                     src={user.avatarUrl}
                     alt={`${user.username}'s avatar'`}
                   />
@@ -110,7 +105,7 @@ function Slideshow({ user, hidden, setHidden }: Props) {
                 </span>
               </p>
               <button
-                className={`text-white rounded scale-[2] p-1 hover:scale-[2.5] mt-5 focus:outline-none transition-colors hover:bg-indigo-600`}
+                className={`text-white rounded scale-[2] p-1 hover:scale-[2.5] mt-5 transition ease-out hover:bg-indigo-600 shadow-xl shadow-indigo-600/80 hover:shadow-none`}
                 onClick={() => setWelcome(false)}
               >
                 <PlayIcon />
@@ -122,8 +117,12 @@ function Slideshow({ user, hidden, setHidden }: Props) {
       {!loading && !welcome && (
         <div>
           {arrowLeft}
-          <div id="wrap" className="flex items-center justify-center bg-black">
-            {cardsToShow[currentSlide]}
+          <div id="wrap">
+            <Background currentSlide={currentSlide} />
+
+            <div className="flex items-center justify-center p-5 min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-xl card-border">
+              {cardsToShow[currentSlide]}
+            </div>
           </div>
           {arrowRight}
           <Toolbar user={user} />
