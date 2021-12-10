@@ -110,9 +110,8 @@ function Contributions({ user, hidden, setHidden }: IProps) {
         >
           <h2 className="text-gray-400 font-medium">Your top day:</h2>
           <span className="font-mono text-xl text-yellow-400">{max}</span>
-          <span className="text-gray-400 font-medium">on</span>
+          <span className="text-gray-400 font-medium"> on</span>
           <span className="font-mono text-xl text-yellow-400">{maxDate}</span>
-          {maxDate}
         </div>
       )}
       <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
