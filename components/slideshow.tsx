@@ -31,7 +31,7 @@ function Slideshow({ user, hidden, setHidden }: Props) {
     <TopLanguages user={user} hidden={hidden} setHidden={setHidden} />,
     <Follows user={user} hidden={hidden} setHidden={setHidden} />,
     <Stars user={user} hidden={hidden} setHidden={setHidden} />,
-    <Contributions user={user} />,
+    <Contributions user={user} hidden={hidden} setHidden={setHidden} />,
     <Summary user={user} hidden={hidden} setHidden={setHidden} />,
   ];
   const lastSlideIndex = cardsToShow.length - 1;

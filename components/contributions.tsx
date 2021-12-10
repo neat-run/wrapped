@@ -1,6 +1,7 @@
 import React from "react";
 import { User } from "../types/common";
 import Tooltip from "../components/tooltip";
+import Hide from "./hide";
 
 // Format a date as Mmm dd, yyyy
 const formatDate = (date: string): string => {
@@ -29,13 +30,17 @@ const getMaxDate = (contributions: number[]) => {
 
 interface IProps {
   user: User;
+  hidden: any[];
+  setHidden: any;
 }
 
 /**
  * Graph of user contributions since Jan 1
  */
-function Contributions({ user }: IProps) {
-  if (!user || !user.contributionsHistory) return <></>;
+function Contributions({ user, hidden, setHidden }: IProps) {
+  const stat: keyof User = "contributionsHistory";
+  if (!user || !user.contributionsHistory || hidden.includes(stat))
+    return <></>;
 
   let contributions = [];
   let colors = {};
@@ -71,7 +76,7 @@ function Contributions({ user }: IProps) {
   });
 
   return (
-    <div className="p-5 max-w-4xl flex flex-col items-start">
+    <div className="p-5 max-w-4xl flex flex-col items-start group">
       <h1 className="mb-2 text-gray-400 text-xl font-medium text-left whitespace-nowrap">
         You show up daily
       </h1>
@@ -110,6 +115,7 @@ function Contributions({ user }: IProps) {
           {maxDate}
         </div>
       )}
+      <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
     </div>
   );
 }

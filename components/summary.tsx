@@ -34,7 +34,7 @@ function Summary({ user, hidden, setHidden }: IProps) {
           </div>
           <Follows user={user} hidden={hidden} setHidden={setHidden} />
         </div>
-        <Contributions user={user} />
+        <Contributions user={user} hidden={hidden} setHidden={setHidden} />
       </div>
     </div>
   );
