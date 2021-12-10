@@ -10,6 +10,7 @@ import { User } from "../types/common";
 import Loading from "./loading";
 import { ArrowRightIcon, ArrowLeftIcon, PlayIcon } from "@modulz/radix-icons";
 import Toolbar from "./toolbar";
+import Background from "./background";
 
 interface Props {
   user: User;
@@ -116,7 +117,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
       {!loading && !welcome && (
         <div>
           {arrowLeft}
-          <div id="wrap" className="flex items-center justify-center bg-black">
+          <Background currentSlide={currentSlide} />
+          <div
+            id="wrap"
+            className="flex items-center justify-center p-5 m-5 min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-xl card-border"
+          >
             {cardsToShow[currentSlide]}
           </div>
           {arrowRight}
