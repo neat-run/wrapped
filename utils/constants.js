@@ -7,7 +7,7 @@ export const Constants = {
 
   DATES: {
     JAN2021: "2021-01-01T00:00:00.000+00:00",
-    DEC2021: "2021-12-16T00:00:00.000+00:00",
+    DEC2021: "2021-12-11T00:00:00.000+00:00",
   },
 
   COMMON_LANGUAGES: new Map([

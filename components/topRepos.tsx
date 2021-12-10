@@ -31,7 +31,13 @@ function TopRepos({ user, hidden, setHidden }: IProps) {
   return (
     <div className="text-left p-5 space-y-5 text-white group">
       <h1 className="text-gray-400 text-xl font-medium">
-        You're an absolute beast
+        {
+          [
+            "You're an absolute beast",
+            "You get around",
+            "You code far and wide",
+          ][~~(Math.random() * 3)]
+        }
       </h1>
       <BuildingChart chartData={chartData} />
       <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />

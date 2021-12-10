@@ -20,7 +20,13 @@ function TopLanguages({ user, hidden, setHidden }: Props) {
   return (
     <div className="m-5 text-left group">
       <h1 className="text-gray-400 text-xl font-medium mb-2">
-        You type many tongues
+        {
+          [
+            "You speak my language",
+            "You're multilingual",
+            "No language barriers",
+          ][~~(Math.random() * 3)]
+        }
       </h1>
       <div className="space-y-5 text-white">
         {languages.map((language, i) => (

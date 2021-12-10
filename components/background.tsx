@@ -23,7 +23,7 @@ function Background({ currentSlide }) {
         case 2:
           return "translate-x-96 translate-y-48 w-48 h-48";
         case 3:
-          return "translate-x-96 -translate-y-24 w-56 h-56";
+          return "translate-x-96 -translate-y-0 w-56 h-56";
       }
     };
     return circleOffset(randomPosition());
