@@ -1,19 +1,24 @@
 import React from "react";
 import { User } from "../types/common";
+import Hide from "./hide";
 
 interface Props {
   user: User;
+  hidden: any[];
+  setHidden: any;
 }
 
 /**
  * Render the user's top coding languages
  */
-function TopLanguages({ user }: Props) {
+function TopLanguages({ user, hidden, setHidden }: Props) {
   const languages = user.topLanguages;
+  const stat: keyof User = "topLanguages";
 
-  if (!languages) return <></>;
+  if (!languages || hidden.includes(stat)) return <></>;
+
   return (
-    <div className="p-5 text-left">
+    <div className="p-5 text-left group">
       <h1 className="text-gray-400 text-xl font-medium mb-2">
         You type many tongues
       </h1>
@@ -30,6 +35,7 @@ function TopLanguages({ user }: Props) {
           </div>
         ))}
       </div>
+      <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
     </div>
   );
 }

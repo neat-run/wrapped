@@ -27,8 +27,8 @@ function Slideshow({ user, hidden, setHidden }: Props) {
 
   const cardsToShow = [
     <Highlights user={user} />,
-    <TopRepos user={user} />,
-    <TopLanguages user={user} />,
+    <TopRepos user={user} hidden={hidden} setHidden={setHidden} />,
+    <TopLanguages user={user} hidden={hidden} setHidden={setHidden} />,
     <Follows user={user} hidden={hidden} setHidden={setHidden} />,
     <Stars user={user} hidden={hidden} setHidden={setHidden} />,
     <Contributions user={user} />,

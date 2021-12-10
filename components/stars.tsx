@@ -9,7 +9,8 @@ interface IProps {
 }
 
 function Stars({ user, hidden, setHidden }: IProps) {
-  if (!user || !user.stars) return <></>;
+  const stat: keyof User = "stars";
+  if (!user || !user.stars || hidden.includes(stat)) return <></>;
 
   return (
     <div className="p-5 text-left text-white group">
@@ -28,7 +29,7 @@ function Stars({ user, hidden, setHidden }: IProps) {
           <p className="text-gray-600 font-light text-3xl">received</p>
         </div>
       </div>
-      <Hide stat="stars" user={user} hidden={hidden} setHidden={setHidden} />
+      <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
     </div>
   );
 }
