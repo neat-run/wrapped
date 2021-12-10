@@ -13,7 +13,7 @@ function TopLanguages({ user, hidden, setHidden, showHide }: Stat) {
 
   return (
     <div className="m-5 text-left group">
-      <h1 className="text-gray-400 text-xl font-medium mb-2">
+      <h1 className="text-gray-200 text-xl font-medium mb-3">
         {
           [
             "You speak my language",
@@ -22,14 +22,13 @@ function TopLanguages({ user, hidden, setHidden, showHide }: Stat) {
           ][~~(Math.random() * 3)]
         }
       </h1>
-      <div className="space-y-5 text-white">
+      <div className="space-y-2 text-white">
         {languages.map((language, i) => (
           <div
             key={i}
             className="flex items-center space-x-3"
             style={{ color: language.color }}
           >
-            <p className="text-3xl font-medium text-gray-600">#{i + 1}</p>
             <p className={`devicon-${language.name}-plain text-4xl`} />
             <p className="font-mono text-xl">{language.commonName}</p>
           </div>

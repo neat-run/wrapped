@@ -50,13 +50,13 @@ export default function Home({ hostUser }) {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
         <h1
-          className={`transition-all duration-1000 ease-out fixed mb-5 font-bold tracking-tighter ${
-            auth || hostUser ? "text-2xl top-3 left-12" : "text-8xl top-1/4"
+          className={`transition-all duration-1000 ease-out fixed mb-5 left-1/2 -translate-x-1/2 font-bold tracking-tighter ${
+            auth || hostUser ? "text-2xl top-3" : "text-8xl top-1/4"
           }`}
         >
-          <span className="text-gray-300">GitHub</span>
+          <span className="text-gray-200">GitHub</span>
           <span
-            className={`font-mono pl-3 ${
+            className={`font-mono pl-2 ${
               auth || hostUser
                 ? "text-indigo-600"
                 : "text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]"
@@ -69,12 +69,12 @@ export default function Home({ hostUser }) {
           <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
         ) : hostUser ? (
           <div className="flex flex-col">
-            <div className="text-gray-400 text-xl py-4">
+            <div className="text-gray-400 text-lg pt-12 pb-2">
               Welcome to
               <a
                 href={`https://github.com/${hostUser.username ?? ""}`}
                 rel="noopener noreferrer"
-                className="text-white font-medium ml-1.5"
+                className="text-gray-200 font-medium ml-1.5"
               >
                 {hostUser.fullName ?? hostUser.username}
               </a>

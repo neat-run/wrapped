@@ -24,8 +24,8 @@ function TopRepos({ user, hidden, setHidden, showHide }: Stat) {
   };
 
   return (
-    <div className="text-left p-5 space-y-5 text-white group">
-      <h1 className="text-gray-400 text-xl font-medium">
+    <div className="text-left p-5 text-white group">
+      <h1 className="text-gray-200 text-xl mb-2 font-medium">
         {
           [
             "You're an absolute beast",

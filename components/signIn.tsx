@@ -10,7 +10,7 @@ import KeyboardShortcut from "./shortcut";
  */
 function SignIn({ auth, setAuth }) {
   return (
-    <div className="sticky py-5">
+    <div className="sticky py-10">
       <button
         onClick={() => {
           if (!auth) signIn();

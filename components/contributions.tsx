@@ -71,11 +71,13 @@ function Contributions({ user, hidden, setHidden, showHide }: Stat) {
 
   return (
     <div className="p-5 max-w-4xl flex flex-col items-start group">
-      <h1 className="mb-2 text-gray-400 text-xl font-medium text-left whitespace-nowrap">
+      <h1 className="mb-2 text-gray-200 text-xl font-medium text-left whitespace-nowrap">
         {
-          ["You show up daily", "You're consistent", "Your grind never stops"][
-            ~~(Math.random() * 3)
-          ]
+          [
+            "You show up daily",
+            "You have no commitment issues",
+            "Your grind never stops",
+          ][~~(Math.random() * 3)]
         }
       </h1>
       <div className="grid gap-0.5 grid-rows-7 grid-flow-col">

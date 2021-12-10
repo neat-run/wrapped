@@ -66,27 +66,30 @@ function Highlights({ user, hidden, setHidden, showHide }: Stat) {
   stats.map((stat) => (stat.fontSize = numberToFontSize(stat.count)));
 
   return (
-    <div className="p-5 text-left space-y-5 text-white group">
-      {stats.map(
-        (stat) =>
-          stat &&
-          stat.count && (
-            <div key={stat.title}>
-              <p className="text-gray-400">{stat.tagline}</p>
-              <p
-                className={`${stat.fontSize} ${stat.colour} font-mono tracking-wide`}
-              >
-                {stat.count}
-              </p>
-              <p className="font-medium text-lg leading-none pt-0.5">
-                {stat.title}
-              </p>
-            </div>
-          )
-      )}
-      {showHide && (
-        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
-      )}
+    <div className="p-5 text-left">
+      <h1 className="text-gray-200 font-medium text-xl mb-2">
+        {["Highlights", "Overview", "In a nutshell"][~~(Math.random() * 3)]}
+      </h1>
+      <div className="space-y-5 text-white group">
+        {stats.map(
+          (stat) =>
+            stat &&
+            stat.count && (
+              <div key={stat.title}>
+                {/* <p className="text-gray-400">{stat.tagline}</p> */}
+                <p
+                  className={`${stat.fontSize} ${stat.colour} font-mono tracking-wide`}
+                >
+                  {stat.count}
+                </p>
+                <p className="text-gray-400 leading-none">{stat.title}</p>
+              </div>
+            )
+        )}
+        {showHide && (
+          <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+        )}
+      </div>
     </div>
   );
 }

@@ -44,40 +44,41 @@ const BlockChart = ({ chartData }) => {
       {chartData.values.map((value, i) => (
         <div key={i} className="w-[125px] text-center text-white">
           <div
-            className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-y-[1.1] transition-transform text-left pl-1 text-xs text-gray-100 group`}
+            className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-[1.1] transition-transform text-left p-2 text-sm text-gray-200 group flex flex-col justify-between`}
           >
             {value > 10 ? (
-              <span>
-                <span className="text-3xl text-gray-200 pr-0.5">{value}</span>
-                <span className="invisible group-hover:visible text-gray-300">
+              <div>
+                <p className="text-3xl font-mono pr-0.5 leading-none">
+                  {value}
+                </p>
+                <p className="invisible group-hover:visible leading-none">
                   commits
-                </span>
-              </span>
+                </p>
+              </div>
             ) : (
               ""
             )}
-          </div>
+            <div className="text-sm mt-3 text-gray-200 font-medium">
+              <img
+                className="w-7 h-7 rounded-full hover:scale-[1.5] transition-transform"
+                src={chartData.avatarUrl[i]}
+                alt={chartData.names[i] + " logo"}
+              />
+              <Tooltip content={chartData.namesWithOwner[i]}>
+                {chartData.isPrivate[i] ? (
+                  <span>{chartData.names[i]}</span>
+                ) : (
+                  <a href={chartData.url[i]}>{chartData.names[i]}</a>
+                )}
+              </Tooltip>
 
-          <div className="flex flex-row text-sm mt-3 items-center space-x-2 justify-center text-gray-300">
-            <img
-              className="w-7 h-7 rounded-full hover:scale-[1.5] transition-transform"
-              src={chartData.avatarUrl[i]}
-              alt={chartData.names[i] + " logo"}
-            />
-            <Tooltip content={chartData.namesWithOwner[i]}>
-              {chartData.isPrivate[i] ? (
-                <span>{chartData.names[i]}</span>
-              ) : (
-                <a href={chartData.url[i]}>{chartData.names[i]}</a>
+              {chartData.stars[i] > 3 && (
+                <span className="text-yellow-600 flex items-center space-x-0.5">
+                  <StarIcon className="mt-0.5" />
+                  <span>{chartData.stars[i]}</span>
+                </span>
               )}
-            </Tooltip>
-
-            {chartData.stars[i] > 3 && (
-              <span className="text-yellow-600 font-medium flex items-center space-x-0.5">
-                <StarIcon className="mt-0.5" />
-                <span>{chartData.stars[i]}</span>
-              </span>
-            )}
+            </div>
           </div>
         </div>
       ))}
