@@ -1,21 +1,32 @@
 import React from "react";
 import { User } from "../types/common";
+import Hide from "./hide";
 
 const imageClass =
   "w-7 h-7 rounded-full hover:scale-[1.5] transition-transform";
 
 interface IProps {
   user: User;
+  hidden: any[];
+  setHidden: any;
 }
 
-function Follows({ user }: IProps) {
+function Follows({ user, hidden, setHidden }: IProps) {
   if (!user || !user.topFollows) return <></>;
 
   const followers = user.topFollows.followers;
   const following = user.topFollows.following;
 
+  if (hidden.includes("topFollows")) return <></>;
+
   return (
     <div className="text-white text-left p-5 space-y-7">
+      <Hide
+        stat="topFollows"
+        user={user}
+        hidden={hidden}
+        setHidden={setHidden}
+      />
       <div className="text-gray-400">
         <h1 className="text-xl font-medium mb-2">You like to stay connected</h1>
         <div className="space-x-2">

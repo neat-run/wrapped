@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Highlights from "./highlights";
 import TopRepos from "./topRepos";
 import TopLanguages from "./topLanguages";
@@ -8,14 +9,19 @@ import { User } from "../types/common";
 
 interface IProps {
   user: User;
+  hidden: any[];
+  setHidden: any;
 }
 
 /**
  * All slides in one view for easy sharing
  */
-function Summary({ user }: IProps) {
+function Summary({ user, hidden, setHidden }: IProps) {
   return (
-    <div className="m-12 flex rounded-xl bg-gray-900/80 border border-gray-500">
+    <div
+      id="wrap"
+      className="m-12 flex rounded-xl bg-gray-900/80 border border-gray-500"
+    >
       <div className="flex w-1/5">
         <Highlights user={user} />
       </div>
@@ -26,7 +32,7 @@ function Summary({ user }: IProps) {
             <TopLanguages user={user} />
             <Stars user={user} />
           </div>
-          <Follows user={user} />
+          <Follows user={user} hidden={hidden} setHidden={setHidden} />
         </div>
         <Contributions user={user} />
       </div>

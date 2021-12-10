@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { Constants } from "./constants";
+import { User } from "../types/common";
 
 /**
  * Supabase client to access auth
@@ -90,4 +91,22 @@ export async function getImageURL(username: string): Promise<string> {
     .getPublicUrl(`public/${username}.png`);
   if (error) console.error(error);
   return publicURL;
+}
+/**
+ * Sets existing value to null
+ * @param  {string} table table to be updated
+ * @param  {string} column column to be updated
+ * @param  {string} username
+ */
+export async function deleteValue(
+  table: string,
+  column: keyof User,
+  username: string
+) {
+  let { data, error } = await supabase
+    .from(table)
+    .update({ [column]: null })
+    .eq("username", username);
+  if (error) throw error;
+  else return data;
 }

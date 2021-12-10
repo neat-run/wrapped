@@ -15,6 +15,7 @@ import DownloadButton from "../components/downloadNeat";
 export default function Home({ hostUser }) {
   const [user, setUser] = useState(defaultUser);
   const [auth, setAuth] = useState(null);
+  const [hidden, setHidden] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -25,6 +26,11 @@ export default function Home({ hostUser }) {
     checkUser();
     window.addEventListener("hashchange", () => checkUser());
   }, [auth]);
+
+  useEffect(() => {
+    console.log(hidden);
+    localStorage.setItem("hidden", JSON.stringify(hidden));
+  }, [hidden]);
 
   // Check if user is signed in
   async function checkUser() {
@@ -54,7 +60,7 @@ export default function Home({ hostUser }) {
           </span>
         </h1>
         {auth ? (
-          <Slideshow user={user} />
+          <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
         ) : hostUser ? (
           <div className="flex flex-col">
             <div className="text-gray-400 text-xl pt-6">
@@ -64,7 +70,7 @@ export default function Home({ hostUser }) {
               </span>
               's year in review.
             </div>
-            <Summary user={hostUser} />
+            <Summary user={hostUser} hidden={hidden} setHidden={setHidden} />
             <SignIn auth={auth} setAuth={setAuth} />
             <DownloadButton />
           </div>

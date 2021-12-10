@@ -13,12 +13,14 @@ import Toolbar from "./toolbar";
 
 interface Props {
   user: User;
+  hidden: any[];
+  setHidden: any;
 }
 
 const buttonClass =
   "text-white px-6 py-24 rounded scale-[1.5] hover:scale-[1.8] transition-transform absolute top-1/2 -translate-y-1/2 focus:outline-none";
 
-function Slideshow({ user }: Props) {
+function Slideshow({ user, hidden, setHidden }: Props) {
   const [loading, setLoading] = useState(true);
   const [welcome, setWelcome] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -27,10 +29,10 @@ function Slideshow({ user }: Props) {
     <Highlights user={user} />,
     <TopRepos user={user} />,
     <TopLanguages user={user} />,
-    <Follows user={user} />,
+    <Follows user={user} hidden={hidden} setHidden={setHidden} />,
     <Stars user={user} />,
     <Contributions user={user} />,
-    <Summary user={user} />,
+    <Summary user={user} hidden={hidden} setHidden={setHidden} />,
   ];
   const lastSlideIndex = cardsToShow.length - 1;
 
