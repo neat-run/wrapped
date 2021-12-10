@@ -30,7 +30,7 @@ function Summary({ user, hidden, setHidden }: IProps) {
           <TopRepos user={user} />
           <div className="flex flex-col">
             <TopLanguages user={user} />
-            <Stars user={user} />
+            <Stars user={user} hidden={hidden} setHidden={setHidden} />
           </div>
           <Follows user={user} hidden={hidden} setHidden={setHidden} />
         </div>
