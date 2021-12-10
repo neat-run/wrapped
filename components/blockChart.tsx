@@ -44,7 +44,7 @@ const BlockChart = ({ chartData }) => {
       {chartData.values.map((value, i) => (
         <div key={i} className="w-[125px] text-center text-white">
           <div
-            className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-y-[1.1] text-left pl-1 text-xs text-gray-100 group`}
+            className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-y-[1.1] transition-transform text-left pl-1 text-xs text-gray-100 group`}
           >
             {value > 10 ? (
               <span>
@@ -60,7 +60,7 @@ const BlockChart = ({ chartData }) => {
 
           <div className="flex flex-row text-sm mt-3 items-center space-x-2 justify-center text-gray-300">
             <img
-              className="w-5 h-5 rounded-full hover:scale-y-[1.3]"
+              className="w-7 h-7 rounded-full hover:scale-[1.5] transition-transform"
               src={chartData.avatarUrl[i]}
               alt={chartData.names[i] + " logo"}
             />
