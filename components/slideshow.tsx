@@ -122,10 +122,10 @@ function Slideshow({ user, hidden, setHidden }: Props) {
       {!loading && !welcome && (
         <div>
           {arrowLeft}
-          <div id="wrap">
+          <div id="wrap" className="p-10">
             <Background currentSlide={currentSlide} />
 
-            <div className="flex items-center justify-center p-5 min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
+            <div className="flex items-center justify-center min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
               {cardsToShow[currentSlide]}
             </div>
           </div>

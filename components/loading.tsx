@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { User } from "../types/common";
 
 interface IProps {
@@ -27,16 +27,15 @@ function Loading({ user }: IProps) {
   const [message, setMessage] = useState(0);
 
   // Update the loading message every 0-3 s
-  setTimeout(() => {
-    setMessage(message + 1);
-  }, 3 * Math.random() * 1000);
+  useEffect(() => {
+    setTimeout(async () => {
+      await setMessage((i) => i + 1);
+    }, 3 * Math.random() * 1000);
+  }, []);
 
   return (
-    <div>
-      <div className="text-xl font-medium text-gray-400 animate-pulse">
-        {messages[message]}...
-      </div>
-      {/* <ProgressBar /> */}
+    <div className="text-xl font-medium text-gray-400 animate-pulse">
+      {messages[message]}...
     </div>
   );
 }
