@@ -23,7 +23,13 @@ function Hide({ stat, user, hidden, setHidden }: IProps) {
     if (checkUser) {
       // Retake screenshot for link preview
       //publishUser(user);
-      deleteValue("users", stat, user.username);
+
+      // For the Highlight component, there are multiple props to be deleted
+      if (stat == "commits") {
+        ["commits", "pulls", "contributions", "repos", "reviews"].map(
+          (value: keyof User) => deleteValue("users", value, user.username)
+        );
+      } else deleteValue("users", stat, user.username);
     }
   }
 

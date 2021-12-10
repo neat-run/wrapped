@@ -26,7 +26,7 @@ function Slideshow({ user, hidden, setHidden }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const cardsToShow = [
-    <Highlights user={user} />,
+    <Highlights user={user} hidden={hidden} setHidden={setHidden} />,
     <TopRepos user={user} hidden={hidden} setHidden={setHidden} />,
     <TopLanguages user={user} hidden={hidden} setHidden={setHidden} />,
     <Follows user={user} hidden={hidden} setHidden={setHidden} />,
