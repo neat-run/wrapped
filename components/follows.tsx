@@ -20,13 +20,7 @@ function Follows({ user, hidden, setHidden }: IProps) {
   if (hidden.includes("topFollows")) return <></>;
 
   return (
-    <div className="text-white text-left p-5 space-y-7">
-      <Hide
-        stat="topFollows"
-        user={user}
-        hidden={hidden}
-        setHidden={setHidden}
-      />
+    <div className="text-white text-left p-5 space-y-7 group">
       <div className="text-gray-400">
         <h1 className="text-xl font-medium mb-2">You like to stay connected</h1>
         <div className="space-x-2">
@@ -90,6 +84,12 @@ function Follows({ user, hidden, setHidden }: IProps) {
           ))}
         </div>
       </div>
+      <Hide
+        stat="topFollows"
+        user={user}
+        hidden={hidden}
+        setHidden={setHidden}
+      />
     </div>
   );
 }
