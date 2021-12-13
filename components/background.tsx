@@ -17,20 +17,20 @@ function Background({ currentSlide }) {
     const circleOffset = (position: number) => {
       switch (position) {
         case 0:
-          return "translate-x-48 translate-y-56 w-72 h-72";
+          return "sm:translate-x-48 translate-y-56 w-72 h-72";
         case 1:
-          return "translate-x-24 translate-y-24 w-96 h-96";
+          return "sm:translate-x-24 translate-y-24 w-96 h-96";
         case 2:
-          return "translate-x-96 translate-y-48 w-48 h-48";
+          return "sm:translate-x-96 translate-y-48 w-48 h-48";
         case 3:
-          return "translate-x-96 -translate-y-0 w-56 h-56";
+          return "sm:translate-x-96 -translate-y-0 w-56 h-56";
       }
     };
     return circleOffset(randomPosition());
   };
 
   return (
-    <div className="absolute z-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px]">
+    <div className="absolute z-0 top-1/2 -left-1/2 sm:left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-screen sm:w-[800px] h-[600px]">
       <div className={`${circleClass()} ${defaultCircleClass} bg-indigo-600`} />
       <div className={`${circleClass()} ${defaultCircleClass} bg-purple-600`} />
       <div className={`${circleClass()} ${defaultCircleClass} bg-green-600`} />
