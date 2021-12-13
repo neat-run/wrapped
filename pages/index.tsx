@@ -11,6 +11,7 @@ import { defaultUser } from "../utils/default";
 import Link from "next/link";
 import Summary from "../components/summary";
 import DownloadButton from "../components/downloadNeat";
+import MusicPlayer from "../components/musicPlayer";
 
 export default function Home({ hostUser }) {
   const [user, setUser] = useState(defaultUser);
@@ -90,6 +91,9 @@ export default function Home({ hostUser }) {
                 setHidden={setHidden}
                 showHide={false}
               />
+            </div>
+            <div className="text-white fixed bottom-8 right-8">
+              <MusicPlayer buttonClass="p-2 hover:bg-gray-800/90 text-gray-100 rounded scale-[1.5] hover:scale-[2] focus:outline-none" />
             </div>
             <SignIn auth={auth} setAuth={setAuth} />
             <DownloadButton />
