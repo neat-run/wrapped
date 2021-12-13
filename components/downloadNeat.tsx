@@ -55,16 +55,15 @@ function DownloadButton() {
 
   return (
     <div className="py-20 hidden md:flex flex-col items-center">
-      <p className="text-gray-400 text-lg font-light py-10 max-w-xl">
-        You're active on GitHub. <br />
-        You need to know when a PR is ready to review or merge.
+      <p className="text-gray-400 text-lg font-light pb-10 max-w-xl">
+        High-performing teams find ways to stay on top of pull requests.
         <br />
         <br />
         <span className="font-bold pr-1">Neat</span>
         puts important GitHub notifications in your menu bar. <br />
         Keyboard navigation. Unread. Pin to top. Quick reactions. <br />
         <br />
-        We built this site in one week by working on one branch with Neat.
+        This project was made by working on one branch with Neat.
       </p>
       <button onClick={fetchFile} className="focus:outline-none">
         <div
