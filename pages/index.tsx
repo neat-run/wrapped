@@ -19,9 +19,9 @@ export default function Home({ hostUser }) {
   const [hidden, setHidden] = useState(
     typeof window !== "undefined"
       ? localStorage.getItem("hidden") === null
-        ? []
+        ? Array()
         : JSON.parse(localStorage.getItem("hidden"))
-      : []
+      : Array()
   );
 
   useEffect(() => {

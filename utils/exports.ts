@@ -125,3 +125,25 @@ export async function retakeScreenshot(user: User) {
     user.username
   );
 }
+/**
+ * Undo adds a previously hidden stat back in view
+ * @param  {User} user user props
+ * @param  {any[]} hidden array with hidden stats
+ * @param  {any} setHidden used to update hidden array
+ */
+export function undo(user: User, hidden: any[], setHidden: any) {
+  // Get the latest entry in hidden array
+  const stat: keyof User = hidden.slice(-1);
+
+  // Remove latest entry from array and update hidden array
+  let updated = hidden.filter((value) => value != stat);
+  setHidden(updated);
+
+  // Update the value in Supabase database
+  if (stat == "commits") {
+    ["commits", "pulls", "contributions", "repos", "reviews"].map(
+      (column: keyof User) =>
+        updateValue("users", column, user[column], user.username)
+    );
+  } else updateValue("users", stat, user[stat], user.username);
+}

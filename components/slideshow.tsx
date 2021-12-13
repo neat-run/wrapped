@@ -130,7 +130,7 @@ function Slideshow({ user, hidden, setHidden }: Props) {
             </div>
           </div>
           {arrowRight}
-          <Toolbar user={user} />
+          <Toolbar user={user} hidden={hidden} setHidden={setHidden} />
         </div>
       )}
       {/* <ProgressBar /> */}

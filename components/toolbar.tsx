@@ -5,6 +5,7 @@ import {
   CopyIcon,
   Link2Icon,
   CheckIcon,
+  ResetIcon,
 } from "@modulz/radix-icons";
 import Tooltip from "../components/tooltip";
 import {
@@ -13,16 +14,20 @@ import {
   download,
   getPublicLink,
   publishUser,
+  undo,
 } from "../utils/exports";
 import { SHORTCUTS } from "../utils/shortcuts";
 import { User } from "../types/common";
 import Modal from "./modal";
 import MusicPlayer from "./musicPlayer";
-interface Props {
+
+interface IProps {
   user: User;
+  hidden: any[];
+  setHidden: any;
 }
 
-function Toolbar({ user }: Props) {
+function Toolbar({ user, hidden, setHidden }: IProps) {
   const [downloaded, setDownloaded] = useState(false);
   const [copiedImage, setCopiedImage] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -40,6 +45,18 @@ function Toolbar({ user }: Props) {
 
   return (
     <div className="p-7 text-white space-x-7 flex items-center justify-center fixed left-1/2 -translate-x-1/2 bottom-8">
+      {hidden.length > 0 && (
+        <Tooltip content="Undo">
+          <button
+            className={buttonClass}
+            onClick={() => {
+              undo(user, hidden, setHidden);
+            }}
+          >
+            <ResetIcon />
+          </button>
+        </Tooltip>
+      )}
       <Tooltip content="Copy image" shortcut={SHORTCUTS.copyImage.sequence}>
         <button
           className={buttonClass}
