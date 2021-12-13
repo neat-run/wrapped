@@ -11,6 +11,7 @@ import Loading from "./loading";
 import { ArrowRightIcon, ArrowLeftIcon, PlayIcon } from "@modulz/radix-icons";
 import Toolbar from "./toolbar";
 import Background from "./background";
+import Tooltip from "./tooltip";
 
 interface Props {
   user: User;
@@ -52,7 +53,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
   // Next slide button
   const arrowRight = currentSlide < lastSlideIndex && (
     <button className={`${buttonClass} right-8`} onClick={nextSlide}>
-      <ArrowRightIcon className="group-hover:translate-x-1 transition-transform" />
+      <Tooltip content="Next slide" shortcut="right">
+        <div>
+          <ArrowRightIcon className="group-hover:translate-x-1 transition-transform" />
+        </div>
+      </Tooltip>
     </button>
   );
 
@@ -64,7 +69,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
   // Previous slide
   const arrowLeft = currentSlide > 0 && (
     <button className={`${buttonClass} left-8`} onClick={previousSlide}>
-      <ArrowLeftIcon className="group-hover:-translate-x-1 transition-transform" />
+      <Tooltip content="Previous slide" shortcut="left">
+        <div>
+          <ArrowLeftIcon className="group-hover:-translate-x-1 transition-transform" />
+        </div>
+      </Tooltip>
     </button>
   );
 
