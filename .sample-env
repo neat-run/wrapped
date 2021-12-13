@@ -1,0 +1,4 @@
+# Created by Vercel CLI
+VERCEL="1"
+VERCEL_ENV="development"
+NEXT_PUBLIC_SUPABASE_API_KEY="eyieyio"
