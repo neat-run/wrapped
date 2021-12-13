@@ -53,7 +53,7 @@ export default function Home({ hostUser }) {
           <div
             className={`flex items-baseline font-bold tracking-tighter z-10 transition-all duration-1000 ease-out mb-5 ${
               auth || hostUser
-                ? "text-xl flex-row top-3"
+                ? "text-xl flex-row fixed top-3"
                 : "text-6xl sm:text-7xl md:text-8xl flex-col md:flex-row top-1/4"
             }`}
           >
