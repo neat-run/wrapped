@@ -133,7 +133,7 @@ export async function retakeScreenshot(user: User) {
  */
 export function undo(user: User, hidden: any[], setHidden: any) {
   // Get the latest entry in hidden array
-  const stat: keyof User = hidden.slice(-1);
+  const stat: keyof User = hidden.slice(-1)[0];
 
   // Remove latest entry from array and update hidden array
   let updated = hidden.filter((value) => value != stat);
