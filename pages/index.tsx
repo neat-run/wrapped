@@ -45,64 +45,64 @@ export default function Home({ hostUser }) {
   }
 
   return (
-    <div className="flex flex-col items-center bg-black h-screen justify-between">
+    <div className="flex flex-col items-center bg-black min-h-screen justify-between">
       <HeadTags user={hostUser} />
 
-      <div className="grid place-items-center h-screen">
-        <div className="flex flex-col w-full items-center justify-center min-h-fit">
-          <div
-            className={`flex items-baseline font-bold tracking-tighter z-10 transition-all duration-1000 ease-out mb-5 ${
+      {/* <div className="grid place-items-center h-screen"> */}
+      <div className="flex flex-col w-full flex-1 items-center justify-center">
+        <div
+          className={`flex items-baseline absolute font-bold tracking-tighter z-10 transition-all duration-1000 ease-out mb-5 ${
+            auth || hostUser
+              ? "text-xl flex-row top-3"
+              : "text-4xl sm:text-6xl md:text-8xl flex-col md:flex-row top-1/4"
+          }`}
+        >
+          <h1 className="w-full text-center">GitHub</h1>
+          <h1
+            className={`w-full font-mono pl-2 ${
               auth || hostUser
-                ? "text-xl flex-row fixed top-3"
-                : "text-6xl sm:text-7xl md:text-8xl flex-col md:flex-row top-1/4"
+                ? "text-indigo-600"
+                : "text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]"
             }`}
           >
-            <h1 className="w-full text-center">GitHub</h1>
-            <h1
-              className={`w-full font-mono pl-2 ${
-                auth || hostUser
-                  ? "text-indigo-600"
-                  : "text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]"
-              }`}
-            >
-              Wrapped
-            </h1>
-          </div>
-          {auth ? (
-            <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
-          ) : hostUser ? (
-            <div className="flex flex-col">
-              <div className="text-gray-400 text-lg pt-12 pb-2">
-                Welcome to
-                <a
-                  href={`https://github.com/${hostUser.username ?? ""}`}
-                  rel="noopener noreferrer"
-                  className="text-gray-200 font-medium ml-1.5"
-                >
-                  {hostUser.fullName ?? hostUser.username}
-                </a>
-                's year in review.
-              </div>
-              <div className="flex items-center justify-center p-5 min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
-                <Summary
-                  user={hostUser}
-                  hidden={hidden}
-                  setHidden={setHidden}
-                  showHide={false}
-                />
-              </div>
-              <SignIn auth={auth} setAuth={setAuth} />
-              <DownloadButton />
-            </div>
-          ) : (
-            <SignIn auth={auth} setAuth={setAuth} />
-          )}
+            Wrapped
+          </h1>
         </div>
+        {auth ? (
+          <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
+        ) : hostUser ? (
+          <div className="flex flex-col">
+            <div className="text-gray-400 text-lg pt-12 pb-2">
+              Welcome to
+              <a
+                href={`https://github.com/${hostUser.username ?? ""}`}
+                rel="noopener noreferrer"
+                className="text-gray-200 font-medium ml-1.5"
+              >
+                {hostUser.fullName ?? hostUser.username}
+              </a>
+              's year in review.
+            </div>
+            <div className="flex items-center justify-center p-5 min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
+              <Summary
+                user={hostUser}
+                hidden={hidden}
+                setHidden={setHidden}
+                showHide={false}
+              />
+            </div>
+            <SignIn auth={auth} setAuth={setAuth} />
+            <DownloadButton />
+          </div>
+        ) : (
+          <SignIn auth={auth} setAuth={setAuth} />
+        )}
       </div>
+      {/* </div> */}
       <footer className="px-0 md:px-8 w-1/5 md:w-screen flex flex-wrap justify-center md:justify-between">
         <div className="flex items-center order-first md:order-2">
-          <div className="flex flex-col sm:flex-row text-gray-400 text-center justify-center">
-            Made by &nbsp;
+          <div className="m-3 flex whitespace-nowrap text-gray-400 text-center justify-center">
+            Made by&nbsp;
             <a
               className="font-semibold text-indigo-500 hover:text-indigo-400 transition hover:-translate-y-1 duration-500"
               href={Constants.NEAT.URL}

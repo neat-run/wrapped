@@ -10,7 +10,7 @@ import KeyboardShortcut from "./shortcut";
  */
 function SignIn({ auth, setAuth }) {
   return (
-    <div className="sticky py-10">
+    <div className="sticky py-10 text-center">
       <span
         className={`absolute ${auth ? "" : "backdrop-glow-reactive"}`}
       ></span>
@@ -22,14 +22,14 @@ function SignIn({ auth, setAuth }) {
             setAuth(null);
           }
         }}
-        className={`z-100 mx-10 transition bg-indigo-700 hover:bg-indigo-600 text-white p-4 rounded-md focus:outline-dotted`}
+        className={`z-50 mx-auto transition bg-indigo-700 hover:bg-indigo-600 text-white p-4 rounded-md focus:outline-dotted`}
       >
-        <div className="flex flex-row flex-wrap justify-center">
-          <span className="px-5 font-medium text-base">
-            {auth ? "Sign out" : "See your developer stats"}
-          </span>
-          {!auth && <KeyboardShortcut shortcut={"S"} />}
-        </div>
+        {/* <div className="flex flex-row flex-wrap justify-center"> */}
+        <span className="px-5 font-medium text-base">
+          {auth ? "Sign out" : "See your developer stats"}
+        </span>
+        {!auth && <KeyboardShortcut shortcut={"S"} />}
+        {/* </div> */}
       </button>
       <p className="text-gray-400 text-sm mt-2 text-center">
         Read-only access to your account
