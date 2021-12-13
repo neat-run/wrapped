@@ -23,8 +23,7 @@ export function isDev(): boolean {
  * @returns {boolean} whether we're in MacOS
  */
 export function isMacOS(): boolean {
-  if (!("navigator" in window)) return false;
-  return navigator.userAgent.toLowerCase().includes("mac");
+  return !!navigator && navigator.userAgent.toLowerCase().includes("mac");
 }
 
 /**
