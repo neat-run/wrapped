@@ -19,6 +19,15 @@ export function isDev(): boolean {
 }
 
 /**
+ * Guesses whether the user is running MacOS
+ * @returns {boolean} whether we're in MacOS
+ */
+export function isMacOS(): boolean {
+  if (!("navigator" in window)) return false;
+  return navigator.userAgent.toLowerCase().includes("mac");
+}
+
+/**
  * Gets and serializes all user stats
  * @returns username, commits, top repos, etc
  */

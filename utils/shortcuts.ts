@@ -2,6 +2,11 @@ import { User } from "../types/common";
 import Mousetrap from "mousetrap";
 import { copyImage, copyPublicLink, download } from "./exports";
 import { isSignedIn, signIn, signOut } from "./supabase";
+import { isMacOS } from "./utils";
+
+// To use ⌘ on MacOS and ctrl on Windows/Linux
+const macOS = isMacOS();
+const cmdOrCtrl = macOS ? "command" : "ctrl";
 
 /**
  * Add keyboard shortcuts here! They'll be bound in
@@ -9,21 +14,21 @@ import { isSignedIn, signIn, signOut } from "./supabase";
  */
 export const SHORTCUTS = {
   save: {
-    sequence: "command+s",
+    sequence: `${cmdOrCtrl}+s`,
     method: (e, user) => {
       e.preventDefault();
       download();
     },
   },
   copyImage: {
-    sequence: "command+c",
+    sequence: `${cmdOrCtrl}+c`,
     method: (e, user) => {
       e.preventDefault();
       copyImage();
     },
   },
   copyURL: {
-    sequence: "command+shift+c",
+    sequence: `${cmdOrCtrl}+shift+c`,
     method: async (e, user) => {
       e.preventDefault();
       copyPublicLink(user);
@@ -38,6 +43,10 @@ export const SHORTCUTS = {
       if (!signedIn) signIn();
       else signOut();
     },
+  },
+  konami: {
+    sequence: "up up down down left right left right b a enter",
+    method: () => console.log("C-C-C-COMBO BREAKER"),
   },
 };
 

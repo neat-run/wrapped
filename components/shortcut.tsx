@@ -3,6 +3,8 @@ import React from "react";
 const COMMON_SYMBOLS = new Map<string, string>([
   ["cmd", "⌘"],
   ["command", "⌘"],
+  ["ctrl", "ctrl"],
+  ["control", "ctrl"],
   ["shift", "⇧"],
   ["esc", "esc"],
   ["alt", "⌥"],
