@@ -35,8 +35,8 @@ function Modal({ children, onSubmit, defaultOpen, title, description }) {
       <AlertDialog.Trigger className="focus:outline-none">
         {children}
       </AlertDialog.Trigger>
-      <AlertDialog.Overlay className="bg-black/80 fixed inset-0" />
-      <AlertDialog.Content className="bg-gray-900 rounded-lg shadow-lg border border-gray-600/80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 p-4 focus:outline-none flex flex-col justify-between">
+      <AlertDialog.Overlay className="bg-black/50 backdrop-blur-sm fixed inset-0" />
+      <AlertDialog.Content className="bg-gray-900/80 backdrop-blur rounded-lg shadow-lg fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 p-4 focus:outline-none flex flex-col justify-between">
         <div
           className="fixed p-2 -translate-x-20 -translate-y-12 cursor-pointer hover:scale-105 transition"
           onClick={() => setOpen(false)}
