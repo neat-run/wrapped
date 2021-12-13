@@ -104,15 +104,17 @@ function Contributions({ user, hidden, setHidden, showHide }: Stat) {
           ))
         )}
       </div>
+      <div className="flex flex-row">
+        {showHide && (
+          <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+        )}
+      </div>
       {maxDate && (
         <div
           className={`mt-2 flex text-gray-400 items-center space-x-2 relative ${maxDatePosition}`}
         >
           <span>Your top day: {maxDate}</span>
         </div>
-      )}
-      {showHide && (
-        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
       )}
     </div>
   );
