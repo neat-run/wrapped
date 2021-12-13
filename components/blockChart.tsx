@@ -42,44 +42,45 @@ const BlockChart = ({ chartData }) => {
   return (
     <div className="grid grid-cols-3 items-baseline">
       {chartData.values.map((value, i) => (
-        <div key={i} className="w-[125px] text-center text-white">
-          <div
-            className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-[1.1] transition-transform text-left p-2 text-sm text-gray-200 group flex flex-col justify-between`}
-          >
-            {value > 10 ? (
-              <div>
-                <p className="text-3xl font-mono pr-0.5 leading-none">
-                  {value}
-                </p>
-                <p className="invisible group-hover:visible leading-none">
-                  commits
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-            <div className="text-sm mt-3 text-gray-200 font-medium">
-              <img
-                className="w-7 h-7 rounded-full hover:scale-[1.5] transition-transform"
-                src={chartData.avatarUrl[i]}
-                alt={chartData.names[i] + " logo"}
-              />
-              <Tooltip content={chartData.namesWithOwner[i]}>
-                {chartData.isPrivate[i] ? (
-                  <span>{chartData.names[i]}</span>
-                ) : (
-                  <a href={chartData.url[i]}>{chartData.names[i]}</a>
-                )}
-              </Tooltip>
-
-              {chartData.stars[i] > 3 && (
-                <span className="text-yellow-600 flex items-center space-x-0.5">
-                  <StarIcon className="mt-0.5" />
-                  <span>{chartData.stars[i]}</span>
-                </span>
+        <div key={i} className="text-center text-white">
+          <div className="w-[125px]">
+            <div
+              className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-[1.1] transition-transform text-left p-2 text-sm text-gray-200 group flex flex-col justify-between`}
+            >
+              {value > 10 ? (
+                <div>
+                  <p className="text-3xl font-mono pr-0.5 leading-none">
+                    {value}
+                  </p>
+                  <p className="invisible group-hover:visible leading-none">
+                    commits
+                  </p>
+                </div>
+              ) : (
+                ""
               )}
             </div>
           </div>
+          <div className="flex flex-row text-sm mt-2 ml-1 text-gray-200 font-medium items-center">
+            <img
+              className="w-7 h-7 mr-1 rounded-full hover:scale-[1.5] transition-transform"
+              src={chartData.avatarUrl[i]}
+              alt={chartData.names[i] + " logo"}
+            />
+            <Tooltip content={chartData.namesWithOwner[i]}>
+              {chartData.isPrivate[i] ? (
+                <span>{chartData.names[i]}</span>
+              ) : (
+                <a href={chartData.url[i]}>{chartData.names[i]}</a>
+              )}
+            </Tooltip>
+          </div>
+          {chartData.stars[i] > 3 && (
+            <span className="text-yellow-400 flex items-center space-x-0.5 ml-1.5">
+              <StarIcon className="mt-0.5" />
+              <span>{chartData.stars[i]}</span>
+            </span>
+          )}
         </div>
       ))}
     </div>

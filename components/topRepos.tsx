@@ -1,6 +1,6 @@
 import React from "react";
 import { User, Stat } from "../types/common";
-import BuildingChart from "./blockChart";
+import BlockChart from "./blockChart";
 import Hide from "./hide";
 
 /**
@@ -34,7 +34,7 @@ function TopRepos({ user, hidden, setHidden, showHide }: Stat) {
           ][~~(Math.random() * 3)]
         }
       </h1>
-      <BuildingChart chartData={chartData} />
+      <BlockChart chartData={chartData} />
       {showHide && (
         <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
       )}
