@@ -11,6 +11,9 @@ import KeyboardShortcut from "./shortcut";
 function SignIn({ auth, setAuth }) {
   return (
     <div className="sticky py-10">
+      <span
+        className={`absolute ${auth ? "" : "backdrop-glow-reactive"}`}
+      ></span>
       <button
         onClick={() => {
           if (!auth) signIn();
@@ -19,9 +22,7 @@ function SignIn({ auth, setAuth }) {
             setAuth(null);
           }
         }}
-        className={`z-50 ${
-          auth ? "" : "backdrop-glow"
-        } transition bg-indigo-700 card-border hover:bg-indigo-600 text-white p-4 rounded-md`}
+        className={`z-100 relative transition bg-indigo-700 hover:bg-indigo-600 text-white p-4 rounded-md focus:outline-dotted`}
       >
         <span className="px-5 font-medium text-lg">
           {auth ? "Sign out" : "See your developer stats"}

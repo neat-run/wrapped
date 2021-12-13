@@ -110,7 +110,7 @@ export default function Home({ hostUser }) {
         <div className="flex order-1">
           <a
             href="https://github.com/neat-run/wrapped"
-            className="text-gray-400 hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
+            className="text-gray-400 hover:text-gray-200 m-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
             rel="noopener noreferrer"
           >
             Code
@@ -119,7 +119,7 @@ export default function Home({ hostUser }) {
 
         <div className="flex order-3">
           <Link href="/privacy">
-            <a className="text-gray-400 hover:text-gray-200 p-3 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
+            <a className="text-gray-400 hover:text-gray-200 m-3 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
               Privacy
             </a>
           </Link>

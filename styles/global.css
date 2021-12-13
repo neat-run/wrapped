@@ -7,19 +7,22 @@ html {
 }
 
 @layer base {
+  .outline-dotted {
+    outline: 2px dotted white;
+    outline-offset: 2px;
+  }
   a {
-    @apply no-underline text-purple-400 hover:text-purple-200;
+    @apply no-underline text-purple-400 hover:text-purple-200 focus:outline-dotted focus:rounded-md;
   }
   button {
-    @apply focus:outline-none;
-  }
-  .card-border {
-    @apply border-2 border-gray-700/80;
+    @apply focus:outline-dotted focus:rounded-md;
   }
   .backdrop-glow {
-    box-shadow: -50px 30px 120px 65px #860c9f80, 20px -90px 120px 55px #321cd680;
+    box-shadow: 150px 30px 120px 125px #860c9f80,
+      120px -90px 120px 135px #321cd680;
+    z-index: -1;
   }
-  .backdrop-glow-reactive:hover {
-    @apply transition duration-500 ease-out backdrop-glow;
+  .backdrop-glow-reactive {
+    @apply transition duration-75 ease-in-out animate-pulse-slow backdrop-glow;
   }
 }
