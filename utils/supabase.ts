@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { Constants } from "./constants";
 import { User } from "../types/common";
+import { isDev } from "./utils";
 
 /**
  * Supabase client to access auth
@@ -14,7 +15,10 @@ export const supabase = createClient(
 export async function signIn() {
   await supabase.auth.signIn(
     { provider: "github" },
-    { scopes: "repo:status user" }
+    {
+      scopes: "repo:status user",
+      redirectTo: isDev() ? "http://localhost:3000" : "https://wrapped.run",
+    }
   );
 }
 
