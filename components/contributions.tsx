@@ -80,7 +80,7 @@ function Contributions({ user, hidden, setHidden, showHide }: Stat) {
           ][~~(Math.random() * 3)]
         }
       </h1>
-      <div className="grid gap-0.5 grid-rows-7 grid-flow-col">
+      <div className="grid gap-0.5 grid-cols-7 grid-flow-row sm:grid-rows-7 sm:grid-flow-col">
         {/* Placeholders to account for the year starting on a Friday */}
         {[...Array(5)].map((_, i) => (
           <div key={i} className="w-3 h-3 bg-gray-200/20" />
@@ -111,7 +111,7 @@ function Contributions({ user, hidden, setHidden, showHide }: Stat) {
       </div>
       {maxDate && (
         <div
-          className={`mt-2 flex text-gray-400 items-center space-x-2 relative ${maxDatePosition}`}
+          className={`mt-2 flex text-gray-400 items-center space-x-2 sm:relative ${maxDatePosition}`}
         >
           <span>Your top day: {maxDate}</span>
         </div>

@@ -11,6 +11,7 @@ import Loading from "./loading";
 import { ArrowRightIcon, ArrowLeftIcon, PlayIcon } from "@modulz/radix-icons";
 import Toolbar from "./toolbar";
 import Background from "./background";
+import Tooltip from "./tooltip";
 
 interface Props {
   user: User;
@@ -52,7 +53,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
   // Next slide button
   const arrowRight = currentSlide < lastSlideIndex && (
     <button className={`${buttonClass} right-8`} onClick={nextSlide}>
-      <ArrowRightIcon className="group-hover:translate-x-1 transition-transform" />
+      <Tooltip content="Next slide" shortcut="right">
+        <div>
+          <ArrowRightIcon className="group-hover:translate-x-1 transition-transform" />
+        </div>
+      </Tooltip>
     </button>
   );
 
@@ -64,7 +69,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
   // Previous slide
   const arrowLeft = currentSlide > 0 && (
     <button className={`${buttonClass} left-8`} onClick={previousSlide}>
-      <ArrowLeftIcon className="group-hover:-translate-x-1 transition-transform" />
+      <Tooltip content="Previous slide" shortcut="left">
+        <div>
+          <ArrowLeftIcon className="group-hover:-translate-x-1 transition-transform" />
+        </div>
+      </Tooltip>
     </button>
   );
 
@@ -124,9 +133,12 @@ function Slideshow({ user, hidden, setHidden }: Props) {
       {!loading && !welcome && (
         <div>
           {arrowLeft}
-          <div id="wrap" className="p-10 bg-black">
+          <div
+            id="wrap"
+            className="pt-12 px-5 sm:p-10 bg-black w-screen sm:w-auto sm:min-w-[800px]"
+          >
             <Background currentSlide={currentSlide} />
-            <div className="flex items-center justify-center min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
+            <div className="flex items-center justify-center min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
               {cardsToShow[currentSlide]}
             </div>
           </div>

@@ -43,7 +43,7 @@ const BlockChart = ({ chartData }) => {
     <div className="grid grid-cols-3 items-baseline">
       {chartData.values.map((value, i) => (
         <div key={i} className="text-center text-white">
-          <div className="w-[125px]">
+          <div className="w-[90px] sm:w-[125px]">
             <div
               className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-[1.1] transition-transform text-left p-2 text-sm text-gray-200 group flex flex-col justify-between`}
             >

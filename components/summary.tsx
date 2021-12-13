@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import Highlights from "./highlights";
 import TopRepos from "./topRepos";
 import TopLanguages from "./topLanguages";
@@ -20,7 +20,7 @@ interface IProps {
 function Summary({ user, hidden, setHidden, showHide }: IProps) {
   return (
     <div className="flex flex-col justify-center">
-      <div className="flex flex-row">
+      <div className="flex flex-col sm:flex-row">
         <Highlights
           user={user}
           hidden={hidden}
@@ -54,7 +54,7 @@ function Summary({ user, hidden, setHidden, showHide }: IProps) {
           showHide={showHide}
         />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-start sm:justify-center">
         <Contributions
           user={user}
           hidden={hidden}
