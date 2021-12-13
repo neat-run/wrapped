@@ -57,7 +57,7 @@ function Highlights({ user, hidden, setHidden, showHide }: Stat) {
       count: user.reviews,
       fontSize: "text-lg",
       tagline: "You're a good friend",
-      title: "PR reviews",
+      title: "Pull reviews",
       colour: "text-green-600",
     },
   ];
