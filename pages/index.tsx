@@ -57,7 +57,7 @@ export default function Home({ hostUser }) {
                 : "text-6xl sm:text-7xl md:text-8xl flex-col md:flex-row top-1/4"
             }`}
           >
-            <h1 className="w-full text-center">Github</h1>
+            <h1 className="w-full text-center">GitHub</h1>
             <h1
               className={`w-full font-mono pl-2 ${
                 auth || hostUser
