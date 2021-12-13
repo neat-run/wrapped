@@ -41,7 +41,7 @@ function Toolbar({ user, hidden, setHidden }: IProps) {
   }, 3 * 1000);
 
   const buttonClass =
-    "p-2 hover:bg-gray-800/90 text-gray-100 rounded scale-[1.5] hover:scale-[1.8] focus:outline-none";
+    "p-2 hover:bg-gray-800/90 text-gray-100 rounded scale-[1.5] hover:scale-[2] focus:outline-none";
 
   return (
     <div className="p-7 text-white space-x-7 flex items-center justify-center fixed left-1/2 -translate-x-1/2 bottom-8">
@@ -59,7 +59,7 @@ function Toolbar({ user, hidden, setHidden }: IProps) {
       )}
       <Tooltip content="Copy image" shortcut={SHORTCUTS.copyImage.sequence}>
         <button
-          className={buttonClass}
+          className={`${buttonClass} ${copiedImage ? "text-green-500" : null}`}
           onClick={() => {
             copyImage();
             setCopiedImage(true);
@@ -81,7 +81,10 @@ function Toolbar({ user, hidden, setHidden }: IProps) {
         }
       >
         <Tooltip content="Copy link" shortcut={SHORTCUTS.copyURL.sequence}>
-          <div className={buttonClass} onClick={() => setLinkModalOpen(true)}>
+          <div
+            className={`${buttonClass} ${copiedLink ? "text-green-500" : null}`}
+            onClick={() => setLinkModalOpen(true)}
+          >
             {copiedLink ? <CheckIcon /> : <Link2Icon />}
           </div>
         </Tooltip>
@@ -114,7 +117,7 @@ function Toolbar({ user, hidden, setHidden }: IProps) {
 
       <Tooltip content="Download" shortcut={SHORTCUTS.save.sequence}>
         <button
-          className={buttonClass}
+          className={`${buttonClass} ${downloaded ? "text-green-500" : null}`}
           onClick={() => {
             download();
             setDownloaded(true);
