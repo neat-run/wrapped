@@ -4,6 +4,7 @@
 
 html {
   background-color: #000;
+  @apply text-gray-200;
 }
 
 @layer base {

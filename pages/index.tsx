@@ -45,56 +45,60 @@ export default function Home({ hostUser }) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black">
+    <div className="flex flex-col items-center bg-black h-screen justify-between">
       <HeadTags user={hostUser} />
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
-        <h1
-          className={`transition-all duration-1000 ease-out fixed mb-5 left-1/2 -translate-x-1/2 font-bold tracking-tighter ${
-            auth || hostUser ? "text-2xl top-3" : "text-8xl top-1/4"
-          }`}
-        >
-          <span className="text-gray-200">GitHub</span>
-          <span
-            className={`font-mono pl-2 ${
+      <div className="grid place-items-center h-screen">
+        <div className="flex flex-col w-full items-center justify-center">
+          <div
+            className={`flex items-baseline font-bold tracking-tighter z-10 transition-all duration-1000 ease-out fixed mb-5 left-1/2 -translate-x-1/2 ${
               auth || hostUser
-                ? "text-indigo-600"
-                : "text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]"
+                ? "text-xl flex-row top-3"
+                : "text-6xl sm:text-7xl md:text-8xl flex-col md:flex-row top-1/4"
             }`}
           >
-            Wrapped
-          </span>
-        </h1>
-        {auth ? (
-          <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
-        ) : hostUser ? (
-          <div className="flex flex-col">
-            <div className="text-gray-400 text-lg pt-12 pb-2">
-              Welcome to
-              <a
-                href={`https://github.com/${hostUser.username ?? ""}`}
-                rel="noopener noreferrer"
-                className="text-gray-200 font-medium ml-1.5"
-              >
-                {hostUser.fullName ?? hostUser.username}
-              </a>
-              's year in review.
-            </div>
-            <div className="flex items-center justify-center p-5 min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
-              <Summary
-                user={hostUser}
-                hidden={hidden}
-                setHidden={setHidden}
-                showHide={false}
-              />
-            </div>
-            <SignIn auth={auth} setAuth={setAuth} />
-            <DownloadButton />
+            <h1 className="w-full text-center">Github</h1>
+            <h1
+              className={`w-full font-mono pl-2 ${
+                auth || hostUser
+                  ? "text-indigo-600"
+                  : "text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-purple-600 from-[#6B3EEC]"
+              }`}
+            >
+              Wrapped
+            </h1>
           </div>
-        ) : (
-          <SignIn auth={auth} setAuth={setAuth} />
-        )}
-      </main>
+          {auth ? (
+            <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
+          ) : hostUser ? (
+            <div className="flex flex-col">
+              <div className="text-gray-400 text-lg pt-12 pb-2">
+                Welcome to
+                <a
+                  href={`https://github.com/${hostUser.username ?? ""}`}
+                  rel="noopener noreferrer"
+                  className="text-gray-200 font-medium ml-1.5"
+                >
+                  {hostUser.fullName ?? hostUser.username}
+                </a>
+                's year in review.
+              </div>
+              <div className="flex items-center justify-center p-5 min-w-[800px] min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
+                <Summary
+                  user={hostUser}
+                  hidden={hidden}
+                  setHidden={setHidden}
+                  showHide={false}
+                />
+              </div>
+              <SignIn auth={auth} setAuth={setAuth} />
+              <DownloadButton />
+            </div>
+          ) : (
+            <SignIn auth={auth} setAuth={setAuth} />
+          )}
+        </div>
+      </div>
       <footer className="px-0 md:px-8 w-1/5 md:w-screen flex flex-wrap justify-center md:justify-between">
         <div className="flex items-center order-first md:order-2">
           <div className="flex flex-col sm:flex-row text-gray-400 text-center justify-center">
