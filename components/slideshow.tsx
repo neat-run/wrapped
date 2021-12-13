@@ -96,7 +96,7 @@ function Slideshow({ user, hidden, setHidden }: Props) {
         <div className="text-center text-gray-100 p-5 space-y-10 ">
           {user.username && (
             <div className="space-y-10">
-              <p className="text-3xl text-white space-x-2 transition-all duration-1000 ease-in">
+              <p className="text-3xl text-white space-x-2 transition-all duration-1000 ease-in items-baseline">
                 {user.avatarUrl && (
                   <img
                     className="w-20 h-20 rounded-full mx-auto mb-5 hover:scale-[1.5] transition"
@@ -104,7 +104,9 @@ function Slideshow({ user, hidden, setHidden }: Props) {
                     alt={`${user.username}'s avatar'`}
                   />
                 )}
-                {user.username && <span>Welcome,</span>}
+                {user.username && (
+                  <span className="font-bold tracking-tighter">Welcome,</span>
+                )}
                 <span className="font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-indigo-600 from-[#6B3EEC]">
                   {user.fullName ? user.fullName : user.username}
                 </span>

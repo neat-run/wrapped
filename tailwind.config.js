@@ -25,6 +25,16 @@ module.exports = {
       mono: ["Fira\\ Code"],
     },
     extend: {
+      animation: {
+        "pulse-slow": "halfPulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
+      keyframes: {
+        halfPulse: {
+          "0%": { opacity: 1 },
+          "50%": { opacity: 0.5 },
+          "100%": { opacity: 1 },
+        },
+      },
       gridTemplateRows: {
         7: "repeat(7, minmax(0, 1fr))",
       },
