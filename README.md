@@ -16,4 +16,4 @@ Welcome!
 
 That's it. Changes to components should hot-reload in the browser.
 
-Feel free to open an issue if you have any questions.
+Feel free to open an issue if you have any questions, or open a pull request if you would like to contribute. 
