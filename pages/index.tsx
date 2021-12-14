@@ -53,7 +53,7 @@ export default function Home({ hostUser }) {
       {/* <div className="grid place-items-center h-screen"> */}
       <div className="flex flex-col w-full flex-1 items-center justify-center">
         <div
-          className={`flex items-baseline font-bold tracking-tighter z-10 transition-all duration-1000 ease-out mb-5 ${
+          className={`flex items-baseline absolute font-bold tracking-tighter z-10 transition-all duration-1000 ease-out mb-5 ${
             auth || hostUser
               ? "text-xl flex-row top-3"
               : "text-4xl sm:text-6xl md:text-8xl flex-col md:flex-row top-1/4"
@@ -100,7 +100,7 @@ export default function Home({ hostUser }) {
             <DownloadButton />
           </div>
         ) : (
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center pt-48">
             <SignIn auth={auth} setAuth={setAuth} />
             <a
               href="https://www.producthunt.com/posts/github-wrapped-4?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-github-wrapped-4"
