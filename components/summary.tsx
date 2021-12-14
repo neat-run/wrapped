@@ -19,7 +19,7 @@ interface IProps {
  */
 function Summary({ user, hidden, setHidden, showHide }: IProps) {
   return (
-    <div className="flex flex-col justify-center items-center lg:w-[1245px] lg:h-[700px]">
+    <div className="flex flex-col justify-center items-center xl:w-[1245px] xl:h-[700px]">
       <div className="flex flex-col sm:flex-row">
         <div className="flex flex-col">
           <Highlights

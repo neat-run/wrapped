@@ -114,14 +114,14 @@ function Slideshow({ user, hidden, setHidden }: Props) {
                   />
                 )}
                 {user.username && (
-                  <span className="font-bold tracking-tighter">Welcome,</span>
+                  <span className="font-bold text-gray-200">Welcome,</span>
                 )}
                 <span className="font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-indigo-600 from-[#6B3EEC]">
                   {user.fullName ? user.fullName : user.username}
                 </span>
               </p>
               <button
-                className={`text-white rounded scale-[2] p-1 hover:scale-[2.5] mt-5 transition ease-out hover:bg-indigo-600 shadow-xl shadow-indigo-600/80 hover:shadow-none`}
+                className={`text-white rounded scale-[2] p-2 hover:scale-[2.25] mt-5 transition ease-out hover:bg-indigo-600 shadow-xl shadow-indigo-600/80 hover:shadow-none`}
                 onClick={() => setWelcome(false)}
               >
                 <PlayIcon />
@@ -146,7 +146,6 @@ function Slideshow({ user, hidden, setHidden }: Props) {
           <Toolbar user={user} hidden={hidden} setHidden={setHidden} />
         </div>
       )}
-      {/* <ProgressBar /> */}
     </div>
   );
 }
