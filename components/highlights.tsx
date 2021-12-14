@@ -74,12 +74,9 @@ function Highlights({ user, hidden, setHidden, showHide }: Stat) {
       <div className="grid grid-cols-3 items-end gap-5 text-white">
         {stats.map(
           (stat) =>
-            stat &&
-            stat.count && (
+            stat.count > 0 && (
               <div key={stat.title}>
-                <p
-                  className={`${stat.fontSize} ${stat.colour} font-mono tracking-wide`}
-                >
+                <p className={`${stat.fontSize} ${stat.colour} font-mono`}>
                   {stat.count}
                 </p>
                 <p className="text-gray-400 leading-none">{stat.title}</p>
