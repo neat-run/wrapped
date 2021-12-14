@@ -21,18 +21,21 @@ function Summary({ user, hidden, setHidden, showHide }: IProps) {
   return (
     <div className="flex flex-col justify-center items-center lg:w-[1245px] lg:h-[700px]">
       <div className="flex flex-col sm:flex-row">
-        <Highlights
-          user={user}
-          hidden={hidden}
-          setHidden={setHidden}
-          showHide={showHide}
-        />
-        <TopRepos
-          user={user}
-          hidden={hidden}
-          setHidden={setHidden}
-          showHide={showHide}
-        />
+        <div className="flex flex-col">
+          <Highlights
+            user={user}
+            hidden={hidden}
+            setHidden={setHidden}
+            showHide={showHide}
+          />
+          <TopRepos
+            user={user}
+            hidden={hidden}
+            setHidden={setHidden}
+            showHide={showHide}
+          />
+        </div>
+
         <div className="flex flex-col">
           <TopLanguages
             user={user}

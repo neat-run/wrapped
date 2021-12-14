@@ -70,13 +70,13 @@ function Highlights({ user, hidden, setHidden, showHide }: Stat) {
       <h1 className="text-gray-200 font-medium text-xl mb-2">
         {["Highlights", "Overview", "In a nutshell"][~~(Math.random() * 3)]}
       </h1>
-      <div className="space-y-5 text-white">
+
+      <div className="grid grid-cols-3 items-end gap-5 text-white">
         {stats.map(
           (stat) =>
             stat &&
             stat.count && (
               <div key={stat.title}>
-                {/* <p className="text-gray-400">{stat.tagline}</p> */}
                 <p
                   className={`${stat.fontSize} ${stat.colour} font-mono tracking-wide`}
                 >
@@ -86,10 +86,10 @@ function Highlights({ user, hidden, setHidden, showHide }: Stat) {
               </div>
             )
         )}
-        {showHide && (
-          <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
-        )}
       </div>
+      {showHide && (
+        <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
+      )}
     </div>
   );
 }
