@@ -73,7 +73,7 @@ export default function Home({ hostUser }) {
           <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
         ) : hostUser ? (
           <div className="flex flex-col">
-            <div className="text-gray-400 text-lg pt-12 pb-2">
+            <div className="text-gray-400 text-lg pt-12 pb-2 text-center">
               Welcome to
               <a
                 href={`https://github.com/${hostUser.username ?? ""}`}
