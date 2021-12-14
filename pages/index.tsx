@@ -100,7 +100,7 @@ export default function Home({ hostUser }) {
             <DownloadButton />
           </div>
         ) : (
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center pt-48">
             <SignIn auth={auth} setAuth={setAuth} />
             <a
               href="https://www.producthunt.com/posts/github-wrapped-4?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-github-wrapped-4"
