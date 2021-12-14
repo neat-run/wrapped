@@ -15,27 +15,27 @@ function Follows({ user, hidden, setHidden, showHide }: Stat) {
   if (hidden.includes(stat)) return <></>;
 
   return (
-    <div className="text-white text-left p-5 space-y-7 group">
+    <div className="p-5 text-left text-white space-y-7 group">
       <div className="text-gray-400">
-        <h1 className="text-xl text-gray-200 font-medium mb-2">
+        <h1 className="mb-2 text-xl font-medium text-gray-200">
           You like to stay connected
         </h1>
         <div className="space-x-2">
           <span className="font-mono text-2xl text-green-600">
             {following.totalCount}
           </span>
-          <span className="text-xl text-gray-400">followers</span>
+          <span className="text-xl text-gray-400">following</span>
         </div>
         <div className="space-x-2">
           <span className="font-mono text-2xl text-orange-600">
             {followers.totalCount}
           </span>
-          <span className="text-xl text-gray-400">following</span>
+          <span className="text-xl text-gray-400">followers</span>
         </div>
       </div>
 
       <div>
-        <h3 className="text-gray-200 mb-2 font-medium">You made new friends</h3>
+        <h3 className="mb-2 font-medium text-gray-200">You made new friends</h3>
         <div className="space-y-2">
           {following.latest.map((person, i) => (
             <div key={i} className="flex items-center space-x-2">
@@ -46,7 +46,7 @@ function Follows({ user, hidden, setHidden, showHide }: Stat) {
               />
               <a
                 href={person.url}
-                className="text-gray-400 font-medium"
+                className="font-medium text-gray-400"
                 rel="noopener noreferrer"
               >
                 {person.name ? person.name : person.login}
@@ -57,7 +57,7 @@ function Follows({ user, hidden, setHidden, showHide }: Stat) {
       </div>
 
       <div>
-        <h3 className="text-gray-200 mb-2 font-medium">Some showed you love</h3>
+        <h3 className="mb-2 font-medium text-gray-200">Some showed you love</h3>
         <div className="space-y-3">
           {followers.latest.map((person, i) => (
             <div key={i} className="flex items-center space-x-2">
@@ -68,7 +68,7 @@ function Follows({ user, hidden, setHidden, showHide }: Stat) {
               />
               <a
                 href={person.url}
-                className="text-gray-400 font-medium"
+                className="font-medium text-gray-400"
                 rel="noopener noreferrer"
               >
                 {person.name ? person.name : person.login}
