@@ -24,13 +24,13 @@ function Follows({ user, hidden, setHidden, showHide }: Stat) {
           <span className="font-mono text-2xl text-green-600">
             {following.totalCount}
           </span>
-          <span className="text-xl text-gray-400">followers</span>
+          <span className="text-xl text-gray-400">following</span>
         </div>
         <div className="space-x-2">
           <span className="font-mono text-2xl text-orange-600">
             {followers.totalCount}
           </span>
-          <span className="text-xl text-gray-400">following</span>
+          <span className="text-xl text-gray-400">followers</span>
         </div>
       </div>
 
