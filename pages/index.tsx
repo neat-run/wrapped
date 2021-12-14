@@ -9,6 +9,7 @@ import { getByUsername } from "../utils/exports";
 import { isDev, getUserStats } from "../utils/utils";
 import { defaultUser } from "../utils/default";
 import Link from "next/link";
+import Script from "next/script";
 import Summary from "../components/summary";
 import DownloadButton from "../components/downloadNeat";
 import MusicPlayer from "../components/musicPlayer";
@@ -102,7 +103,12 @@ export default function Home({ hostUser }) {
           <SignIn auth={auth} setAuth={setAuth} />
         )}
       </div>
-      {/* </div> */}
+
+      <Script
+        data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+        src="https://neat-analytics.up.railway.app/umami.js"
+      />
+
       <footer className="px-0 md:px-8 w-1/5 md:w-screen flex flex-wrap justify-center md:justify-between">
         <div className="flex items-center order-first md:order-2">
           <div className="m-3 flex whitespace-nowrap text-gray-400 text-center justify-center">
