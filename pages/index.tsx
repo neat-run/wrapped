@@ -100,14 +100,15 @@ export default function Home({ hostUser }) {
             <DownloadButton />
           </div>
         ) : (
-          <div className="flex flex-col items-center pt-48">
+          <div className="flex flex-col items-center pt-40 space-y-10">
             <SignIn auth={auth} setAuth={setAuth} />
             <a
               href="https://www.producthunt.com/posts/github-wrapped-4?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-github-wrapped-4"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <img
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=322830&theme=light"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=322830&theme=dark"
                 alt="GitHub Wrapped - Your year in code | Product Hunt"
                 width="250"
                 height="54"

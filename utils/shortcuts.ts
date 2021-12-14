@@ -41,7 +41,10 @@ export const SHORTCUTS = {
       // Ignore if already signed in
       let signedIn = await isSignedIn();
       if (!signedIn) signIn();
-      else signOut();
+      else {
+        signOut();
+        window.location.reload();
+      }
     },
   },
   konami: {
