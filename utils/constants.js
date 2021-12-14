@@ -16,6 +16,7 @@ export const Constants = {
     ["vue", "vuejs"],
     ["html", "html5"],
     ["css", "css3"],
+    ["jupyter notebook", "jupyter"],
   ]),
 };
 
