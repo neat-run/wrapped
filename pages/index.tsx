@@ -53,7 +53,7 @@ export default function Home({ hostUser }) {
       {/* <div className="grid place-items-center h-screen"> */}
       <div className="flex flex-col w-full flex-1 items-center justify-center">
         <div
-          className={`flex items-baseline absolute font-bold tracking-tighter z-10 transition-all duration-1000 ease-out mb-5 ${
+          className={`flex items-baseline font-bold tracking-tighter z-10 transition-all duration-1000 ease-out mb-5 ${
             auth || hostUser
               ? "text-xl flex-row top-3"
               : "text-4xl sm:text-6xl md:text-8xl flex-col md:flex-row top-1/4"
