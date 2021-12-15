@@ -16,7 +16,7 @@ export async function signIn() {
   await supabase.auth.signIn(
     { provider: "github" },
     {
-      scopes: "repo:status user",
+      scopes: "repo:status read:user",
       redirectTo: isDev() ? "http://localhost:3000" : "https://wrapped.run",
     }
   );
