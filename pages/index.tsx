@@ -13,6 +13,7 @@ import Script from "next/script";
 import Summary from "../components/summary";
 import DownloadButton from "../components/downloadNeat";
 import MusicPlayer from "../components/musicPlayer";
+import { GitHubLogoIcon } from "@modulz/radix-icons";
 
 export default function Home({ hostUser }) {
   const [user, setUser] = useState(defaultUser);
@@ -139,10 +140,10 @@ export default function Home({ hostUser }) {
           <a
             href="https://github.com/neat-run/wrapped"
             target="_blank"
-            className="text-gray-400 hover:text-gray-200 m-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500"
+            className="text-gray-400 hover:text-gray-200 m-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500 scale-[1.8]"
             rel="noopener noreferrer"
           >
-            Code
+            <GitHubLogoIcon />
           </a>
         </div>
 
