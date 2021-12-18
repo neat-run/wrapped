@@ -17,11 +17,12 @@ function Highlights({ user, hidden, setHidden, showHide }: Stat) {
 
     // Medium to 9xl (maximum in Tailwind)
     if (!order || order === 0) return "text-lg";
-    else if (order <= 2) return `text-xl`;
-    else if (order <= 4) return `text-3xl`;
-    else if (order <= 6) return `text-5xl`;
-    else if (order <= 8) return `text-7xl`;
-    else return "text-9xl";
+    else if (order <= 2) return "text-xl";
+    else if (order <= 3) return "text-2xl";
+    else if (order <= 4) return "text-3xl";
+    else if (order <= 5) return "text-4xl";
+    else if (order <= 6) return "text-5xl";
+    else return "text-7xl";
   };
 
   // Stats to render
