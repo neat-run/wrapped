@@ -1,6 +1,7 @@
 import domtoimage from "dom-to-image";
 import saveAs from "file-saver";
 import { User } from "../types/common";
+import Constants from "./constants";
 import {
   addRow,
   getImageURL,
@@ -69,7 +70,10 @@ export async function publishUser(user: User) {
   await uploadImage(screenshot, user?.username);
   let linkPreviewURL = await getImageURL(user?.username);
 
-  return await addRow("users", { ...user, linkPreviewURL });
+  return await addRow("users", {
+    ...user,
+    linkPreviewURL: linkPreviewURL ?? Constants.NEAT.OG_IMAGE,
+  });
 }
 
 /**
@@ -88,12 +92,15 @@ export function getPublicLink(user: User) {
 export async function copyPublicLink(user: User) {
   // Copy to clipboard
   if ("navigator" in window) {
-    let publicLink = getPublicLink(user);
-    navigator.clipboard.writeText(publicLink);
-  }
+    // Add user to Supabase
+    await publishUser(user);
 
-  // Add user to Supabase. This takes 1-2s - we assume the user won't share the link within that time.
-  await publishUser(user);
+    // Get and copy the public link
+    const publicLink = getPublicLink(user);
+    navigator.clipboard.writeText(publicLink);
+  } else {
+    console.error("We couldn't copy the URL. Please try another browser.");
+  }
 }
 
 /**

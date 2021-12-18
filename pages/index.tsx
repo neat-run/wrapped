@@ -165,7 +165,12 @@ export const getServerSideProps = async (context) => {
   let hostUser = null;
   let domainParts = context.req.headers.host.split(".");
   if (domainParts.length > (isDev() ? 1 : 2)) {
-    hostUser = await getByUsername(domainParts[0]);
+    try {
+      hostUser = await getByUsername(domainParts[0]);
+    } catch {
+      // Patch to prevent 500 error when no user is found
+      hostUser = null;
+    }
   }
 
   return {

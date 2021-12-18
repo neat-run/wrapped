@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import Constants from "../utils/constants";
 
 /**
  * Homepage head tags
@@ -12,9 +13,7 @@ function HeadTags({ user }) {
 
   // Put user's stats in link preview if published, otherwise default image
   let linkPreviewURL =
-    user && user.linkPreviewURL
-      ? user.linkPreviewURL
-      : "https://user-images.githubusercontent.com/36117635/144935780-a19c37f4-2b2b-4352-8936-8f5ab215d328.png";
+    user && user.linkPreviewURL ? user.linkPreviewURL : Constants.NEAT.OG_IMAGE;
 
   // Put user's name in link preview as social proof
   let linkPreviewTitle = `${
