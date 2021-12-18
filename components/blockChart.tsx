@@ -44,22 +44,18 @@ const BlockChart = ({ chartData }) => {
       {chartData.values.map((value, i) => (
         <div key={i} className="text-center text-white">
           <div className="w-[90px] sm:w-[125px]">
-            <div
-              className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-[1.1] transition-transform text-left p-2 text-sm text-gray-200 group flex flex-col justify-between`}
-            >
-              {value > 10 ? (
+            {value > 10 && (
+              <div
+                className={`${chartData.colors[i]} w-full ${heights[i]} hover:scale-[1.1] transition-transform text-left p-2 text-sm text-gray-200 group flex flex-col justify-between`}
+              >
                 <div>
                   <p className="text-3xl font-mono pr-0.5 leading-none">
                     {value}
                   </p>
-                  <p className="invisible group-hover:visible leading-none">
-                    commits
-                  </p>
+                  <p className="leading-none">commits</p>
                 </div>
-              ) : (
-                ""
-              )}
-            </div>
+              </div>
+            )}
           </div>
           <div className="flex flex-row text-sm mt-2 ml-1 text-gray-200 font-medium items-center">
             <img
