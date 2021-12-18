@@ -124,7 +124,7 @@ export default function Home({ hostUser }) {
         src="https://neat-analytics.up.railway.app/umami.js"
       />
 
-      <footer className="px-0 md:px-8 w-1/5 md:w-screen flex flex-wrap justify-center md:justify-between">
+      <footer className="px-0 md:px-8 w-1/5 md:w-full flex flex-wrap justify-center md:justify-between">
         <div className="flex items-center order-first md:order-2">
           <div className="m-3 flex whitespace-nowrap text-gray-400 text-center justify-center">
             Made by&nbsp;
