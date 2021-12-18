@@ -92,7 +92,7 @@ function Toolbar({ user, hidden, setHidden }: IProps) {
 
       <Modal
         onSubmit={async () => {
-          publishUser(user);
+          await publishUser(user);
           let publicLink = getPublicLink(user);
           window.open(
             `https://twitter.com/intent/tweet?text=Check%20out%20my%20GitHub%20Wrapped!&url=${publicLink}`,
