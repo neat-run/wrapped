@@ -7,6 +7,11 @@ html {
   @apply text-gray-200;
 }
 
+@font-face {
+  font-family: "mister-pixel";
+  src: url("/fonts/MP16REG.ttf");
+}
+
 @layer base {
   .outline-dotted {
     outline: 2px dotted white;

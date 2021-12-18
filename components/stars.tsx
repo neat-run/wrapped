@@ -17,13 +17,13 @@ function Stars({ user, hidden, setHidden, showHide }: Stat) {
       </h1>
       <div>
         <div className="flex space-x-2 items-center">
-          <p className="font-mono text-2xl text-green-600">
+          <p className="font-mono text-3xl text-green-600">
             +{user.stars.given}
           </p>
           <p className="text-gray-400 text-xl">starred</p>
         </div>
         <div className="flex space-x-2 items-center">
-          <p className="font-mono text-2xl text-orange-600">
+          <p className="font-mono text-3xl text-orange-600">
             +{user.stars.received}
           </p>
           <p className="text-gray-400 text-xl">stars</p>

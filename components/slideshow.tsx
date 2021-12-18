@@ -116,7 +116,7 @@ function Slideshow({ user, hidden, setHidden }: Props) {
                 {user.username && (
                   <span className="font-bold text-gray-200">Welcome,</span>
                 )}
-                <span className="font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-l to-[#85259D] via-indigo-600 from-[#6B3EEC]">
+                <span className="font-mono text-transparent bg-clip-text bg-gradient-to-l to-blue-600 via-indigo-600 from-purple-600">
                   {user.fullName ? user.fullName : user.username}
                 </span>
               </p>

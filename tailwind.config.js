@@ -22,7 +22,7 @@ module.exports = {
       orange: colors.orange,
     },
     fontFamily: {
-      mono: ["Fira\\ Code"],
+      mono: ["mister-pixel"],
     },
     extend: {
       animation: {
