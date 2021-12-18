@@ -13,6 +13,8 @@ export const Constants = {
   COMMON_LANGUAGES: new Map([
     ["shell", "bash"],
     ["c++", "cplusplus"],
+    ["c#", "csharp"],
+    ["scss", "sass"],
     ["vue", "vuejs"],
     ["html", "html5"],
     ["css", "css3"],
