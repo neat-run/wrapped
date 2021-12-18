@@ -65,6 +65,15 @@ function Summary({ user, hidden, setHidden, showHide }: IProps) {
           showHide={showHide}
         />
       </div>
+      <a
+        href="https://wrapped.run"
+        className="absolute bottom-2 right-4 text-gray-400/80 font-mono group"
+      >
+        <span className="text-indigo-500 group-hover:text-indigo-300">
+          Wrapped
+        </span>
+        .run
+      </a>
     </div>
   );
 }
