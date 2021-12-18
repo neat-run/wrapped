@@ -16,10 +16,11 @@ function Highlights({ user, hidden, setHidden, showHide }: Stat) {
     let order = Math.floor(Math.log(count));
 
     // Medium to 9xl (maximum in Tailwind)
-    if (!order || order === 0) return "text-md";
+    if (!order || order === 0) return "text-lg";
     else if (order <= 2) return `text-xl`;
-    // Even values don't seem to work in text-[N]xl
-    else if (order <= 9) return `text-${order - (order % 2) - 1}xl`;
+    else if (order <= 4) return `text-3xl`;
+    else if (order <= 6) return `text-5xl`;
+    else if (order <= 8) return `text-7xl`;
     else return "text-9xl";
   };
 
