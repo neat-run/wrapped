@@ -13,9 +13,9 @@ import {
 /**
  * Grab the banner element and download it as a PNG
  */
-export function download() {
+export function download(user: User) {
   getImage(2).then((blob) => {
-    saveAs(blob, "wrapped.png");
+    saveAs(blob, `wrapped_${user.username}.png`);
   });
 }
 

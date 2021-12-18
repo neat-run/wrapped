@@ -119,7 +119,7 @@ function Toolbar({ user, hidden, setHidden }: IProps) {
         <button
           className={`${buttonClass} ${downloaded ? "text-green-500" : null}`}
           onClick={() => {
-            download();
+            download(user);
             setDownloaded(true);
           }}
         >

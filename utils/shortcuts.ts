@@ -17,7 +17,7 @@ export const SHORTCUTS = {
     sequence: `${cmdOrCtrl}+s`,
     method: (e, user) => {
       e.preventDefault();
-      download();
+      download(user);
     },
   },
   copyImage: {
