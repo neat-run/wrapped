@@ -29,7 +29,9 @@ function TopLanguages({ user, hidden, setHidden, showHide }: Stat) {
             className="flex items-center space-x-3"
             style={{ color: language.color }}
           >
-            <p className={`devicon-${language.name}-plain text-4xl`} />
+            <p
+              className={`devicon-${language.name}-plain text-4xl hover:scale-[1.5] transition-transform`}
+            />
             <p className="font-mono text-xl">{language.commonName}</p>
           </div>
         ))}

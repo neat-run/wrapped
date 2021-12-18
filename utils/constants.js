@@ -18,6 +18,8 @@ export const Constants = {
     ["shell", "bash"],
     ["c++", "cplusplus"],
     ["c#", "csharp"],
+    ["objective-c", "objectivec"],
+    ["dockerfile", "docker"],
     ["scss", "sass"],
     ["vue", "vuejs"],
     ["html", "html5"],
