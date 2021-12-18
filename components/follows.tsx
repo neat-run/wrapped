@@ -15,7 +15,7 @@ function Follows({ user, hidden, setHidden, showHide }: Stat) {
   if (hidden.includes(stat)) return <></>;
 
   return (
-    <div className="p-5 text-left text-white space-y-7 group">
+    <div className="p-5 text-left text-white space-y-7 group relative">
       <div className="text-gray-400">
         <h1 className="mb-2 text-xl font-medium text-gray-200">
           You like to stay connected

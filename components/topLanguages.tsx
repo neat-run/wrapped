@@ -12,7 +12,7 @@ function TopLanguages({ user, hidden, setHidden, showHide }: Stat) {
   if (!languages || hidden.includes(stat)) return <></>;
 
   return (
-    <div className="m-5 text-left group">
+    <div className="p-5 text-left group relative">
       <h1 className="text-gray-200 text-xl font-medium mb-3">
         {
           [

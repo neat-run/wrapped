@@ -68,7 +68,7 @@ function Highlights({ user, hidden, setHidden, showHide }: Stat) {
   stats.map((stat) => (stat.fontSize = numberToFontSize(stat.count)));
 
   return (
-    <div className="p-5 text-left group">
+    <div className="p-5 text-left group relative">
       <h1 className="text-gray-200 font-medium text-xl mb-2">
         {["Highlights", "Overview", "In a nutshell"][~~(Math.random() * 3)]}
       </h1>

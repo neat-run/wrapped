@@ -7,7 +7,7 @@ function Stars({ user, hidden, setHidden, showHide }: Stat) {
   if (!user || !user.stars || hidden.includes(stat)) return <></>;
 
   return (
-    <div className="m-5 text-left text-white group">
+    <div className="p-5 text-left text-white group relative">
       <h1 className="text-gray-200 font-medium text-xl mb-2">
         {
           ["You're a star", "Eyes to the sky", "Shoot for the moon"][

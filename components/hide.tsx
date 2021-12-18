@@ -1,6 +1,9 @@
 import { User } from "../types/common";
 import { getByUsername, retakeScreenshot } from "../utils/exports";
 import { updateValue } from "../utils/supabase";
+import { Cross1Icon } from "@modulz/radix-icons";
+import React from "react";
+import Tooltip from "./tooltip";
 
 interface IProps {
   stat: keyof User;
@@ -33,12 +36,14 @@ function Hide({ stat, user, hidden, setHidden }: IProps) {
 
   return (
     <div>
-      <button
-        className="invisible group-hover:visible absolute p-2 hover:bg-gray-800/90 text-gray-300 text-xs rounded focus:outline-none"
-        onClick={toggleHide}
-      >
-        Hide
-      </button>
+      <Tooltip content="Hide this section">
+        <button
+          className="invisible group-hover:visible absolute -top-1 -left-1 p-2 bg-gray-800/90 hover:bg-gray-600/90 text-white text-sm rounded focus:outline-none"
+          onClick={toggleHide}
+        >
+          <Cross1Icon />
+        </button>
+      </Tooltip>
     </div>
   );
 }
