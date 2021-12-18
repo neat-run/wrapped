@@ -65,15 +65,23 @@ function Summary({ user, hidden, setHidden, showHide }: IProps) {
           showHide={showHide}
         />
       </div>
-      <a
-        href="https://wrapped.run"
-        className="absolute bottom-2 right-4 text-gray-400/80 font-mono group"
-      >
-        <span className="text-indigo-500 group-hover:text-indigo-300">
-          Wrapped
-        </span>
-        .run
-      </a>
+      <div className="flex flex-row absolute bottom-2 right-4">
+        <a
+          href="https://wrapped.run"
+          className="text-gray-400/80 font-mono group mr-1"
+        >
+          <span className="text-indigo-500 group-hover:text-indigo-300">
+            wrapped
+          </span>
+          .run
+        </a>
+        <div className="text-gray-500/80">
+          by{" "}
+          <a href="https://neat.run" className="text-gray-500/80">
+            neat.run
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
