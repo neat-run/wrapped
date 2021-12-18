@@ -50,7 +50,7 @@ function Contributions({ user, hidden, setHidden, showHide }: Stat) {
   });
 
   // Get max contribution value and its date
-  const { max, maxDate, maxDatePosition } = getMaxDate(contributions);
+  const { max, maxDate } = getMaxDate(contributions);
 
   // Get array of unique contribution values (ascending)
   const unique = contributions.filter((x, i, a) => a.indexOf(x) === i).sort();
@@ -71,15 +71,24 @@ function Contributions({ user, hidden, setHidden, showHide }: Stat) {
 
   return (
     <div className="p-5 max-w-4xl flex flex-col items-start group relative">
-      <h1 className="mb-2 text-gray-200 text-xl font-medium text-left whitespace-nowrap">
-        {
-          [
-            "You show up daily",
-            "You have no commitment issues",
-            "Your grind never stops",
-          ][~~(Math.random() * 3)]
-        }
-      </h1>
+      <div className="flex flex-col text-gray-400 items-baseline sm:flex-row sm:justify-between w-full">
+        <h1 className="mb-2 text-gray-200 text-xl font-medium text-left whitespace-nowrap">
+          {
+            [
+              "You show up daily",
+              "You have no commitment issues",
+              "Your grind never stops",
+            ][~~(Math.random() * 3)]
+          }
+        </h1>
+        <div className="space-x-1 mb-4 sm:mb-0">
+          {maxDate && max > 10 && (
+            <span>
+              Top day: {max} on {maxDate}
+            </span>
+          )}
+        </div>
+      </div>
       <div className="grid gap-0.5 grid-cols-7 grid-flow-row sm:grid-rows-7 sm:grid-flow-col">
         {/* Placeholders to account for the year starting on a Friday */}
         {[...Array(5)].map((_, i) => (
@@ -109,13 +118,6 @@ function Contributions({ user, hidden, setHidden, showHide }: Stat) {
           <Hide stat={stat} user={user} hidden={hidden} setHidden={setHidden} />
         )}
       </div>
-      {maxDate && (
-        <div
-          className={`mt-2 flex text-gray-400 items-center space-x-2 sm:relative ${maxDatePosition}`}
-        >
-          <span>Your top day: {maxDate}</span>
-        </div>
-      )}
     </div>
   );
 }
