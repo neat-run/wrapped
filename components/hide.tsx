@@ -38,7 +38,7 @@ function Hide({ stat, user, hidden, setHidden }: IProps) {
     <div>
       <Tooltip content="Hide this section">
         <button
-          className="invisible group-hover:visible absolute -top-1 -left-1 p-2 bg-gray-800/90 hover:bg-gray-600/90 text-white text-sm rounded focus:outline-none"
+          className="opacity-0 group-hover:opacity-100 transition absolute -top-1 -left-1 p-2 bg-gray-800/90 hover:bg-gray-600/90 text-white text-sm rounded focus:outline-none"
           onClick={toggleHide}
         >
           <Cross1Icon />

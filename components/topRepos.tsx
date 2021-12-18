@@ -20,11 +20,11 @@ function TopRepos({ user, hidden, setHidden, showHide }: Stat) {
     avatarUrl: user.topRepos.map((repo) => repo.avatarUrl),
     stars: user.topRepos.map((repo) => repo.stars),
     values: user.topRepos.map((repo) => repo.contributions),
-    colors: ["bg-orange-500/80", "bg-green-500/80", "bg-purple-500/80"],
+    colors: ["bg-orange-600/80", "bg-green-600/80", "bg-purple-600/80"],
   };
 
   return (
-    <div className="text-left p-5 text-white group">
+    <div className="text-left p-5 text-white group relative">
       <h1 className="text-gray-200 text-xl mb-2 font-medium">
         {
           [
