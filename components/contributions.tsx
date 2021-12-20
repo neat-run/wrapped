@@ -21,7 +21,7 @@ const formatDate = (date: string): string => {
 const getMaxDate = (contributions: number[]) => {
   const max = Math.max(...contributions);
   const maxDayIndex = contributions.findIndex((x) => x == max);
-  const maxDate = formatDate(new Date(2021, 0, maxDayIndex).toDateString());
+  const maxDate = formatDate(new Date(2021, 0, maxDayIndex + 1).toDateString());
   const maxDatePosition =
     maxDayIndex > 240 ? "left-2/3" : maxDayIndex > 120 ? "left-1/3" : "left-0";
 
