@@ -6,7 +6,7 @@ import Contributions from "./contributions";
 import Follows from "./follows";
 import Stars from "./stars";
 import { User } from "../types/common";
-import Watermark from "./Watermark";
+import Watermark from "./watermark";
 
 interface IProps {
   user: User;
@@ -20,7 +20,7 @@ interface IProps {
  */
 function Summary({ user, hidden, setHidden, showHide }: IProps) {
   return (
-    <div className="flex flex-col justify-center items-center xl:w-[1245px] xl:h-[700px]">
+    <div className="flex flex-col justify-center items-center relative xl:w-[1245px] xl:h-[700px]">
       <div className="flex flex-col sm:flex-row">
         <div className="flex flex-col">
           <Highlights

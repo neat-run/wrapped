@@ -68,7 +68,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
 
   // Next slide button
   const arrowRight = currentSlide < lastSlideIndex && (
-    <button className={`${buttonClass} right-8`} onClick={nextSlide}>
+    <button
+      name="next-slide"
+      className={`${buttonClass} right-8`}
+      onClick={nextSlide}
+    >
       <Tooltip content="Next slide" shortcut="right">
         <div>
           <ArrowRightIcon className="group-hover:translate-x-1 transition-transform" />
@@ -84,7 +88,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
 
   // Previous slide
   const arrowLeft = currentSlide > 0 && (
-    <button className={`${buttonClass} left-8`} onClick={previousSlide}>
+    <button
+      name="previous-slide"
+      className={`${buttonClass} left-8`}
+      onClick={previousSlide}
+    >
       <Tooltip content="Previous slide" shortcut="left">
         <div>
           <ArrowLeftIcon className="group-hover:-translate-x-1 transition-transform" />
