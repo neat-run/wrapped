@@ -6,7 +6,7 @@ import Contributions from "./contributions";
 import Follows from "./follows";
 import Stars from "./stars";
 import { User } from "../types/common";
-import Watermark from "./watermark";
+import Watermark from "./Watermark";
 
 interface IProps {
   user: User;
