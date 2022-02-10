@@ -20,7 +20,7 @@ function PrivacyPolicy() {
       <div className="max-w-3xl mx-auto text-gray-200 p-6 sm:py-32 sm:px-10 space-y-2">
         <h1 className="text-5xl font-bold pt-5 pb-2">Privacy Policy</h1>
         <span className="text-gray-400">Last updated </span>
-        <span className="font-medium">3 Dec 2021</span>
+        <span className="font-medium">10 Feb 2022</span>
         <Link href="/">
           <a className="absolute group top-8 left-10 p-4 flex items-center text-gray-400 hover:text-gray-200 space-x-3 cursor-pointer">
             <ArrowLeftIcon className="scale-150 group-hover:-translate-x-2 transition-transform" />
@@ -43,7 +43,7 @@ function PrivacyPolicy() {
           Supabase table under your GitHub username. This allows other users to
           see your stats when they click your link.
         </p>
-        <p>We won't sell your info or use it to market to you.</p>
+        <p>We won't sell your info.</p>
         <h1 className="text-3xl font-bold pt-5">Changes to this policy</h1>
         <p>
           We may update this policy in the future. Please check back for
