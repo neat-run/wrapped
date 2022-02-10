@@ -70,7 +70,7 @@ function Contributions({ user, hidden, setHidden, showHide }: Stat) {
   });
 
   return (
-    <div className="p-5 max-w-4xl flex flex-col items-start group relative">
+    <div className="p-5 mb-3 max-w-4xl flex flex-col items-start group relative">
       <div className="flex flex-col text-gray-400 items-baseline sm:flex-row sm:justify-between w-full">
         <h1 className="mb-2 text-gray-200 text-xl font-medium text-left whitespace-nowrap">
           {

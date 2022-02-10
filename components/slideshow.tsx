@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Highlights from "./highlights";
 import TopRepos from "./topRepos";
 import TopLanguages from "./topLanguages";
@@ -12,6 +12,7 @@ import { ArrowRightIcon, ArrowLeftIcon, PlayIcon } from "@modulz/radix-icons";
 import Toolbar from "./toolbar";
 import Background from "./background";
 import Tooltip from "./tooltip";
+import Tilt from "vanilla-tilt";
 
 interface Props {
   user: User;
@@ -27,6 +28,21 @@ function Slideshow({ user, hidden, setHidden }: Props) {
   const [welcome, setWelcome] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Add tilt effect to card
+  const tilt = useRef(null);
+  const options = {
+    max: 3, // degrees
+    perspective: 1000,
+    reverse: true,
+    transition: false,
+  };
+  useEffect(() => {
+    if (tilt.current && !window.matchMedia("(pointer: coarse)").matches) {
+      Tilt.init(tilt.current, options);
+    }
+  }, [tilt]);
+
+  // Slide components
   const cardsToShow = [
     <Highlights user={user} hidden={hidden} setHidden={setHidden} />,
     <TopRepos user={user} hidden={hidden} setHidden={setHidden} />,
@@ -52,7 +68,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
 
   // Next slide button
   const arrowRight = currentSlide < lastSlideIndex && (
-    <button className={`${buttonClass} right-8`} onClick={nextSlide}>
+    <button
+      name="next-slide"
+      className={`${buttonClass} right-8`}
+      onClick={nextSlide}
+    >
       <Tooltip content="Next slide" shortcut="right">
         <div>
           <ArrowRightIcon className="group-hover:translate-x-1 transition-transform" />
@@ -68,7 +88,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
 
   // Previous slide
   const arrowLeft = currentSlide > 0 && (
-    <button className={`${buttonClass} left-8`} onClick={previousSlide}>
+    <button
+      name="previous-slide"
+      className={`${buttonClass} left-8`}
+      onClick={previousSlide}
+    >
       <Tooltip content="Previous slide" shortcut="left">
         <div>
           <ArrowLeftIcon className="group-hover:-translate-x-1 transition-transform" />
@@ -135,10 +159,11 @@ function Slideshow({ user, hidden, setHidden }: Props) {
           {arrowLeft}
           <div
             id="wrap"
+            ref={tilt}
             className="pt-12 px-5 sm:p-10 bg-black w-screen sm:w-auto sm:min-w-[800px]"
           >
             <Background currentSlide={currentSlide} />
-            <div className="flex items-center justify-center min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl card-border">
+            <div className="flex items-center justify-center min-h-[600px] rounded-lg bg-gray-900/80 backdrop-blur-3xl">
               {cardsToShow[currentSlide]}
             </div>
           </div>

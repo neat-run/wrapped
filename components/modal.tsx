@@ -32,7 +32,7 @@ function Modal({ children, onSubmit, defaultOpen, title, description }) {
 
   return (
     <AlertDialog.Root open={open} onOpenChange={setOpen}>
-      <AlertDialog.Trigger className="focus:outline-none">
+      <AlertDialog.Trigger className="focus:outline-none flex">
         {children}
       </AlertDialog.Trigger>
       <AlertDialog.Overlay className="bg-black/50 backdrop-blur-sm fixed inset-0" />

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { isSignedIn } from "../utils/supabase";
-import Constants from "../utils/constants";
 import Slideshow from "../components/slideshow";
 import HeadTags from "../components/headTags";
 import SignIn from "../components/signIn";
@@ -8,17 +7,18 @@ import { initShortcuts } from "../utils/shortcuts";
 import { getByUsername } from "../utils/exports";
 import { isDev, getUserStats } from "../utils/utils";
 import { defaultUser } from "../utils/default";
-import Link from "next/link";
 import Script from "next/script";
 import Summary from "../components/summary";
 import DownloadButton from "../components/downloadNeat";
 import MusicPlayer from "../components/musicPlayer";
-import { GitHubLogoIcon } from "@modulz/radix-icons";
+import Footer from "../components/footer";
+import ProductHuntBadge from "../components/productHuntBadge";
 
 export default function Home({ hostUser }) {
   const [user, setUser] = useState(defaultUser);
   const [auth, setAuth] = useState(null);
-  // Local storage is undefined if rendering on the server
+
+  // Get and store hidden sections in local storage
   const [hidden, setHidden] = useState(
     typeof window !== "undefined"
       ? localStorage.getItem("hidden") === null
@@ -26,7 +26,11 @@ export default function Home({ hostUser }) {
         : JSON.parse(localStorage.getItem("hidden"))
       : Array()
   );
+  useEffect(() => {
+    localStorage.setItem("hidden", JSON.stringify(hidden));
+  }, [hidden]);
 
+  // On sign-in, fetch stats and enable keyboard shortcuts
   useEffect(() => {
     (async () => {
       let userStats = await getUserStats();
@@ -36,10 +40,6 @@ export default function Home({ hostUser }) {
     checkUser();
     window.addEventListener("hashchange", () => checkUser());
   }, [auth]);
-
-  useEffect(() => {
-    localStorage.setItem("hidden", JSON.stringify(hidden));
-  }, [hidden]);
 
   // Check if user is signed in
   async function checkUser() {
@@ -51,7 +51,6 @@ export default function Home({ hostUser }) {
     <div className="flex flex-col items-center bg-black min-h-screen justify-between">
       <HeadTags user={hostUser} />
 
-      {/* <div className="grid place-items-center h-screen"> */}
       <div className="flex flex-col w-full flex-1 items-center justify-center">
         <div
           className={`flex items-baseline absolute font-bold tracking-tighter z-10 transition-all duration-1000 ease-out mb-5 ${
@@ -71,6 +70,7 @@ export default function Home({ hostUser }) {
             Wrapped
           </h1>
         </div>
+
         {auth ? (
           <Slideshow user={user} hidden={hidden} setHidden={setHidden} />
         ) : hostUser ? (
@@ -103,18 +103,7 @@ export default function Home({ hostUser }) {
         ) : (
           <div className="flex flex-col items-center pt-40 space-y-10">
             <SignIn auth={auth} setAuth={setAuth} />
-            <a
-              href="https://www.producthunt.com/posts/github-wrapped-4?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-github-wrapped-4"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=322830&theme=dark"
-                alt="GitHub Wrapped - Your year in code | Product Hunt"
-                width="250"
-                height="54"
-              />
-            </a>
+            <ProductHuntBadge />
           </div>
         )}
       </div>
@@ -124,37 +113,7 @@ export default function Home({ hostUser }) {
         src="https://neat-analytics.up.railway.app/umami.js"
       />
 
-      <footer className="px-0 md:px-8 w-1/5 md:w-full flex flex-wrap justify-center md:justify-between">
-        <div className="flex items-center order-first md:order-2">
-          <div className="m-3 flex whitespace-nowrap text-gray-400 text-center justify-center">
-            Made by&nbsp;
-            <a
-              className="font-semibold text-indigo-500 hover:text-indigo-400 transition hover:-translate-y-1 duration-500"
-              href={Constants.NEAT.URL}
-            >
-              Neat
-            </a>
-          </div>
-        </div>
-        <div className="flex order-1">
-          <a
-            href="https://github.com/neat-run/wrapped"
-            target="_blank"
-            className="text-gray-400 hover:text-gray-200 m-3 transition-transform hover:-translate-y-1 hover:rotate-3 duration-500 scale-[1.8]"
-            rel="noopener noreferrer"
-          >
-            <GitHubLogoIcon />
-          </a>
-        </div>
-
-        <div className="flex order-3">
-          <Link href="/privacy">
-            <a className="text-gray-400 hover:text-gray-200 m-3 transition-transform hover:-translate-y-1 hover:-rotate-3 duration-500">
-              Privacy
-            </a>
-          </Link>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
